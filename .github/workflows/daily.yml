@@ -117,9 +117,12 @@ jobs:
           git add live/store
           git -c user.name=delu-daily -c user.email=delu-daily@users.noreply.github.com commit --quiet \
               -m "dry run: the store at its start"
+          # The checkout is shallow, so the origin starts from one parentless commit of the same tree.
+          seed=$(git -c user.name=delu-daily -c user.email=delu-daily@users.noreply.github.com commit-tree "HEAD^{tree}" \
+              -m "dry run: this checkout's tree and the store at its start")
           git init --quiet --bare -b main "$RUNNER_TEMP/origin.git"
           git remote add dryrun "$RUNNER_TEMP/origin.git"
-          git push --quiet dryrun HEAD:refs/heads/main
+          git push --quiet dryrun "$seed:refs/heads/main"
       - name: The pipeline (dry run, development days)
         env:
           NOW: ${{ inputs.now }}

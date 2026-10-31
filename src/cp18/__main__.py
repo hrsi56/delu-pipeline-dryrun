@@ -5,6 +5,7 @@
     PYTHONPATH=src python -m cp18 seed-store --root . --genesis <state.json>:<first day> | --carried <store folder>
     PYTHONPATH=src python -m cp18 run --root . --project . --out <dir> --host runner --now <ISO> \
         --inputs prebuilt:<payload folder> | live:<recorded responses> [--remote origin]
+    PYTHONPATH=src python -m cp18 carry --root . --last-window-day <day> --first-live-day <day> --reason <text>
     PYTHONPATH=src python -m cp18 status --root .
 
 **This round runs dry runs only** (`--mode dry-run`, the default and the only mode accepted): development days through
@@ -104,6 +105,17 @@ def cmd_seed_store(args) -> int:
     return 0
 
 
+def cmd_carry(args) -> int:
+    """The carry from 4.7T's last window day to the first live day: the days between are recorded as outside both."""
+    from .store import STORE_PATH, LiveStore
+    store = LiveStore(args.root / STORE_PATH)
+    store.verify()
+    entry = store.record_carry(date.fromisoformat(args.last_window_day), date.fromisoformat(args.first_live_day),
+                               args.reason)
+    print('carry', entry['last_window_day'], '->', entry['first_live_day'], 'head', store.verify()['entry_sha256'][:16])
+    return 0
+
+
 def cmd_status(args) -> int:
     from .store import STORE_PATH, LiveStore
     store = LiveStore(args.root / STORE_PATH)
@@ -140,10 +152,16 @@ def main(argv=None) -> int:
     g.add_argument('--genesis', help='<state.json>:<first day>: a new store from a development state')
     g.add_argument('--carried', type=Path, help='a store folder an earlier run left, copied and verified')
     i.add_argument('--source')
+    c = sub.add_parser('carry')
+    c.add_argument('--root', default=Path('.'), type=Path)
+    c.add_argument('--last-window-day', required=True)
+    c.add_argument('--first-live-day', required=True)
+    c.add_argument('--reason', required=True)
     s = sub.add_parser('status')
     s.add_argument('--root', default=Path('.'), type=Path)
     args = ap.parse_args(argv)
-    return {'prepare': cmd_prepare, 'run': cmd_run, 'seed-store': cmd_seed_store, 'status': cmd_status}[args.cmd](args)
+    return {'prepare': cmd_prepare, 'run': cmd_run, 'seed-store': cmd_seed_store, 'carry': cmd_carry,
+            'status': cmd_status}[args.cmd](args)
 
 
 if __name__ == '__main__':
