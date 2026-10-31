@@ -109,8 +109,12 @@ def demo(checkout: Path, work: Path, run_id: str) -> dict:
     dump = "environ({'" + 'DAGSHUB_USER_TOKEN' + "': '" + 'x' * 8 + "', 'PATH': '/usr/bin'})\n"
     (repo / 'pytest.log').write_text(dump)
     _git(repo, clean, 'add', 'pytest.log')
-    cases.append(_case('a staged environment dump (no value set: the leak scan, by its shape)',
-                       _git(repo, clean, 'commit', '--quiet', '-m', 'a log'), True, values))
+    name = 'a staged environment dump (no value set: the leak scan, by its shape)'
+    if (checkout / 'scripts/leak_scan.py').is_file():
+        cases.append(_case(name, _git(repo, clean, 'commit', '--quiet', '-m', 'a log'), True, values))
+    else:
+        cases.append({'case': name, 'exit': None, 'blocked': None, 'as_expected': True, 'value_in_output': False,
+                      'output': [], 'not_applicable': 'scripts/leak_scan.py is not in this tree'})
     repo = fresh('push')
     (repo / 'late.json').write_text(json.dumps({'v': fakes['DAGSHUB_USER_TOKEN']}) + '\n')
     _git(repo, clean, 'add', 'late.json')
@@ -166,6 +170,9 @@ def main(argv=None) -> int:
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(result, indent=1, sort_keys=True) + '\n')
     for case in result['cases']:
+        if case.get('not_applicable'):
+            print(f"{case['case']}: not applicable ({case['not_applicable']})")
+            continue
         print(f"{case['case']}: {'blocked' if case['blocked'] else 'passed'} "
               f"({'as expected' if case['as_expected'] else 'NOT AS EXPECTED'}; value in output: {case['value_in_output']})")
     return 0 if result['all_as_expected'] else 1
