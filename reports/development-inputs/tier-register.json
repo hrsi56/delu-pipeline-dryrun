@@ -1,0 +1,630 @@
+{
+ "anchor": "capstone_v21.md v21-r13 \u00a724.4, \u00a724.5, \u00a724.6 items 4-5",
+ "calendar_features": [
+  {
+   "feature": "local_hour",
+   "members": "v1-R, LightGBM (B3/A2, L-N, L-R)",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "day_of_week",
+   "members": "v1-R, LightGBM",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "month",
+   "members": "v1-R, LightGBM, DDNN-2 calendar",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "is_federal_holiday",
+   "members": "v1-R, LightGBM, DDNN-2 calendar",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "is_day_after_holiday",
+   "members": "v1-R, LightGBM, DDNN-2 calendar",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "is_bridge_day",
+   "members": "v1-R, LightGBM, DDNN-2 calendar",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "day_type",
+   "members": "v1-R, LightGBM, DDNN-2 calendar",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "dst_transition_day",
+   "members": "v1-R, LightGBM, DDNN-2 calendar",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "summer_peak (months 6-8)",
+   "members": "v1-R, LightGBM",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "winter_peak (months 12-2)",
+   "members": "v1-R, LightGBM",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "weekday_0..6 (seven dummies)",
+   "members": "LEAR (A1, B2, A1_w, B2_w), DDNN-2",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "B0 weekday rule (Tue-Fri D-1, Mon/Sat/Sun D-7)",
+   "members": "B0",
+   "status": "admissible: deterministic, known in advance"
+  },
+  {
+   "feature": "DDNN-2 recency weights (half-life by day difference)",
+   "members": "DDNN-2",
+   "status": "admissible: deterministic, known in advance"
+  }
+ ],
+ "citations": {
+  "b0_naive": [
+   "src/delu_forecast/baselines.py",
+   42,
+   "np.where(takes_previous_day, lag_1, lag_7)"
+  ],
+  "cp15_eligible": [
+   "src/cp15/data.py",
+   126,
+   "valid & np.isfinite(y)"
+  ],
+  "cp15_impute": [
+   "src/cp15/models.py",
+   17,
+   "fill=np.nanmedian(train,axis=0)"
+  ],
+  "cp15_indicator": [
+   "src/cp15/models.py",
+   19,
+   "~np.isfinite(x)"
+  ],
+  "cp15_no_rows": [
+   "src/cp15/models.py",
+   47,
+   "if not len(rows):return"
+  ],
+  "cp15_nonfinite": [
+   "src/cp15/models.py",
+   98,
+   "nonfinite model forecast"
+  ],
+  "cp15_valid": [
+   "src/cp15/data.py",
+   104,
+   "valid=base.notna().all(axis=1)"
+  ],
+  "cp16_buffer": [
+   "src/cp16/residuals.py",
+   141,
+   "if len(self._buffer) != 28"
+  ],
+  "d2_impute": [
+   "src/cp24/design.py",
+   265,
+   "np.nanmedian(clipped, axis=0)"
+  ],
+  "d2_stats": [
+   "src/cp24/member.py",
+   78,
+   "a forecast day lacks its origin statistics"
+  ],
+  "d2_uncovered": [
+   "src/cp24/execution.py",
+   151,
+   "lacks a frozen weather record"
+  ],
+  "d2_window": [
+   "src/cp24/design.py",
+   309,
+   "dd.mask[ix].any(axis=1)"
+  ],
+  "l_no_rows": [
+   "src/cp21/lgbm.py",
+   178,
+   "no forecast rows"
+  ],
+  "v1_complete": [
+   "src/delu_forecast/model.py",
+   159,
+   "complete = features.notna().all(axis=1)"
+  ],
+  "v1_eligible": [
+   "src/delu_forecast/experiment.py",
+   70,
+   "eligible = np.isfinite(target)"
+  ],
+  "v1_lag_null": [
+   "src/delu_forecast/features.py",
+   60,
+   "even a partially observed ambiguous hour is null"
+  ],
+  "v1_load_day": [
+   "src/delu_forecast/features.py",
+   143,
+   "Missing rows and present-but-null values both invalidate the entire day"
+  ],
+  "v1_window_nan": [
+   "src/delu_forecast/features.py",
+   82,
+   "Reindex the expected hours"
+  ],
+  "v4_no_rows": [
+   "src/cp24/v4members.py",
+   52,
+   "no forecast rows"
+  ],
+  "v5_finite": [
+   "src/cp24/execution.py",
+   75,
+   "v5 needs five finite vectors of one shape"
+  ],
+  "wx_hg_refusal": [
+   "src/cp20/components.py",
+   98,
+   "lacks a frozen weather record"
+  ],
+  "wx_lgbm_impute": [
+   "src/cp21/lgbm.py",
+   97,
+   "fill = np.nanmedian(train, axis=0)"
+  ],
+  "wx_lgbm_refusal": [
+   "src/cp21/lgbm.py",
+   185,
+   "lacks a frozen weather record"
+  ],
+  "wx_missing_day": [
+   "src/cp20/weather.py",
+   133,
+   "def missing_day"
+  ],
+  "wx_record_refusal": [
+   "src/cp20/weather.py",
+   219,
+   "a training/forecast row has no frozen weather record"
+  ]
+ },
+ "documents": {
+  "CACM-39": {
+   "read_utc": "2026-10-12",
+   "says": "the algorithm produces \"a single clearing price for each bidding zone and market time unit in EUR/MWh\" (39(2)(a))",
+   "title": "CACM Article 39 \"Inputs and results of the price coupling algorithm\", paragraph 2, as adopted",
+   "url": "https://www.legislation.gov.uk/eur/2015/1222/article/39/adopted"
+  },
+  "CACM-47": {
+   "read_utc": "2026-10-12",
+   "says": "day-ahead gate closure is \"noon market time day-ahead\" (47(2)); \"Orders matched in single day-ahead coupling shall be considered firm\" (47(5))",
+   "title": "Commission Regulation (EU) 2015/1222 (CACM), Article 47 \"Operation of single day-ahead coupling\", as adopted",
+   "url": "https://www.legislation.gov.uk/eur/2015/1222/article/47/adopted"
+  },
+  "CACM-48": {
+   "read_utc": "2026-10-12",
+   "says": "each TSO verifies the results against allocation constraints and validated capacity, and each NEMO against the orders, before market participants are informed (48(2)-(4))",
+   "title": "CACM Article 48 \"Delivery of results\", as adopted",
+   "url": "https://www.legislation.gov.uk/eur/2015/1222/article/48/adopted"
+  },
+  "CACM-50": {
+   "read_utc": "2026-10-12",
+   "says": "if results cannot be delivered by the deadline, the fallback procedures apply and a notice is published",
+   "title": "CACM Article 50 \"Initiation of fallback procedures\", as adopted",
+   "url": "https://www.legislation.gov.uk/eur/2015/1222/article/50/adopted"
+  },
+  "DOSSIER-6": {
+   "read_utc": "2026-10-12",
+   "says": "dated NCEP production-status captures 2017-05..2026-09 put the 00 UTC GFS \"48hr PRODUCTS\" completion at 03:42-04:00 UTC (30-day running averages); reconstructed, not a per-day delivery proof",
+   "title": "reports/weather-admission/dossier.md \u00a76 and availability/gfs_ncep_production_status.csv",
+   "url": "repository (SHA-256 0782677030db49aa7976343372a26225bc0154915f6e605d24e64495c0625881)"
+  },
+  "MOP-A69": {
+   "read_utc": "2026-10-12",
+   "says": "the A69 day-ahead wind/solar forecast is the forecast fixed at 18:00 Brussels time on D-1: after the gate",
+   "title": "reports/cp15/feasibility/structural_inputs.md (ENTSO-E MoP Ref2 pp.69-70)",
+   "url": "repository"
+  },
+  "RECON": {
+   "read_utc": "2026-10-12",
+   "says": "SMARD day-ahead prices equal ENTSO-E A44 on all 120 sampled overlapping hours (max abs diff 0.0 EUR/MWh)",
+   "title": "data/reconciliation_summary.json (snapshot pull, 2026-09-08)",
+   "url": "repository"
+  },
+  "REG543-12": {
+   "read_utc": "2026-10-12",
+   "says": "the day-ahead prices in each bidding zone for every market time unit are \"published no later than one hour after gate closure\"; the provision carries no update or revision wording",
+   "title": "Commission Regulation (EU) No 543/2013, Article 12, paragraphs 1(d) and 2(d), as adopted",
+   "url": "https://www.legislation.gov.uk/eur/2013/543/article/12/adopted"
+  },
+  "REG543-6": {
+   "read_utc": "2026-10-12",
+   "says": "a day-ahead forecast of the total load per market time unit is published \"no later than two hours before the gate closure of the day-ahead market in the bidding zone\" and updated \"when significant changes occur\"",
+   "title": "Commission Regulation (EU) No 543/2013, Article 6 \"Information on total load\", paragraphs 1(b) and 2(b), as adopted",
+   "url": "https://www.legislation.gov.uk/eur/2013/543/article/6/adopted"
+  },
+  "SMARD-B1.3": {
+   "read_utc": "2026-10-12",
+   "says": "all SMARD data are updated on new information, without a fixed revision process; series follow TSO updates on the ENTSO-E platform; provisional data can later be replaced by quality-assured data",
+   "sha256": "331df7ccba31bf53d35e4d392481e33b5949881baaee998043ada0eacc0b88bd",
+   "title": "SMARD.de Benutzerhandbuch, April 2026, \u00a7B 1.3 \"Aktualisierung der Daten\" (p. 7)",
+   "url": "https://www.smard.de/resource/blob/220052/9d526adf4b948599da4a956dfae6dab9/smard-benutzerhandbuch-04-2026-data.pdf"
+  },
+  "SMARD-D2.2.1": {
+   "read_utc": "2026-10-12",
+   "says": "TSOs forecast next-day total load under Art. 6(1)(b) Reg. 543/2013, sent to ENTSO-E at the latest two hours before the day-ahead closure; an update of published data is required when values change by at least 10%",
+   "title": "SMARD.de Benutzerhandbuch, April 2026, \u00a7D 2.2.1 \"Prognostizierter Stromverbrauch: Gesamt\" (p. 52)",
+   "url": "same PDF"
+  },
+  "SMARD-D3.1": {
+   "read_utc": "2026-10-12",
+   "says": "day-ahead prices under Art. 12(1)(d) Reg. 543/2013 are published at the latest one hour after the bid closure; \"Eine nachtr\u00e4gliche Aktualisierung der ver\u00f6ffentlichten Daten ist m\u00f6glich\"; DE-LU prices reach ENTSO-E through a third-party provider for the German TSOs",
+   "title": "SMARD.de Benutzerhandbuch, April 2026, \u00a7D 3.1 \"Gro\u00dfhandelspreise\" (p. 54)",
+   "url": "same PDF"
+  }
+ },
+ "gfs_per_run_evidence": {
+  "all_strictly_before_issue": false,
+  "basis": "the latest AWS LastModified among each run's 10 target objects and 10 indexes (listing.jsonl)",
+  "latest_last_modified_time_of_day_utc": "15:38:56",
+  "min_margin_hours": -5.6489,
+  "runs": 329,
+  "runs_with_all_20_listing_timestamps": 329
+ },
+ "hindsight_labels": [
+  {
+   "label": "crisis_period (2021-09-01..2022-12-31)",
+   "member": "v1 (released artifact)",
+   "status": "inadmissible: a regime boundary known only later; v1-R removes it (\u00a724.5, \u00a724.7)",
+   "where": "src/delu_forecast/features.py:156"
+  },
+  {
+   "label": "post_crisis (from 2023-01-01)",
+   "member": "v1 (released artifact)",
+   "status": "inadmissible: a regime boundary known only later; v1-R removes it (\u00a724.5, \u00a724.7)",
+   "where": "src/delu_forecast/features.py:159"
+  }
+ ],
+ "issue_time": "D-1 11:00 Europe/Berlin, strictly before (10:00 UTC CET, 09:00 UTC CEST)",
+ "margin_table_summary": [
+  {
+   "affected_days": 0,
+   "class": "none",
+   "class_on_eligible_days": "none",
+   "days_considered": 2806,
+   "group": "prices",
+   "shift_hours": 1,
+   "subgroup": "D-1 prices: lags, statistics, normalisation, the D-1 training target",
+   "tier": 2
+  },
+  {
+   "affected_days": 0,
+   "class": "none",
+   "class_on_eligible_days": "none",
+   "days_considered": 2806,
+   "group": "prices",
+   "shift_hours": 6,
+   "subgroup": "D-1 prices: lags, statistics, normalisation, the D-1 training target",
+   "tier": 2
+  },
+  {
+   "affected_days": 2806,
+   "class": "structural",
+   "class_on_eligible_days": "structural",
+   "days_considered": 2806,
+   "group": "prices",
+   "shift_hours": 24,
+   "subgroup": "D-1 prices: lags, statistics, normalisation, the D-1 training target",
+   "tier": 2
+  },
+  {
+   "affected_days": 0,
+   "class": "none",
+   "class_on_eligible_days": "none",
+   "days_considered": 2806,
+   "group": "prices",
+   "shift_hours": 1,
+   "subgroup": "D-2 and older prices: released errors, older lags, CQR calibration",
+   "tier": 2
+  },
+  {
+   "affected_days": 0,
+   "class": "none",
+   "class_on_eligible_days": "none",
+   "days_considered": 2806,
+   "group": "prices",
+   "shift_hours": 6,
+   "subgroup": "D-2 and older prices: released errors, older lags, CQR calibration",
+   "tier": 2
+  },
+  {
+   "affected_days": 0,
+   "class": "none",
+   "class_on_eligible_days": "none",
+   "days_considered": 2806,
+   "group": "prices",
+   "shift_hours": 24,
+   "subgroup": "D-2 and older prices: released errors, older lags, CQR calibration",
+   "tier": 2
+  },
+  {
+   "affected_days": 0,
+   "class": "none",
+   "class_on_eligible_days": "none",
+   "days_considered": 2805,
+   "group": "gfs",
+   "shift_hours": 1,
+   "subgroup": "GFS D-1 00 UTC run, leads f021-f048",
+   "tier": 2
+  },
+  {
+   "affected_days": 1783,
+   "class": "partial",
+   "class_on_eligible_days": "partial",
+   "days_considered": 2805,
+   "group": "gfs",
+   "shift_hours": 6,
+   "subgroup": "GFS D-1 00 UTC run, leads f021-f048",
+   "tier": 2
+  },
+  {
+   "affected_days": 2805,
+   "class": "structural",
+   "class_on_eligible_days": "structural",
+   "days_considered": 2805,
+   "group": "gfs",
+   "shift_hours": 24,
+   "subgroup": "GFS D-1 00 UTC run, leads f021-f048",
+   "tier": 2
+  },
+  {
+   "affected_days": 2806,
+   "class": "structural",
+   "class_on_eligible_days": "structural",
+   "days_considered": 2806,
+   "group": "load_forecast",
+   "shift_hours": 1,
+   "subgroup": "load forecast of D (tier 3; computed for the Owner's ruling)",
+   "tier": 3
+  },
+  {
+   "affected_days": 2806,
+   "class": "structural",
+   "class_on_eligible_days": "structural",
+   "days_considered": 2806,
+   "group": "load_forecast",
+   "shift_hours": 6,
+   "subgroup": "load forecast of D (tier 3; computed for the Owner's ruling)",
+   "tier": 3
+  },
+  {
+   "affected_days": 2806,
+   "class": "structural",
+   "class_on_eligible_days": "structural",
+   "days_considered": 2806,
+   "group": "load_forecast",
+   "shift_hours": 24,
+   "subgroup": "load forecast of D (tier 3; computed for the Owner's ruling)",
+   "tier": 3
+  },
+  {
+   "affected_days": 0,
+   "class": "none",
+   "class_on_eligible_days": "none",
+   "days_considered": 2806,
+   "group": "load_forecast",
+   "shift_hours": 1,
+   "subgroup": "load forecast of D-1 (lag; tier 3)",
+   "tier": 3
+  },
+  {
+   "affected_days": 0,
+   "class": "none",
+   "class_on_eligible_days": "none",
+   "days_considered": 2806,
+   "group": "load_forecast",
+   "shift_hours": 6,
+   "subgroup": "load forecast of D-1 (lag; tier 3)",
+   "tier": 3
+  },
+  {
+   "affected_days": 8,
+   "class": "partial",
+   "class_on_eligible_days": "partial",
+   "days_considered": 2806,
+   "group": "load_forecast",
+   "shift_hours": 24,
+   "subgroup": "load forecast of D-1 (lag; tier 3)",
+   "tier": 3
+  }
+ ],
+ "missing_input_rules": [
+  {
+   "cites": [
+    "src/delu_forecast/features.py:60",
+    "src/delu_forecast/features.py:82",
+    "src/delu_forecast/model.py:159",
+    "src/delu_forecast/experiment.py:70",
+    "src/cp15/data.py:104",
+    "src/cp15/data.py:126"
+   ],
+   "consequence": "failure: no forecast for that row; a day without a feature-valid row fails (the day falls back, \u00a724.7)",
+   "input": "prices (lags, rolling statistics, normalisation level/scale)",
+   "member": "v1-R and the CP-15 base features of every v2-v5 member",
+   "rule": "a calendar-day/local-hour lag whose source hour is unavailable or ambiguous is null; a 168/720-hour window with any missing hour is NaN; a row with any null base feature gets no forecast and is not eligible"
+  },
+  {
+   "cites": [
+    "src/delu_forecast/baselines.py:42",
+    "src/delu_forecast/features.py:60"
+   ],
+   "consequence": "failure: B0 has no forecast for that hour",
+   "input": "prices (D-1 / D-7 same local hour)",
+   "member": "B0 (similar-day naive)",
+   "rule": "Tue-Fri take D-1, Mon/Sat/Sun take D-7 by calendar day and local hour; an unavailable or ambiguous source hour is null"
+  },
+  {
+   "cites": [
+    "src/cp15/models.py:17",
+    "src/cp15/models.py:19",
+    "src/cp15/data.py:104"
+   ],
+   "consequence": "imputed inside the design; the row itself still needs every base feature (cp15/data.py:104)",
+   "input": "price curves D-1, D-2, D-3, D-7 (LEAR cross-hour design)",
+   "member": "A1, B2, A1_w, B2_w (LEAR)",
+   "rule": "a missing local-hour value takes the training-partition median with a missing indicator (fitted on training rows only)"
+  },
+  {
+   "cites": [
+    "src/cp24/member.py:78",
+    "src/cp24/design.py:309"
+   ],
+   "consequence": "failure",
+   "input": "prices: origin statistics (level/scale, median/MAD)",
+   "member": "DDNN-2",
+   "rule": "a forecast day without finite origin statistics raises a training failure; training days without them leave the window"
+  },
+  {
+   "cites": [
+    "src/cp16/residuals.py:141"
+   ],
+   "consequence": "failure (issuance)",
+   "input": "prices: released errors for the H layer (<= D-2)",
+   "member": "v2-v5 interval layer",
+   "rule": "issuance needs 28 complete released days; fewer raises"
+  },
+  {
+   "cites": [
+    "src/delu_forecast/features.py:143",
+    "src/delu_forecast/model.py:159",
+    "src/cp15/data.py:104",
+    "src/cp15/models.py:47",
+    "src/cp21/lgbm.py:178",
+    "src/cp24/v4members.py:52",
+    "src/cp24/execution.py:75"
+   ],
+   "consequence": "failure of the whole delivery day (the day falls back, \u00a724.7); it is an eligibility exclusion in the calendar",
+   "input": "load forecast of D (load_forecast_mw, load_forecast_day_mean_mw)",
+   "member": "v1-R and every v2-v5 member through the base features",
+   "rule": "any missing or null hour of D's load forecast makes the day mean NaN, so every row of D lacks a base feature, is not feature-valid and gets no forecast"
+  },
+  {
+   "cites": [
+    "src/cp15/models.py:17",
+    "src/cp24/design.py:265"
+   ],
+   "consequence": "imputed; the row still needs D's own base features",
+   "input": "load forecast lags D-1, D-7 (load_d1, load_d7) and D (load_d0) inside LEAR / DDNN-2 designs",
+   "member": "LEAR, DDNN-2",
+   "rule": "training-partition median imputation with missing indicators (LEAR); winsorise, then median imputation (DDNN-2)"
+  },
+  {
+   "cites": [
+    "src/cp20/weather.py:133",
+    "src/cp20/weather.py:219",
+    "src/cp20/components.py:98",
+    "src/cp21/lgbm.py:97",
+    "src/cp21/lgbm.py:185",
+    "src/cp24/design.py:265",
+    "src/cp24/execution.py:151"
+   ],
+   "consequence": "imputed, never a failure, once every development day has a weather record (CP-25 fills the gaps)",
+   "input": "GFS weather (three derived columns)",
+   "member": "v3, v4, v5 (A1_w, B2_w, L-N, L-R, DDNN-2 gfs group)",
+   "rule": "\u00a715.3: a confirmed missing, late or invalid weather vector sets all three columns missing and their indicators; training-only median imputation. A row with no frozen weather record at all is refused (BLOCKED, never imputed)"
+  },
+  {
+   "cites": [],
+   "consequence": "none",
+   "input": "calendar features",
+   "member": "all",
+   "rule": "deterministic; computed for every hour, never missing"
+  }
+ ],
+ "published_inputs": [
+  {
+   "against_issue_time": "a training target of delivery day D-1 was published by D-2 13:00, at least 22 h before D-1 11:00; day D's own price is published after the issue time and is the embargoed target (\u00a724.4)",
+   "basis": "tier 2: preserved original values (SDAC results are firm), availability reconstructed from the documented deadline",
+   "documented_publication": "auction day D-1 for delivery D: no later than one hour after the 12:00 Europe/Berlin gate, i.e. 13:00 local",
+   "evidence": [
+    "CACM-47",
+    "CACM-39",
+    "CACM-48",
+    "CACM-50",
+    "REG543-12",
+    "SMARD-D3.1",
+    "SMARD-B1.3",
+    "RECON"
+   ],
+   "finality": "documented: matched SDAC orders are firm (CACM 47(5)); the algorithm produces one clearing price per zone and MTU (39(2)(a)), verified by TSOs and NEMOs before delivery (48(2)-(4)); the publication duty (Reg. 543/2013 Art. 12) has no update wording, unlike the load forecast's (Art. 6). Caveat, disclosed: SMARD states that a later update of the published price data is possible (SMARD-D3.1) and that its series follow TSO corrections (SMARD-B1.3); no historical price vintage exists to show none occurred. The snapshot equals ENTSO-E A44 on 120 sampled hours (RECON).",
+   "input": "target price (SDAC DE-LU day-ahead clearing price; training targets and scoring truth)",
+   "members": "B0 (truth), v1-R, v2-v5 (training targets, truth)",
+   "tier": 2
+  },
+  {
+   "against_issue_time": "strictly before D-1 11:00 by at least 22 h on every day under the documented deadline",
+   "basis": "tier 2, the same values and evidence as the target price",
+   "documented_publication": "the latest price used, delivery day D-1's, is published by D-2 13:00 Europe/Berlin",
+   "evidence": [
+    "CACM-47",
+    "REG543-12",
+    "SMARD-D3.1",
+    "RECON"
+   ],
+   "finality": "as the target price",
+   "input": "price lags and price statistics (B0's D-1/D-7; v1-R's 24/48/168 h lags and 168/720 h statistics; LEAR's D-1, D-2, D-3, D-7 curves; DDNN-2's D-1 curve, optional D-2/D-3/D-7 and statistics; the 168 h normalisation; the H layer's released errors <= D-2; v1-R's CQR calibration D-61..D-2)",
+   "members": "B0, v1-R, v2, v3, v4, v5",
+   "tier": 2
+  },
+  {
+   "against_issue_time": "strictly before D-1 11:00 by one hour, if the published value were the original issue",
+   "basis": "tier 3: originality cannot be established (\u00a724.5), the known risk the anchor names; no tier-1/2 substitute exists in the preserved data",
+   "documented_publication": "no later than two hours before the 12:00 day-ahead gate: D-1 10:00 Europe/Berlin (Reg. 543/2013 Art. 6(2)(b))",
+   "evidence": [
+    "REG543-6",
+    "SMARD-D2.2.1",
+    "SMARD-B1.3"
+   ],
+   "finality": "not established: the forecast must be updated when values change significantly (Art. 6(2)(b)), by at least 10% (SMARD-D2.2.1); SMARD follows TSO updates without a fixed revision process (SMARD-B1.3). The snapshot holds SMARD's values as pulled on 2026-09-08, with no issue or update timestamps, so whether any value is the original D-1 10:00 issue cannot be established",
+   "input": "day-ahead load forecast (v1-R's load_forecast_mw and load_forecast_day_mean_mw; LEAR's and LightGBM's load of D, LEAR's D-1 and D-7 load lags; DDNN-2's load_d0, optional load_d1/load_d7)",
+   "members": "v1-R, v2, v3, v4, v5",
+   "tier": 3
+  },
+  {
+   "against_issue_time": "strictly before D-1 11:00 (09:00 UTC CEST, 10:00 UTC CET) by about 5-6 h on every day (margin table)",
+   "basis": "tier 2 on CP-20's dated NCEP schedule evidence, extended to the new issue time, with per-run evidence where it exists",
+   "documented_publication": "NCEP 00 UTC \"48hr PRODUCTS\" completion 03:42-04:00 UTC on D-1 (dated 30-day averages, dossier \u00a76); per run, the later of the two bracketing captures",
+   "evidence": [
+    "DOSSIER-6"
+   ],
+   "finality": "operational forecasts as issued; each run file is immutable once published; for CP-25's 329 runs the AWS objects' LastModified times are on the run morning (per-run evidence, gfs-targeted-checks.csv)",
+   "input": "GFS 0.25\u00b0 D-1 00 UTC weather (u10, v10, u100, v100, DSWRF -> three derived columns)",
+   "members": "v3, v4, v5",
+   "tier": 2
+  }
+ ],
+ "refused_or_unused": [
+  {
+   "evidence": [
+    "MOP-A69"
+   ],
+   "input": "A69 day-ahead wind and solar forecasts (wind_onshore/offshore_forecast_mw, solar_forecast_mw)",
+   "status": "refused (\u00a72 stands): the day-ahead A69 value is fixed at 18:00 Brussels on D-1, after the gate"
+  },
+  {
+   "evidence": [],
+   "input": "A75 actual generation (wind/solar actuals)",
+   "status": "not an input of B0, v1-R or v2-v5"
+  }
+ ],
+ "schema": "cp25-tier-register-v1",
+ "tier3_inputs_of_b0_v1_v5": [
+  "day-ahead load forecast (v1-R's load_forecast_mw and load_forecast_day_mean_mw; LEAR's and LightGBM's load of D, LEAR's D-1 and D-7 load lags; DDNN-2's load_d0, optional load_d1/load_d7)"
+ ]
+}

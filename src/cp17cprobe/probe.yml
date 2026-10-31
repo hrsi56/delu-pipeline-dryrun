@@ -1,0 +1,121 @@
+# CP-17c-probe: the frozen daily chain on GitHub-hosted runners (the Owner's decision 24).
+#
+# This file is the private scratch repository's workflow, `.github/workflows/probe.yml` there. It is kept under
+# `src/cp17cprobe/` in the project, so landing it never triggers a run in the project's own repository.
+#
+# Each job runs `cp17.daily` with the frozen package, the pinned Pyodide files and the official Node.js v26.7.0
+# binary for its platform, on development payloads only. Retrieval is software only: GitHub's own actions (pinned
+# by commit SHA), the Python packages `uv.lock` pins, `uv` itself, and the Node.js tarball, checked against the
+# release's `SHASUMS256.txt`. No secret exists or is used; the token reads the repository and nothing else.
+name: host-probe
+
+on:
+  workflow_dispatch:
+    inputs:
+      jobs:
+        description: >-
+          The jobs, as a matrix: {"include": [{"runner", "kind", "step_minutes", "job_minutes"}, ...]}. The step
+          limit bounds the minutes; the job limit is a backstop a few minutes above it. The default is all six.
+        required: false
+        default: >-
+          {"include": [
+          {"runner": "ubuntu-24.04", "kind": "parity", "step_minutes": 78, "job_minutes": 85},
+          {"runner": "ubuntu-24.04", "kind": "shadow-late", "step_minutes": 72, "job_minutes": 80},
+          {"runner": "ubuntu-24.04", "kind": "shadow-early", "step_minutes": 62, "job_minutes": 70},
+          {"runner": "macos-26", "kind": "parity", "step_minutes": 44, "job_minutes": 50},
+          {"runner": "macos-26", "kind": "shadow-late", "step_minutes": 36, "job_minutes": 41},
+          {"runner": "macos-26", "kind": "shadow-early", "step_minutes": 29, "job_minutes": 33}]}
+
+permissions:
+  contents: read
+
+env:
+  OPENBLAS_NUM_THREADS: "1"
+  VECLIB_MAXIMUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  MLFLOW_DISABLE_TELEMETRY: "true"
+  DO_NOT_TRACK: "1"
+  PYTHONPATH: src
+  UV_VERSION: "0.12.6"
+  PARITY_STEMS: A1-2025-10-26,A1-2026-03-29,A1-2026-08-31,A1-2026-09-01,A1-2026-09-02,A1-2026-09-03,A1-2026-09-04,A1-2026-09-05,A1-2026-09-06,B0-2026-03-29,B0-2026-09-06,v2-2026-03-29,v2-2026-09-06,v4-2026-03-29,v4-2026-09-06
+  F1_STEMS: A1-2026-03-30,v4-2026-03-30,v2-2026-03-30,B0-2026-03-30
+
+jobs:
+  probe:
+    name: ${{ matrix.runner }} ${{ matrix.kind }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: ${{ matrix.job_minutes }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(inputs.jobs) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        with:
+          python-version: "3.13"
+      - name: uv, from PyPI, recorded
+        run: |
+          mkdir -p results dl
+          python -m pip install --no-deps --report results/uv-pip-report.json "uv==${UV_VERSION}"
+          python -m pip download --no-deps --only-binary=:all: -d dl "uv==${UV_VERSION}"
+          python - <<'EOF'
+          import hashlib, json, pathlib, subprocess, sys
+          wheel = next(pathlib.Path('dl').glob('uv-*.whl'))
+          report = json.load(open('results/uv-pip-report.json'))['install'][0]['download_info']
+          version = subprocess.run([sys.executable, '-m', 'uv', '--version'], capture_output=True, text=True).stdout.strip()
+          json.dump({'file': wheel.name, 'url': report['url'], 'bytes': wheel.stat().st_size,
+                     'sha256': hashlib.sha256(wheel.read_bytes()).hexdigest(),
+                     'sha256_as_installed': report.get('archive_info', {}).get('hashes', {}).get('sha256'),
+                     'version': version, 'python': sys.version.split()[0]}, open('results/uv-retrieval.json', 'w'), indent=1)
+          EOF
+      - name: The environment uv.lock pins
+        run: |
+          python -m uv sync --locked --no-install-project --no-dev --python "$(command -v python)"
+          python -m uv pip freeze --python .venv > results/uv-freeze.txt
+          shasum -a 256 uv.lock pyproject.toml > results/project-sha256.txt
+      - name: Verify the shipped inputs
+        run: .venv/bin/python -m cp17cprobe.run verify --files inputs-files.json --out results/inputs-verified.json
+      - name: Node.js v26.7.0, official, checked against SHASUMS256.txt
+        run: .venv/bin/python -m cp17cprobe.run node --dest "$RUNNER_TEMP/node" --out results/node-retrieval.json
+      - name: The host
+        run: |
+          NODE=$(.venv/bin/python -c "import json; print(json.load(open('results/node-retrieval.json'))['binary']['path'])")
+          echo "NODE=$NODE" >> "$GITHUB_ENV"
+          .venv/bin/python -m cp17cprobe.run host --node "$NODE" --pyodide pyodide --expected-pyodide pyodide-sha256.json \
+              --label "${{ matrix.runner }}" --out results/host.json
+      - name: The frozen chain (${{ matrix.kind }})
+        timeout-minutes: ${{ matrix.step_minutes }}
+        run: |
+          case "${{ matrix.kind }}" in
+            parity)
+              status=0
+              .venv/bin/python -m cp17cprobe.run parity --node "$NODE" --pyodide pyodide --zip bundle/src.zip \
+                  --payloads payloads/parity --stems "$PARITY_STEMS" --out results/parity || status=1
+              .venv/bin/python -m cp17cprobe.run parity --node "$NODE" --pyodide pyodide --zip bundle/src.zip \
+                  --payloads payloads/f1 --stems "$F1_STEMS" --out results/f1 || status=1
+              exit $status ;;
+            shadow-late)
+              .venv/bin/python -m cp17cprobe.run shadow --node "$NODE" --pyodide pyodide --zip bundle/src.zip \
+                  --payloads payloads/shadow --first 2026-08-30 --last 2026-09-06 --state states/start-2026-08-30.json \
+                  --truth states/truth.json --concurrency 2 --out results/shadow ;;
+            shadow-early)
+              .venv/bin/python -m cp17cprobe.run shadow --node "$NODE" --pyodide pyodide --zip bundle/src.zip \
+                  --payloads payloads/shadow --first 2026-08-24 --last 2026-08-29 --state states/start-2026-08-24.json \
+                  --truth states/truth.json --concurrency 2 --out results/shadow ;;
+          esac
+      - name: The results' own hashes
+        if: always()
+        run: |
+          find results -type f -name '*-arrays.npz' -delete
+          (cd results && find . -type f ! -name results-sha256.txt -print0 | sort -z | xargs -0 shasum -a 256 > results-sha256.txt)
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
+        if: always()
+        with:
+          name: ${{ matrix.runner }}-${{ matrix.kind }}
+          path: results/
+          retention-days: 30
+          if-no-files-found: error

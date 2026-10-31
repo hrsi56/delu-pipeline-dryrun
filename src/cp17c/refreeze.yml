@@ -1,0 +1,138 @@
+# CP-17c: A1 re-frozen under the issuing host r19 §24.13 pins, shown on GitHub-hosted macos-26 runners.
+#
+# This file is the private scratch repository's workflow, `.github/workflows/refreeze.yml` there. It is kept under
+# `src/cp17c/` in the project, so landing it never triggers a run in the project's own repository.
+#
+# The jobs run one after another (a matrix with max-parallel 1), in the brief's priority, so that a quota stop leaves
+# the higher priorities done. The input `jobs` selects them; the default is both:
+#   checks    refreeze verify and the H2 checks, one forced failure of each, the canary, the freeze-origin store, and
+#             A1's parity at 2025-10-26 and 2026-03-29 (the other seven origins are the late block's A1);
+#   shadows   the two blocks of shadow days at once, each one process per day through its own store, each day's four
+#             issuances one after another: 2026-08-31 to 2026-09-06 from CP-17b's host state there, and 2026-08-24 to
+#             2026-08-30 from CP-26's state at 2026-08-24. Each block runs its own H2 gate before its first issuance.
+#   resume    each block's remaining days, one block after the other, from the store an earlier run left
+#             (`states/store-<block>/`, carried by this repository and checked by its chain), after one H2 gate.
+# The runner class measured here (Apple M1, virtual, 3 cores) is slower than the probe's, so the two blocks share one
+# job rather than run one after another: two single-threaded issuing hosts on three cores, as CP-17b and the probe
+# measured two at once. A private repository counts macOS at ten times; each job's limit bounds its minutes.
+#
+# Retrieval is software only: GitHub's own actions (pinned by commit SHA), uv and the Python packages uv.lock pins,
+# the pinned CPython (uv's build of 3.13.15), and the Node.js tarball with its SHASUMS256.txt, checked by hash. No
+# secret exists or is used; the token reads the repository and nothing else.
+name: refreeze
+
+on:
+  workflow_dispatch:
+    inputs:
+      jobs:
+        description: 'The jobs, as a matrix: {"include": [{"kind", "minutes"}, ...]}'
+        required: false
+        default: '{"include": [{"kind": "checks", "minutes": 17}, {"kind": "shadows", "minutes": 50}]}'
+
+permissions:
+  contents: read
+
+env:
+  OPENBLAS_NUM_THREADS: "1"
+  VECLIB_MAXIMUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  MLFLOW_DISABLE_TELEMETRY: "true"
+  DO_NOT_TRACK: "1"
+  PYTHONPATH: src
+  UV_VERSION: "0.12.6"
+  CPYTHON: "3.13.15"
+  UV_PYTHON_PREFERENCE: only-managed
+  PARITY_STEMS: A1-2025-10-26,A1-2026-03-29
+
+jobs:
+  run:
+    name: macos-26 ${{ matrix.kind }}
+    runs-on: macos-26
+    timeout-minutes: ${{ matrix.minutes }}
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix: ${{ fromJSON(inputs.jobs) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        with:
+          python-version: "3.13"
+      - name: uv, from PyPI, recorded
+        run: |
+          mkdir -p results dl
+          echo "CP17_PROJECT_ROOT=$GITHUB_WORKSPACE" >> "$GITHUB_ENV"
+          python -m pip install --no-deps --report results/uv-pip-report.json "uv==${UV_VERSION}"
+          python -m pip download --no-deps --only-binary=:all: -d dl "uv==${UV_VERSION}"
+          python - <<'EOF'
+          import hashlib, json, pathlib, subprocess, sys
+          wheel = next(pathlib.Path('dl').glob('uv-*.whl'))
+          report = json.load(open('results/uv-pip-report.json'))['install'][0]['download_info']
+          version = subprocess.run([sys.executable, '-m', 'uv', '--version'], capture_output=True, text=True).stdout.strip()
+          json.dump({'file': wheel.name, 'url': report['url'], 'bytes': wheel.stat().st_size,
+                     'sha256': hashlib.sha256(wheel.read_bytes()).hexdigest(),
+                     'sha256_as_installed': report.get('archive_info', {}).get('hashes', {}).get('sha256'),
+                     'version': version, 'python': sys.version.split()[0]}, open('results/uv-retrieval.json', 'w'), indent=1)
+          EOF
+      - name: The pinned CPython and the environment uv.lock pins
+        run: |
+          python -m uv python list "$CPYTHON" --show-urls --only-downloads > results/cpython-urls.txt || true
+          python -m uv python install "$CPYTHON"
+          python -m uv sync --locked --no-install-project --no-dev --python "$CPYTHON"
+          python -m uv pip freeze --python .venv > results/uv-freeze.txt
+          shasum -a 256 uv.lock pyproject.toml > results/project-sha256.txt
+          .venv/bin/python - <<'EOF'
+          import hashlib, json, os, platform, sys, zlib
+          exe = os.path.realpath(sys.executable)
+          json.dump({'version': platform.python_version(), 'build': list(platform.python_build()),
+                     'compiler': platform.python_compiler(), 'zlib_runtime': zlib.ZLIB_RUNTIME_VERSION,
+                     'executable': exe, 'executable_sha256': hashlib.sha256(open(exe, 'rb').read()).hexdigest(),
+                     'base_prefix': sys.base_prefix}, open('results/cpython.json', 'w'), indent=1)
+          EOF
+      - name: Verify the shipped inputs
+        run: .venv/bin/python -m cp17c.inputs verify --out results/inputs-verified.json
+      - name: Node.js v26.7.0, official, retrieved and checked by hash
+        run: .venv/bin/python -m cp17c.run node --out results/node-retrieval.json
+      - name: The frozen package zip, rebuilt and checked
+        run: .venv/bin/python -m cp17c.run package --out results/package.json
+      - name: The run (${{ matrix.kind }})
+        run: |
+          case "${{ matrix.kind }}" in
+            checks)
+              .venv/bin/python -m cp17c.run checks --canary-expected --stems "$PARITY_STEMS" --payloads payloads/parity \
+                  --out results/checks ;;
+            shadows)
+              .venv/bin/python -m cp17c.run shadow --payloads payloads/shadow --truth states/truth.json \
+                  --first 2026-08-31 --last 2026-09-06 --state states/start-2026-08-31.json --out results/shadow-late \
+                  > results/shadow-late.log 2>&1 &
+              late=$!
+              .venv/bin/python -m cp17c.run shadow --payloads payloads/shadow --truth states/truth.json \
+                  --first 2026-08-24 --last 2026-08-30 --state states/start-2026-08-24.json --out results/shadow-early \
+                  > results/shadow-early.log 2>&1 &
+              early=$!
+              status=0
+              wait $late || status=1
+              wait $early || status=1
+              cat results/shadow-late.log results/shadow-early.log
+              exit $status ;;
+            resume)
+              .venv/bin/python -m cp17c.run resume --payloads payloads/shadow --truth states/truth.json \
+                  --block early:states/store-early:2026-08-30:2026-08-30 \
+                  --block late:states/store-late:2026-09-06:2026-09-06 --out results ;;
+          esac
+      - name: The results' own hashes
+        if: always()
+        run: |
+          find results -type f -name '*-arrays.npz' -delete
+          (cd results && find . -type f ! -name results-sha256.txt -print0 | sort -z | xargs -0 shasum -a 256 > results-sha256.txt)
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
+        if: always()
+        with:
+          name: ${{ matrix.kind }}
+          path: results/
+          retention-days: 30
+          if-no-files-found: error

@@ -1,0 +1,350 @@
+{
+ "$id": "cp17b-issued-artifact-v2",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "anyOf": [
+  {
+   "properties": {
+    "issued_policy": {
+     "enum": [
+      "A1",
+      "v4",
+      "v2",
+      "B0"
+     ]
+    },
+    "keys": {
+     "items": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00$",
+      "type": "string"
+     },
+     "maxItems": 25,
+     "minItems": 1,
+     "type": "array"
+    },
+    "partial": {
+     "anyOf": [
+      {
+       "additionalProperties": false,
+       "properties": {
+        "canonical_hours": {
+         "type": "integer"
+        },
+        "issued_hours": {
+         "minimum": 1,
+         "type": "integer"
+        },
+        "missing_hours": {
+         "items": {
+          "type": "string"
+         },
+         "minItems": 1,
+         "type": "array"
+        }
+       },
+       "required": [
+        "issued_hours",
+        "canonical_hours",
+        "missing_hours"
+       ],
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "quantiles": {
+     "items": {
+      "items": {
+       "type": "number"
+      },
+      "maxItems": 7,
+      "minItems": 7,
+      "type": "array"
+     },
+     "maxItems": 25,
+     "minItems": 1,
+     "type": "array"
+    },
+    "quantiles_sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "type": "string"
+    },
+    "resources": {
+     "properties": {
+      "limits": {
+       "additionalProperties": false,
+       "properties": {
+        "peak_bytes": {
+         "const": 4294967296
+        },
+        "wall_seconds": {
+         "const": 900
+        }
+       },
+       "required": [
+        "wall_seconds",
+        "peak_bytes"
+       ],
+       "type": "object"
+      },
+      "peak_bytes": {
+       "maximum": 4294967296,
+       "minimum": 0,
+       "type": "integer"
+      },
+      "wall_seconds": {
+       "maximum": 900,
+       "minimum": 0,
+       "type": "number"
+      }
+     },
+     "required": [
+      "wall_seconds",
+      "peak_bytes",
+      "limits"
+     ],
+     "type": "object"
+    }
+   }
+  },
+  {
+   "properties": {
+    "issued_policy": {
+     "type": "null"
+    },
+    "keys": {
+     "type": "null"
+    },
+    "partial": {
+     "type": "null"
+    },
+    "quantiles": {
+     "type": "null"
+    },
+    "quantiles_sha256": {
+     "type": "null"
+    },
+    "resources": {
+     "type": "null"
+    }
+   }
+  }
+ ],
+ "properties": {
+  "artifact_sha256": {
+   "pattern": "^[0-9a-f]{64}$",
+   "type": "string"
+  },
+  "attempts": {
+   "items": {
+    "properties": {
+     "policy": {
+      "enum": [
+       "A1",
+       "v4",
+       "v2",
+       "B0"
+      ]
+     },
+     "status": {
+      "enum": [
+       "ok",
+       "failed",
+       "skipped"
+      ]
+     }
+    },
+    "required": [
+     "policy",
+     "status"
+    ],
+    "type": "object"
+   },
+   "minItems": 1,
+   "type": "array"
+  },
+  "delivery_day": {
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+   "type": "string"
+  },
+  "designated_policy": {
+   "const": "A1"
+  },
+  "issue_utc": {
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00$",
+   "type": "string"
+  },
+  "issued_policy": {
+   "anyOf": [
+    {
+     "enum": [
+      "A1",
+      "v4",
+      "v2",
+      "B0"
+     ]
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "keys": {
+   "anyOf": [
+    {
+     "items": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00$",
+      "type": "string"
+     },
+     "maxItems": 25,
+     "minItems": 1,
+     "type": "array"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "lineage": {
+   "required": [
+    "parent_artifact_sha256",
+    "policy_identity_sha256",
+    "code_sha256",
+    "host",
+    "inputs",
+    "training",
+    "state"
+   ],
+   "type": "object"
+  },
+  "partial": {
+   "anyOf": [
+    {
+     "additionalProperties": false,
+     "properties": {
+      "canonical_hours": {
+       "type": "integer"
+      },
+      "issued_hours": {
+       "minimum": 1,
+       "type": "integer"
+      },
+      "missing_hours": {
+       "items": {
+        "type": "string"
+       },
+       "minItems": 1,
+       "type": "array"
+      }
+     },
+     "required": [
+      "issued_hours",
+      "canonical_hours",
+      "missing_hours"
+     ],
+     "type": "object"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "product": {
+   "const": "delu-day-ahead-policy"
+  },
+  "quantiles": {
+   "anyOf": [
+    {
+     "items": {
+      "items": {
+       "type": "number"
+      },
+      "maxItems": 7,
+      "minItems": 7,
+      "type": "array"
+     },
+     "maxItems": 25,
+     "minItems": 1,
+     "type": "array"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "resources": {
+   "anyOf": [
+    {
+     "properties": {
+      "limits": {
+       "additionalProperties": false,
+       "properties": {
+        "peak_bytes": {
+         "const": 4294967296
+        },
+        "wall_seconds": {
+         "const": 900
+        }
+       },
+       "required": [
+        "wall_seconds",
+        "peak_bytes"
+       ],
+       "type": "object"
+      },
+      "peak_bytes": {
+       "maximum": 4294967296,
+       "minimum": 0,
+       "type": "integer"
+      },
+      "wall_seconds": {
+       "maximum": 900,
+       "minimum": 0,
+       "type": "number"
+      }
+     },
+     "required": [
+      "wall_seconds",
+      "peak_bytes",
+      "limits"
+     ],
+     "type": "object"
+    },
+    {
+     "type": "null"
+    }
+   ]
+  },
+  "route": {
+   "enum": [
+    "designated",
+    "gfs_unavailable",
+    "a1_failed"
+   ]
+  },
+  "schema": {
+   "const": "cp17b-issued-artifact-v2"
+  }
+ },
+ "required": [
+  "schema",
+  "product",
+  "designated_policy",
+  "delivery_day",
+  "issue_utc",
+  "issued_policy",
+  "route",
+  "display",
+  "attempts",
+  "keys",
+  "quantiles",
+  "quantiles_sha256",
+  "times",
+  "lineage",
+  "resources",
+  "partial",
+  "artifact_sha256"
+ ],
+ "type": "object"
+}

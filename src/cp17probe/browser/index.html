@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CP-17-probe</title>
+</head>
+<body>
+<p id="status">loading</p>
+<script>
+// The probe page: one daily fit in a Web Worker, as the product's "Train it yourself" action would
+// run it. Every byte comes from the probe's own 127.0.0.1 server; nothing is fetched from elsewhere.
+(function () {
+  const params = new URLSearchParams(location.search);
+  const started = performance.now();
+  window.__probe = null;
+  const worker = new Worker('/app/worker.js');
+  worker.onmessage = (event) => {
+    const out = event.data;
+    out.page_total_ms = performance.now() - started;
+    if (performance.memory) {
+      out.page_js_heap = {used: performance.memory.usedJSHeapSize, total: performance.memory.totalJSHeapSize};
+    }
+    document.getElementById('status').textContent = out.errors.length ? 'failed' : 'done';
+    window.__probe = out;
+  };
+  worker.onerror = (event) => {
+    window.__probe = {errors: ['worker error: ' + event.message], page_total_ms: performance.now() - started};
+  };
+  worker.postMessage({policy: params.get('policy'), stem: params.get('stem'), packages: params.get('packages')});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{
+ "$id": "cp17-series-v1",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "additionalProperties": false,
+ "properties": {
+  "first_day": {
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+   "type": "string"
+  },
+  "last_day": {
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+   "type": "string"
+  },
+  "price": {
+   "items": {
+    "type": [
+     "number",
+     "null"
+    ]
+   },
+   "type": "array"
+  },
+  "schema": {
+   "const": "cp17-series-v1"
+  },
+  "timestamp_utc": {
+   "items": {
+    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00$",
+    "type": "string"
+   },
+   "type": "array"
+  },
+  "unit": {
+   "const": "EUR/MWh"
+  }
+ },
+ "required": [
+  "schema",
+  "unit",
+  "first_day",
+  "last_day",
+  "timestamp_utc",
+  "price"
+ ],
+ "type": "object"
+}

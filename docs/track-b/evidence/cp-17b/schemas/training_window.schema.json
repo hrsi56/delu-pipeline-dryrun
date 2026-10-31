@@ -1,0 +1,49 @@
+{
+ "$id": "cp17-training-window-v1",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "properties": {
+  "array_sha256": {
+   "additionalProperties": {
+    "pattern": "^[0-9a-f]{64}$",
+    "type": "string"
+   },
+   "type": "object"
+  },
+  "day": {
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+   "type": "string"
+  },
+  "embargo": {
+   "type": "string"
+  },
+  "payload_sha256": {
+   "pattern": "^[0-9a-f]{64}$",
+   "type": "string"
+  },
+  "policy": {
+   "enum": [
+    "A1",
+    "v4",
+    "v2",
+    "B0"
+   ]
+  },
+  "schema": {
+   "enum": [
+    "cp17-a1-payload-v1",
+    "cp17-v2-payload-v1",
+    "cp17-v4-payload-v1",
+    "cp17-b0-payload-v1"
+   ]
+  }
+ },
+ "required": [
+  "schema",
+  "policy",
+  "day",
+  "embargo",
+  "array_sha256",
+  "payload_sha256"
+ ],
+ "type": "object"
+}

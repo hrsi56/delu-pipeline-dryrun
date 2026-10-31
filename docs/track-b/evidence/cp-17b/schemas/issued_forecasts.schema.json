@@ -1,0 +1,123 @@
+{
+ "$id": "cp17b-issued-forecasts-v2",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "additionalProperties": false,
+ "properties": {
+  "days": {
+   "items": {
+    "additionalProperties": false,
+    "properties": {
+     "delivery_day": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "type": "string"
+     },
+     "display": {
+      "type": "string"
+     },
+     "issue_utc": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00$",
+      "type": "string"
+     },
+     "issued_policy": {
+      "enum": [
+       "A1",
+       "v4",
+       "v2",
+       "B0"
+      ]
+     },
+     "issuing_artifact_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+     },
+     "keys": {
+      "items": {
+       "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00$",
+       "type": "string"
+      },
+      "maxItems": 25,
+      "minItems": 1,
+      "type": "array"
+     },
+     "partial": {
+      "anyOf": [
+       {
+        "additionalProperties": false,
+        "properties": {
+         "canonical_hours": {
+          "type": "integer"
+         },
+         "issued_hours": {
+          "minimum": 1,
+          "type": "integer"
+         },
+         "missing_hours": {
+          "items": {
+           "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+         }
+        },
+        "required": [
+         "issued_hours",
+         "canonical_hours",
+         "missing_hours"
+        ],
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "quantiles": {
+      "items": {
+       "items": {
+        "type": "number"
+       },
+       "maxItems": 7,
+       "minItems": 7,
+       "type": "array"
+      },
+      "maxItems": 25,
+      "minItems": 1,
+      "type": "array"
+     }
+    },
+    "required": [
+     "delivery_day",
+     "issue_utc",
+     "issuing_artifact_sha256",
+     "issued_policy",
+     "display",
+     "keys",
+     "quantiles",
+     "partial"
+    ],
+    "type": "object"
+   },
+   "type": "array"
+  },
+  "levels": {
+   "const": [
+    0.025,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    0.9,
+    0.975
+   ]
+  },
+  "schema": {
+   "const": "cp17b-issued-forecasts-v2"
+  }
+ },
+ "required": [
+  "schema",
+  "levels",
+  "days"
+ ],
+ "type": "object"
+}

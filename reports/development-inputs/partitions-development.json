@@ -1,0 +1,265 @@
+{
+ "anchor": "capstone_v21.md v21-r13 \u00a724.2 and \u00a724.6 item 6 (SHA-256 173799d818387b9d82db16b9ccd7195afaebbea8e11259809e4a8b704bd525a8)",
+ "anchor_reference_windows": {
+  "cp26_scored_calendar": [
+   "2020-12-29",
+   "2026-09-06"
+  ],
+  "cp26_warm_up": [
+   "2020-01-01",
+   "2020-12-28"
+  ],
+  "fresh_test_4_7T_closed": [
+   "2026-09-07",
+   "2026-12-05"
+  ],
+  "newly_opened": [
+   "2026-04-08",
+   "2026-09-06"
+  ]
+ },
+ "boundary": {
+  "code": "src/cp25/guard.py",
+  "gfs": "runs initialized at or after 2026-09-06 00 UTC refused; leads outside f021-f048 refused",
+  "moves": "only at the 4.7T gate (to 2026-12-05) and, for the live pipeline only, at CP-18",
+  "rows": "refused when the Europe/Berlin delivery day is after 2026-09-06"
+ },
+ "calendar_timezone": "Europe/Berlin (23/24/25-hour delivery days)",
+ "closed": {
+  "fresh_test_4_7T": [
+   "2026-09-07",
+   "2026-12-05"
+  ],
+  "status": "closed until 4.7T opens (\u00a724.3, \u00a724.9); never extended after a result"
+ },
+ "development": {
+  "days": 2806,
+  "first_delivery_day": "2019-01-01",
+  "last_delivery_day": "2026-09-06",
+  "note": "2026-04-08..2026-09-06 joins development by v21-r13 (Owner, 2026-10-12)"
+ },
+ "eligibility_calendar": {
+  "file": "reports/development-inputs/eligibility-calendar.csv",
+  "sha256": "8e1e3a70e3355586baa16e7235ffb896cee8212da4035819fe62467f9c3fa56e"
+ },
+ "eligibility_summary": {
+  "development_days": 2806,
+  "eligible_days": 2766,
+  "excluded_days": 40,
+  "exclusions": [
+   {
+    "delivery_date": "2019-01-01",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-02",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-03",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-04",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-05",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-06",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-07",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-08",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-09",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-10",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-11",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-12",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-13",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-14",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-15",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-16",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-17",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-18",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-19",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-20",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-21",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-22",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-23",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-24",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-25",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-26",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-27",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-28",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-29",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2019-01-30",
+    "exclusion_reason": "price_inputs_absent:720h_history_before_2019_floor"
+   },
+   {
+    "delivery_date": "2022-02-22",
+    "exclusion_reason": "load_forecast_absent:24_of_24_hours_null"
+   },
+   {
+    "delivery_date": "2022-03-24",
+    "exclusion_reason": "load_forecast_absent:24_of_24_hours_null"
+   },
+   {
+    "delivery_date": "2022-07-20",
+    "exclusion_reason": "load_forecast_absent:24_of_24_hours_null"
+   },
+   {
+    "delivery_date": "2022-07-21",
+    "exclusion_reason": "load_forecast_absent:24_of_24_hours_null"
+   },
+   {
+    "delivery_date": "2022-12-21",
+    "exclusion_reason": "load_forecast_absent:24_of_24_hours_null"
+   },
+   {
+    "delivery_date": "2022-12-22",
+    "exclusion_reason": "load_forecast_absent:24_of_24_hours_null"
+   },
+   {
+    "delivery_date": "2023-03-13",
+    "exclusion_reason": "load_forecast_absent:24_of_24_hours_null"
+   },
+   {
+    "delivery_date": "2023-08-31",
+    "exclusion_reason": "load_forecast_absent:24_of_24_hours_null"
+   },
+   {
+    "delivery_date": "2023-10-29",
+    "exclusion_reason": "load_forecast_absent:1_of_25_hours_null"
+   },
+   {
+    "delivery_date": "2024-10-27",
+    "exclusion_reason": "load_forecast_absent:1_of_25_hours_null"
+   }
+  ]
+ },
+ "historical_partitions": {
+  "eda_cutoff": "2026-04-07",
+  "file": "data/partitions.json",
+  "folds_evaluation": {
+   "fold_1": [
+    "2020-07-01",
+    "2020-09-28"
+   ],
+   "fold_2": [
+    "2021-04-01",
+    "2021-06-29"
+   ],
+   "fold_3": [
+    "2022-07-01",
+    "2022-09-28"
+   ],
+   "fold_4": [
+    "2025-05-01",
+    "2025-07-29"
+   ],
+   "fold_5": [
+    "2026-01-08",
+    "2026-04-07"
+   ]
+  },
+  "role": "v1's historical record: folds 1-5, v1's calibration windows and holdout; never rewritten (\u00a71, \u00a724.2)",
+  "sha256": "6bee065368b721ae8092ba287e04bb6dda0d4bde80909e72380503ba61e0b090",
+  "snapshot_cutoff": "2026-09-06",
+  "unchanged": true,
+  "v1_final_calibration": [
+   "2026-04-09",
+   "2026-06-07"
+  ],
+  "v1_holdout": [
+   "2026-06-09",
+   "2026-09-06"
+  ]
+ },
+ "input_floor": "2019-01-01",
+ "issue_time": {
+  "code": "cp25.guard.issue_time",
+  "rule": "D-1 11:00 Europe/Berlin; an input is usable only if published strictly before it",
+  "utc": "10:00 UTC when D-1 is on CET, 09:00 UTC on CEST; D-1's own offset at 11:00, including transition days"
+ },
+ "record_masks": {
+  "file": "reports/development-inputs/record-masks.csv",
+  "sha256": "fb20b6ad336e765c291e97ed391666b9f11195cb7a3358d4a096b4cb9efd0448"
+ },
+ "schema": "cp25-partition-spec-v1",
+ "snapshot": {
+  "file": "data/snapshot.parquet",
+  "sha256": "7dd2dc73407706ca6bd3c1ad51d201ac0de35eec5ca129ce320cca639f697f00"
+ }
+}

@@ -1,0 +1,187 @@
+{
+ "$id": "cp17-manifest-v1",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "additionalProperties": false,
+ "properties": {
+  "artifact": {
+   "additionalProperties": false,
+   "properties": {
+    "artifact_sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "type": "string"
+    },
+    "delivery_day": {
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+     "type": "string"
+    },
+    "display": {
+     "type": "string"
+    },
+    "issued_policy": {
+     "anyOf": [
+      {
+       "enum": [
+        "A1",
+        "v4",
+        "v2",
+        "B0"
+       ]
+      },
+      {
+       "type": "null"
+      }
+     ]
+    }
+   },
+   "required": [
+    "artifact_sha256",
+    "delivery_day",
+    "issued_policy",
+    "display"
+   ],
+   "type": "object"
+  },
+  "files": {
+   "items": {
+    "additionalProperties": false,
+    "properties": {
+     "bytes": {
+      "minimum": 0,
+      "type": "integer"
+     },
+     "kind": {
+      "enum": [
+       "issued_forecasts",
+       "outcomes",
+       "evaluation",
+       "fitted_artifact",
+       "training_window",
+       "series"
+      ]
+     },
+     "path": {
+      "pattern": "^[A-Za-z0-9._-]+$",
+      "type": "string"
+     },
+     "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+     }
+    },
+    "required": [
+     "path",
+     "sha256",
+     "bytes",
+     "kind"
+    ],
+    "type": "object"
+   },
+   "minItems": 1,
+   "type": "array"
+  },
+  "freshness": {
+   "additionalProperties": false,
+   "properties": {
+    "as_of_day": {
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+     "type": "string"
+    },
+    "latest_issued_day": {
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+     "type": "string"
+    },
+    "state": {
+     "enum": [
+      "fresh",
+      "stale",
+      "failed"
+     ]
+    }
+   },
+   "required": [
+    "state",
+    "as_of_day",
+    "latest_issued_day"
+   ],
+   "type": "object"
+  },
+  "policy": {
+   "additionalProperties": false,
+   "properties": {
+    "issuing_host": {
+     "type": "string"
+    },
+    "package_sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "type": "string"
+    },
+    "policy_identity_sha256": {
+     "pattern": "^[0-9a-f]{64}$",
+     "type": "string"
+    }
+   },
+   "required": [
+    "policy_identity_sha256",
+    "package_sha256",
+    "issuing_host"
+   ],
+   "type": "object"
+  },
+  "product": {
+   "additionalProperties": false,
+   "properties": {
+    "designated_policy": {
+     "const": "A1"
+    },
+    "evidence_label": {
+     "type": "string"
+    },
+    "name": {
+     "const": "delu-day-ahead-policy"
+    }
+   },
+   "required": [
+    "name",
+    "designated_policy",
+    "evidence_label"
+   ],
+   "type": "object"
+  },
+  "schema": {
+   "const": "cp17-manifest-v1"
+  },
+  "times": {
+   "additionalProperties": false,
+   "properties": {
+    "data_refresh_utc": {
+     "pattern": "^(|\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00)$",
+     "type": "string"
+    },
+    "issuance_utc": {
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00$",
+     "type": "string"
+    },
+    "last_training_utc": {
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00$",
+     "type": "string"
+    }
+   },
+   "required": [
+    "last_training_utc",
+    "data_refresh_utc",
+    "issuance_utc"
+   ],
+   "type": "object"
+  }
+ },
+ "required": [
+  "schema",
+  "product",
+  "policy",
+  "artifact",
+  "times",
+  "freshness",
+  "files"
+ ],
+ "type": "object"
+}

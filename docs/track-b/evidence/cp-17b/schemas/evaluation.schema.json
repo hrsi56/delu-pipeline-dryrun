@@ -1,0 +1,68 @@
+{
+ "$id": "cp17-evaluation-bundle-v1",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "additionalProperties": false,
+ "properties": {
+  "schema": {
+   "const": "cp17-evaluation-bundle-v1"
+  },
+  "windows": {
+   "items": {
+    "additionalProperties": false,
+    "properties": {
+     "evidence_class": {
+      "type": "string"
+     },
+     "policy": {
+      "enum": [
+       "product",
+       "B0"
+      ]
+     },
+     "record": {
+      "properties": {
+       "rolling_days": {
+        "const": 28
+       },
+       "schema": {
+        "const": "cp17-evaluation-v1"
+       },
+       "tau_eur": {
+        "const": 10.0
+       }
+      },
+      "required": [
+       "schema",
+       "tau_eur",
+       "rolling_days",
+       "pooled",
+       "days",
+       "rolling"
+      ],
+      "type": "object"
+     },
+     "window": {
+      "enum": [
+       "development",
+       "4.7T",
+       "prospective"
+      ]
+     }
+    },
+    "required": [
+     "window",
+     "evidence_class",
+     "policy",
+     "record"
+    ],
+    "type": "object"
+   },
+   "type": "array"
+  }
+ },
+ "required": [
+  "schema",
+  "windows"
+ ],
+ "type": "object"
+}

@@ -1,0 +1,165 @@
+{
+  "development_folds": [
+    {
+      "calibration": {
+        "end": "2020-06-29",
+        "start": "2020-05-01"
+      },
+      "calibration_embargo": {
+        "end": "2020-04-30",
+        "start": "2020-04-30"
+      },
+      "evaluation": {
+        "end": "2020-09-28",
+        "start": "2020-07-01"
+      },
+      "evaluation_embargo": {
+        "end": "2020-06-30",
+        "start": "2020-06-30"
+      },
+      "name": "fold_1",
+      "proper_training": {
+        "end": "2020-04-29",
+        "start": "2019-01-01"
+      }
+    },
+    {
+      "calibration": {
+        "end": "2021-03-30",
+        "start": "2021-01-30"
+      },
+      "calibration_embargo": {
+        "end": "2021-01-29",
+        "start": "2021-01-29"
+      },
+      "evaluation": {
+        "end": "2021-06-29",
+        "start": "2021-04-01"
+      },
+      "evaluation_embargo": {
+        "end": "2021-03-31",
+        "start": "2021-03-31"
+      },
+      "name": "fold_2",
+      "proper_training": {
+        "end": "2021-01-28",
+        "start": "2019-01-01"
+      }
+    },
+    {
+      "calibration": {
+        "end": "2022-06-29",
+        "start": "2022-05-01"
+      },
+      "calibration_embargo": {
+        "end": "2022-04-30",
+        "start": "2022-04-30"
+      },
+      "evaluation": {
+        "end": "2022-09-28",
+        "start": "2022-07-01"
+      },
+      "evaluation_embargo": {
+        "end": "2022-06-30",
+        "start": "2022-06-30"
+      },
+      "name": "fold_3",
+      "proper_training": {
+        "end": "2022-04-29",
+        "start": "2019-01-01"
+      }
+    },
+    {
+      "calibration": {
+        "end": "2025-04-29",
+        "start": "2025-03-01"
+      },
+      "calibration_embargo": {
+        "end": "2025-02-28",
+        "start": "2025-02-28"
+      },
+      "evaluation": {
+        "end": "2025-07-29",
+        "start": "2025-05-01"
+      },
+      "evaluation_embargo": {
+        "end": "2025-04-30",
+        "start": "2025-04-30"
+      },
+      "name": "fold_4",
+      "proper_training": {
+        "end": "2025-02-27",
+        "start": "2019-01-01"
+      }
+    },
+    {
+      "calibration": {
+        "end": "2026-01-06",
+        "start": "2025-11-08"
+      },
+      "calibration_embargo": {
+        "end": "2025-11-07",
+        "start": "2025-11-07"
+      },
+      "evaluation": {
+        "end": "2026-04-07",
+        "start": "2026-01-08"
+      },
+      "evaluation_embargo": {
+        "end": "2026-01-07",
+        "start": "2026-01-07"
+      },
+      "name": "fold_5",
+      "proper_training": {
+        "end": "2025-11-06",
+        "start": "2019-01-01"
+      }
+    }
+  ],
+  "diagnostic_windows": [
+    {
+      "end": "2020-09-28",
+      "start": "2020-07-01"
+    },
+    {
+      "end": "2021-06-29",
+      "start": "2021-04-01"
+    },
+    {
+      "end": "2022-09-28",
+      "start": "2022-07-01"
+    },
+    {
+      "end": "2025-07-29",
+      "start": "2025-05-01"
+    },
+    {
+      "end": "2026-04-07",
+      "start": "2026-01-08"
+    }
+  ],
+  "eda_cutoff": "2026-04-07",
+  "snapshot_cutoff": "2026-09-06",
+  "tail_partitions": {
+    "embargo_a": {
+      "end": "2026-04-08",
+      "start": "2026-04-08"
+    },
+    "embargo_b": {
+      "end": "2026-06-08",
+      "start": "2026-06-08"
+    },
+    "final_calibration": {
+      "end": "2026-06-07",
+      "start": "2026-04-09"
+    },
+    "fold_5": {
+      "end": "2026-04-07",
+      "start": "2026-01-08"
+    },
+    "holdout": {
+      "end": "2026-09-06",
+      "start": "2026-06-09"
+    }
+  }
+}

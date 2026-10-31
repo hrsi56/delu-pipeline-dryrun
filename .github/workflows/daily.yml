@@ -1,0 +1,152 @@
+# CP-18's daily pipeline on a GitHub-hosted macos-26 runner (capstone v21-r19 §24.13, "For CP-18").
+#
+# CP-18a: workflow_dispatch only, dry runs on development days through 2026-09-06 (decision 7). There is no
+# schedule: CP-18's activation adds one, and the live mode, after 4.7T retires the boundary guard. Until then the
+# pipeline refuses any plan holding a delivery day after 2026-09-06 (cp25.guard), whatever the inputs say.
+#
+# One run, in order: the uv environment uv.lock pins (uv's CPython 3.13.15); the guards on the runner's own commits
+# and pushes, shown with fake credentials; the pinned states materialized by hash (reports/cp18a/dryrun/pinned in a
+# dry run, live/pinned at activation), Pyodide's 23 files and the official Node.js binary retrieved from their
+# official release URLs and checked by hash, the package zip rebuilt and compared; then the pipeline: the H2 gate
+# once, decision 23's catch-up, each issuance through cp17.daily, the store, the claim.
+#
+# In a dry run the claim's origin is a bare repository on the runner, seeded from this checkout plus the dry run's
+# store (a development state, or a store an earlier run carried out): the pipeline's commits and pushes run through
+# .githooks there, and nothing is pushed to GitHub. CP-18's activation points the claim at this repository's main,
+# with the day's data-only records (live/store/, live/inputs/<day>/).
+#
+# Credentials (decision 25): ENTSOE_API_TOKEN, HF_TOKEN and DAGSHUB_USER_TOKEN are repository secrets the Owner enters
+# himself; agents never handle their values. This dry run uses none: it sets fake values derived from the run id
+# (cp18.guarddemo.fake_value), never printed, so the public log and the artifacts can be scanned for them by value
+# afterwards. The MLflow URI is public configuration, not a secret.
+#
+# Staying enabled: GitHub disables a scheduled workflow in a public repository after 60 days without repository
+# activity. Every run of this pipeline, whatever it issues (an issuance, a day not issued, a failed H2 gate, nothing
+# to do), pushes its run record to main, so a schedule that fires keeps the repository active; the local fallback
+# (cp18.local) pushes its own runs too. See reports/cp18a/report.md.
+#
+# Retrieval is software only: GitHub's own actions pinned by commit SHA, uv and the Python packages uv.lock pins, uv's
+# CPython 3.13.15, and Node.js v26.7.0's tarball and SHASUMS256.txt, checked by hash.
+name: daily
+
+on:
+  workflow_dispatch:
+    inputs:
+      now:
+        description: 'The dry run''s simulated wall clock, ISO 8601 with its offset (a development day''s run)'
+        required: true
+      inputs:
+        description: 'The inputs: live:<recorded responses> (the live-input builder, replayed) or prebuilt:<payloads>'
+        required: true
+        default: 'live:reports/cp18a/dryrun/recorded'
+      store:
+        description: 'The dry run''s store: genesis:<development state>:<first day>, or carried:<a store folder>'
+        required: true
+        default: 'genesis:reports/cp18a/dryrun/states/start-2026-08-31.json:2026-08-31'
+      minutes:
+        description: 'The job''s time limit in minutes (a four-issuance run with its canary is bounded at about 255)'
+        required: true
+        default: '120'
+
+permissions: {}
+
+concurrency:
+  group: daily-pipeline
+  cancel-in-progress: false
+
+env:
+  OPENBLAS_NUM_THREADS: "1"
+  VECLIB_MAXIMUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  MLFLOW_DISABLE_TELEMETRY: "true"
+  DO_NOT_TRACK: "1"
+  PYTHONPATH: src
+  UV_VERSION: "0.12.6"
+  CPYTHON: "3.13.15"
+  UV_PYTHON_PREFERENCE: only-managed
+
+jobs:
+  pipeline:
+    name: macos-26 daily pipeline (dry run)
+    runs-on: macos-26
+    timeout-minutes: ${{ fromJSON(inputs.minutes) }}
+    permissions:
+      contents: write     # only for the day's data-only commit to main at activation; a dry run pushes to GitHub nothing
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        with:
+          python-version: "3.13"
+      - name: uv, from PyPI, recorded
+        run: |
+          mkdir -p "$RUNNER_TEMP/results" "$RUNNER_TEMP/dl"
+          echo "RESULTS=$RUNNER_TEMP/results" >> "$GITHUB_ENV"
+          echo "CP17_PROJECT_ROOT=$GITHUB_WORKSPACE" >> "$GITHUB_ENV"
+          python -m pip install --no-deps --report "$RUNNER_TEMP/results/uv-pip-report.json" "uv==${UV_VERSION}"
+          python -m pip download --no-deps --only-binary=:all: -d "$RUNNER_TEMP/dl" "uv==${UV_VERSION}"
+          shasum -a 256 "$RUNNER_TEMP"/dl/uv-*.whl > "$RUNNER_TEMP/results/uv-wheel-sha256.txt"
+      - name: The pinned CPython and the environment uv.lock pins
+        run: |
+          python -m uv python install "$CPYTHON"
+          python -m uv sync --locked --no-install-project --no-dev --python "$CPYTHON"
+          python -m uv pip freeze --python .venv > "$RESULTS/uv-freeze.txt"
+          shasum -a 256 uv.lock pyproject.toml > "$RESULTS/project-sha256.txt"
+          .venv/bin/python -c "import platform, zlib, json; print(json.dumps({'python': platform.python_version(), 'zlib': zlib.ZLIB_RUNTIME_VERSION}))" > "$RESULTS/cpython.json"
+      - name: The guards on the runner's own commits and pushes (fake credentials, blocked by value)
+        run: |
+          git config core.hooksPath .githooks
+          .venv/bin/python -m cp18.guarddemo --checkout . --work "$RUNNER_TEMP/guard-demo" \
+              --run-id "$GITHUB_RUN_ID" --out "$RESULTS/guard-demo.json"
+      - name: The pinned states by hash, Pyodide and the official binary retrieved by hash, the package zip rebuilt
+        run: |
+          .venv/bin/python -m cp18 prepare --root . --project . --pinned reports/cp18a/dryrun/pinned \
+              --retrieve-pyodide --retrieve-node --out "$RESULTS/prepare.json"
+      - name: The dry run's store and its origin, on the runner
+        env:
+          STORE: ${{ inputs.store }}
+        run: |
+          case "$STORE" in
+            genesis:*) .venv/bin/python -m cp18 seed-store --root . --genesis "${STORE#genesis:}" ;;
+            carried:*) .venv/bin/python -m cp18 seed-store --root . --carried "${STORE#carried:}" ;;
+            *) echo "store: expected genesis:<state>:<first day> or carried:<folder>" >&2; exit 2 ;;
+          esac
+          git add live/store
+          git -c user.name=delu-daily -c user.email=delu-daily@users.noreply.github.com commit --quiet \
+              -m "dry run: the store at its start"
+          git init --quiet --bare -b main "$RUNNER_TEMP/origin.git"
+          git remote add dryrun "$RUNNER_TEMP/origin.git"
+          git push --quiet dryrun HEAD:refs/heads/main
+      - name: The pipeline (dry run, development days)
+        env:
+          NOW: ${{ inputs.now }}
+          INPUTS: ${{ inputs.inputs }}
+        run: |
+          # Fake credentials in the consuming process only, derived from the run id and never printed.
+          eval "$(.venv/bin/python -c "from cp18.guarddemo import fake_environment as f; import os, shlex; [print(f'export {k}={shlex.quote(v)}') for k, v in f(os.environ['GITHUB_RUN_ID']).items()]")"
+          set -o pipefail
+          .venv/bin/python -m cp18 run --root . --project . --out "$RESULTS/run" --host runner --now "$NOW" \
+              --inputs "$INPUTS" --remote dryrun --run-label "gh-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" 2>&1 | tee "$RESULTS/run.log"
+      - name: The dry run's store, carried out of the runner
+        if: always()
+        run: |
+          git -C "$RUNNER_TEMP/origin.git" bundle create "$RESULTS/origin.bundle" main || true
+          git -C "$RUNNER_TEMP/origin.git" archive --format=tar main live/store | tar -x -C "$RESULTS" || true
+      - name: No fake credential in any result (by value)
+        if: always()
+        run: .venv/bin/python -m cp18.guarddemo scan --run-id "$GITHUB_RUN_ID" "$RESULTS" > "$RUNNER_TEMP/scan.json"; cat "$RUNNER_TEMP/scan.json"
+      - name: The results' own hashes
+        if: always()
+        run: |
+          find "$RESULTS" -type f -name '*-arrays.npz' -delete
+          (cd "$RESULTS" && find . -type f ! -name results-sha256.txt -print0 | sort -z | xargs -0 shasum -a 256 > results-sha256.txt)
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
+        if: always()
+        with:
+          name: pipeline
+          path: ${{ env.RESULTS }}
+          retention-days: 30
+          if-no-files-found: error

@@ -1,0 +1,12 @@
+#!/bin/sh
+# Runs the credential-value guard (AGENTS.md § Credentials). Enabled with:
+#   git config core.hooksPath <this directory, absolute>
+# It fails closed: a commit or push is refused when the guard cannot run.
+guard="$(cd "$(dirname "$0")/.." && pwd)/scripts/secret_guard.py"
+for py in python3 /usr/bin/python3; do
+  if command -v "$py" >/dev/null 2>&1; then
+    exec "$py" "$guard" "$(basename "$0")" "$@"
+  fi
+done
+echo "secret-guard: python3 not found; refusing to proceed unchecked (AGENTS.md § Credentials)" >&2
+exit 1

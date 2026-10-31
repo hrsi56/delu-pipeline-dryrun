@@ -1,0 +1,16 @@
+group,subgroup,tier,shift_hours,days_considered,affected_days,class,first_affected,last_affected,min_margin_hours,max_margin_hours,eligible_days_considered,eligible_affected_days,class_on_eligible_days
+prices,"D-1 prices: lags, statistics, normalisation, the D-1 training target",2,1,2806,0,none,,,21.0,23.0,2766,0,none
+prices,"D-1 prices: lags, statistics, normalisation, the D-1 training target",2,6,2806,0,none,,,21.0,23.0,2766,0,none
+prices,"D-1 prices: lags, statistics, normalisation, the D-1 training target",2,24,2806,2806,structural,2019-01-01,2026-09-06,21.0,23.0,2766,2766,structural
+prices,"D-2 and older prices: released errors, older lags, CQR calibration",2,1,2806,0,none,,,45.0,47.0,2766,0,none
+prices,"D-2 and older prices: released errors, older lags, CQR calibration",2,6,2806,0,none,,,45.0,47.0,2766,0,none
+prices,"D-2 and older prices: released errors, older lags, CQR calibration",2,24,2806,0,none,,,45.0,47.0,2766,0,none
+gfs,"GFS D-1 00 UTC run, leads f021-f048",2,1,2805,0,none,,,4.9975,6.2906,2766,0,none
+gfs,"GFS D-1 00 UTC run, leads f021-f048",2,6,2805,1783,partial,2019-04-01,2026-09-06,4.9975,6.2906,2766,1778,partial
+gfs,"GFS D-1 00 UTC run, leads f021-f048",2,24,2805,2805,structural,2019-01-02,2026-09-06,4.9975,6.2906,2766,2766,structural
+load_forecast,load forecast of D (tier 3; computed for the Owner's ruling),3,1,2806,2806,structural,2019-01-01,2026-09-06,1.0,1.0,2766,2766,structural
+load_forecast,load forecast of D (tier 3; computed for the Owner's ruling),3,6,2806,2806,structural,2019-01-01,2026-09-06,1.0,1.0,2766,2766,structural
+load_forecast,load forecast of D (tier 3; computed for the Owner's ruling),3,24,2806,2806,structural,2019-01-01,2026-09-06,1.0,1.0,2766,2766,structural
+load_forecast,load forecast of D-1 (lag; tier 3),3,1,2806,0,none,,,24.0,26.0,2766,0,none
+load_forecast,load forecast of D-1 (lag; tier 3),3,6,2806,0,none,,,24.0,26.0,2766,0,none
+load_forecast,load forecast of D-1 (lag; tier 3),3,24,2806,8,partial,2019-04-01,2026-03-30,24.0,26.0,2766,8,partial

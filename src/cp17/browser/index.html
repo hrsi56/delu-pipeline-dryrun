@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CP-17 retrain</title>
+</head>
+<body>
+<p id="status">loading</p>
+<script>
+// The measurement page for "Train it yourself": one daily fit in a Web Worker, as the product's action
+// runs it. Every byte comes from the local 127.0.0.1 server; nothing is fetched from elsewhere.
+(function () {
+  const params = new URLSearchParams(location.search);
+  const started = performance.now();
+  window.__run = null;
+  const worker = new Worker('/app/worker.js');
+  worker.onmessage = (event) => {
+    const out = event.data;
+    out.page_total_ms = performance.now() - started;
+    if (performance.memory) {
+      out.page_js_heap = {used: performance.memory.usedJSHeapSize, total: performance.memory.totalJSHeapSize};
+    }
+    document.getElementById('status').textContent = out.errors.length ? 'failed' : 'done';
+    window.__run = out;
+  };
+  worker.onerror = (event) => {
+    window.__run = {errors: ['worker error: ' + event.message], page_total_ms: performance.now() - started};
+  };
+  worker.postMessage({stem: params.get('stem'), packages: params.get('packages'),
+                      attribution: params.get('attribution') || '0'});
+})();
+</script>
+</body>
+</html>

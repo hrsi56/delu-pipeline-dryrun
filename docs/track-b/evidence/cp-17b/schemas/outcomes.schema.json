@@ -1,0 +1,61 @@
+{
+ "$id": "cp17-outcomes-v1",
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "additionalProperties": false,
+ "properties": {
+  "prices": {
+   "items": {
+    "additionalProperties": false,
+    "properties": {
+     "delivery_day": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "type": "string"
+     },
+     "price": {
+      "type": [
+       "number",
+       "null"
+      ]
+     },
+     "published_utc": {
+      "pattern": "^(|\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00)$",
+      "type": "string"
+     },
+     "revised_utc": {
+      "pattern": "^(|\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00)$",
+      "type": "string"
+     },
+     "source": {
+      "type": "string"
+     },
+     "timestamp_utc": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\+00:00$",
+      "type": "string"
+     }
+    },
+    "required": [
+     "timestamp_utc",
+     "delivery_day",
+     "price",
+     "source",
+     "published_utc",
+     "revised_utc"
+    ],
+    "type": "object"
+   },
+   "type": "array"
+  },
+  "schema": {
+   "const": "cp17-outcomes-v1"
+  },
+  "unit": {
+   "const": "EUR/MWh"
+  }
+ },
+ "required": [
+  "schema",
+  "unit",
+  "prices"
+ ],
+ "type": "object"
+}

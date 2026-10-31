@@ -1,0 +1,507 @@
+{
+ "content_sha256": "261c6283b50c051a71d7a98da6e8ab9912f0b33e79c00ba2c180ab224b97cca1",
+ "freeze_origin": {
+  "artifact_arrays_sha256": "15bf7731c43bd9be164d2bab83e9c5afc30cf4ad412150e5a549d27c3f295fce",
+  "artifact_file_sha256": "c1c3dab694ac828867087d2028c0f5aaeda21b00d58e1e7bf35b2c7c7bbc273d",
+  "artifact_path": "docs/track-b/evidence/cp-17b/artifact-2026-09-06.json",
+  "artifact_sha256": "91e00fea32af466127c0e2bd41404259f4652d26acfe9f9aa9f423cb9bc12cd2",
+  "delivery_day": "2026-09-06",
+  "display": "successful daily fit",
+  "host": {
+   "node": "v26.7.0",
+   "process": "one fresh process per attempt",
+   "pyodide": "0.28.0",
+   "runtime": "pyodide"
+  },
+  "issue_utc": "2026-09-05T09:00:00+00:00",
+  "issued_policy": "A1",
+  "payloads": {
+   "A1": "63ce7f452987d453cd55635b5739dfc579ade191c67b31e888fcc3884dd043a4"
+  }
+ },
+ "initial_state": {
+  "buffer_days": {
+   "B0": [
+    "2026-08-08",
+    "2026-09-04"
+   ],
+   "v2": [
+    "2026-08-08",
+    "2026-09-04"
+   ],
+   "v4": [
+    "2026-08-08",
+    "2026-09-04"
+   ],
+   "v5": [
+    "2026-08-08",
+    "2026-09-04"
+   ]
+  },
+  "buffers_sha256": {
+   "B0": "cb08e92c715ecc372198c324ea2206a6274f06cd0929551367117d7527a4f28f",
+   "v2": "3eb4770d6040a282fbcd5f6410dc0576d3763cb035ce71a76629f194b06ed80b",
+   "v4": "511f4334ca48b6a4e5f2fbcf40d02c42dc0baccd2213af003a93fcb932606caf",
+   "v5": "151a74e94b36e30b2f6a90649ec5bafa1050454aa18cd5241907ad467ba502e0"
+  },
+  "carried": "CP-17's freeze-origin state, carried by reference (its freeze manifest, 4af62410...); the shadow run ends at it bitwise natively and within rounding under the issuing host (reports/cp17b/shadow-run.json)",
+  "origin": "2026-09-06",
+  "replay_state_sha256": "d04a4e4d9edfd1e0e8749ee5a3c4d21615fed7ce4b960d6a2a224d54f76520bf",
+  "source": "CP-26's nominal ledger, rebuilt and checked against its final replay state's consumption trace"
+ },
+ "policy_identity": {
+  "availability": {
+   "issue_time": "D-1 11:00 Europe/Berlin (\u00a724.4): 10:00 UTC on CET, 09:00 UTC on CEST, by D-1's own offset at 11:00",
+   "strictly_before": true,
+   "target_day_embargo": "no price of D in any zone, nor a transformation revealing it",
+   "tiers": "reports/development-inputs/tier-register.json with the Owner's CP-25 rulings and the GFS ruling of 2026-10-19 (\u00a724.5)"
+  },
+  "code": {
+   "entry_modules": [
+    "cp17.dailyfit",
+    "cp17.attribution",
+    "cp17.retrain",
+    "cp17.scoring",
+    "cp17.issue",
+    "cp17.schema",
+    "cp17.shadow",
+    "cp24.design",
+    "cp24.ddnn2",
+    "cp24.member",
+    "cp15.data",
+    "cp15.models",
+    "cp21.lgbm",
+    "cp16.residuals",
+    "cp26.state",
+    "cp25.guard",
+    "cp28.scoring",
+    "delu_forecast.baselines"
+   ],
+   "files_sha256": {
+    "cp15/__init__.py": "51729f693956953e59a18758f88755165cc0f5b5dad9194517599128181504c7",
+    "cp15/data.py": "c76fb1d78c6bbd17d1a1172ace6548a6f41711d138ce4b055b9c80cf0edabff3",
+    "cp15/models.py": "49d9ce2dadbe92265c36d946362c08f1819a87501469975575b794984a23f67c",
+    "cp16/__init__.py": "527054074035bff88c3907ae548d6f745c532c79a18eee2f7206e05f3df32519",
+    "cp16/residuals.py": "f442714ee867310bf3b820cf12dc6055d57b53d7630a751275c6311aa4f71580",
+    "cp17/__init__.py": "6d590a0a1f4c1c63bfad9bfadf08855082aa969290d55587d9237d1ab5ba90c2",
+    "cp17/attribution.py": "ec21364a8e16445fa097cd903e5953aa48d91b8b2e934cb883b2b54b1b3d54de",
+    "cp17/dailyfit.py": "65b36b86fbd5b096f6dc9657086928f8592db9e4616ad97be6a6cafd5926522f",
+    "cp17/host/driver.py": "b22f4db0d03e98122350faf164a111a48a5fed296816b62569ea325fbe630a68",
+    "cp17/issue.py": "d837241db150e3e14051b6d764fce2453789a2d363da290b201bef3dd193883e",
+    "cp17/retrain.py": "d7ac77e2b1dd81725abf66eb3bbf024ea9c6a7c7d68dcb8b1be2e9dc30f380b1",
+    "cp17/schema.py": "a53006e077e8e17e3a954d0f82ddcfb91a6175d5c0503fdf8e4e63548c0f6a4f",
+    "cp17/scoring.py": "d95fc6192b5f68f5c888c12722faafc096c0dc4ba5d5bcf80e94e54b0226738b",
+    "cp17/shadow.py": "7b263f7917bbc8e31691e10b4d304e362b0aed816a8367919da100c1fba401ce",
+    "cp17/stubs/absent/holidays.py": "252bd4f757d5926a5a61940beb783eaabdb7eaaff5c2c847f8e1a64da53b2559",
+    "cp17/stubs/fallback/resource.py": "4ff3227ba5afeec42b99cbec0c78f669512a72a733806c7757699f9223929581",
+    "cp21/__init__.py": "053f203c227fd8a08e7f6a5458fc3cdfb2d95efaeefc2f1c6450e20ed38cff3c",
+    "cp21/lgbm.py": "f35ba557c708aee9f6c83c3f974dcaad09d2c25fc81fcfd4105a70adedf038ad",
+    "cp24/__init__.py": "01e59a51ef166fcf206bdaad67703ee440c569be04d16800f4db4ed0f25c33e4",
+    "cp24/ddnn2.py": "a70cbea6e9533ffb0c4030a8c40b7c6978f9a218f17213c30fbb5c6850827067",
+    "cp24/design.py": "585b0673846e0e459eb700be24d12a46554172ee2c52600d86947645a0d03190",
+    "cp24/member.py": "d5df1ef4f81a3ce5fe01349588259aa32ce6fd32064581f1c5947822431538ec",
+    "cp25/__init__.py": "46207a35beb0a6946baed699c756f7c463f631e0d551eed2411dbef298ab2537",
+    "cp25/guard.py": "3648d56261869455cbaddbb9a97cb3533256f61b191924d4645f2ba9614bf48c",
+    "cp26/__init__.py": "80b5d7a61f997842f8ccf7b2fd007ea5601d63e7a5c90d301008473a395a245d",
+    "cp26/state.py": "8c031249c24431d7c145ab81f239a07a7641f97cc8ea45c67394c505d5be9e77",
+    "cp28/__init__.py": "45e88a5021a7e623823bdee5afc2b1b15018453c31aba9e537b278d49d481d6e",
+    "cp28/scoring.py": "3b282f6c3075ffa523c45a40a9f5e42122f276a451fc77b4d7ad27743c838de1",
+    "delu_forecast/__init__.py": "c39e1809e51a396dd0c88f8af8ef31ee3cb125637e8edccad76486be4b089fa7",
+    "delu_forecast/baselines.py": "4e234cda6d09366b6136b2c2f4635dabdaa8aefe8d85ef0da41d9ad4912eea52",
+    "delu_forecast/features.py": "114cc25c8e93d0ddf2cec56f09674a484038983240d8d22d32bcb0f011a5bb3b",
+    "delu_forecast/folds.py": "71743a4f677507afea215902ee82a8e9f990fc128f4456afc47c3f4e0bd11078",
+    "delu_forecast/ingest.py": "e7a1cd415733eccd4460a49ba3d3ea465a90259e92ae657436b1baf3bd0ce04c",
+    "delu_forecast/partitions.py": "9633b4cce7a6538bb726ead77b140db37d2c503b727896214d54bb47b80d4f89"
+   },
+   "package_sha256": "682c5833fce8fdb5390a49794d83e11a515cb2b89db24d9e9945fcbad714642e",
+   "pipeline_files_sha256": {
+    "cp17/daily.py": "18e1589307e26336ed9eb05561b0b17485a065eda9c7da1d75f2940c4dc473be"
+   },
+   "pyodide_packages": [
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "lightgbm",
+    "requests",
+    "tzdata"
+   ],
+   "runner_files_sha256": {
+    "cp17/browser/index.html": "e821c7479917825f188acfdc0167998cc99622b861e59b549842535e5f351334",
+    "cp17/browser/worker.js": "7b93b7dcd0be7b5ca3930ea12e03ca0c47b1181f4a7a26ea19a692eae26159de",
+    "cp17/host/node_run.mjs": "5286284964072f7549e28edabe5c6463209b2502c4ef20f436a22386d4528a90"
+   },
+   "zip_sha256": "41256a486bae64774c74b18a95d85877bc035d61683ffd8a93e5054b7f38a8aa",
+   "zip_zlib_runtime": "1.2.12"
+  },
+  "computational_sha256": {
+   "data/snapshot.parquet": "7dd2dc73407706ca6bd3c1ad51d201ac0de35eec5ca129ce320cca639f697f00",
+   "pyproject.toml": "aa35326abbb13dfa4ea8ba1b4b367343b77f895e7724d5dc94e0bdb7637b4e4a",
+   "reports/cp15/protocol.json": "051e4b7cdd1d5db68b26e6d6bc17333c4055c4bcbe5ea693d1d647fe355ccdd6",
+   "reports/cp17-probe/retrieval-manifest.json": "37bf451ff50af2699978cc408e2e5ea1da6539abb0a648ac6a11b2d909cfdfa2",
+   "reports/cp28/results/selection.json": "22a3dacfc06303a42db132ae3ba8ee8fc7e82606a886585fc40d02b82ae930b0",
+   "reports/development-inputs/manifest.json": "f3e8ca15e4466d371de5b6db9c181f77adaa8823ca2e7e0d325182120db32fd9",
+   "reports/development-inputs/margin-days.csv": "4c7d4c8038643c1d012bd4116ab14b085298d68bf2f95d5711ab5f14a34d13e3",
+   "reports/development-inputs/margin-table.csv": "6b96d96937de8650c6a740e24c7760ba525160972077d3b00e15c6f94902f208",
+   "reports/development-inputs/partitions-development.json": "70c752b9c6b77113f6c651c1067b7746f72bd3d0ed9530c7a314a181bf182749",
+   "reports/development-inputs/tier-register.json": "1a71fd838d895895a9429139ae392a883cddaab8f75366f5a9033cc85f4bc974",
+   "reports/development-inputs/weather-features-gaps.parquet": "fbc2517e06f20c6093eb3f0b9944325654d5c01170a48f0d8a7c68fcb7b2ef2f",
+   "reports/rebaseline/cold-rerun-2026-10-15/scores-manifest.json": "b9f10917ab471177eda1b5f8ef735ddca5a651fa2e9bb47844497f3a6deaf84d",
+   "reports/weather-ablation/weather-features.parquet": "66b8264bb6e124ae0cc540a40ff00d0e9f625cabee6e0ebb6e4605c3e7ea1b58",
+   "uv.lock": "5d2aecc3d173fef6191cb2bb9d14cd008c0e9cc764700f1352b81d1924465a94"
+  },
+  "definitions": {
+   "levels": [
+    0.025,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    0.9,
+    0.975
+   ],
+   "recompute_relative_tolerance": 1e-09,
+   "rolling_days": 28,
+   "tau_eur": 10.0
+  },
+  "designated_policy": "A1",
+  "designation": "A1 (DDNN-2 alone, CP-26's nominal D2 with its own Johnson SU quantiles), designated the final version pending 4.7T (\u00a716.1; decision 1); v1 remains the product until CP-19",
+  "disclosures": {
+   "F1": "at the DST origin 2025-10-26, A1 under the issuing host differs from native by up to 0.028 EUR/MWh (p50) with every selection identical; tau_eq stays 0.01 as the visitor's tolerance against the issued artifact (decision 18)"
+  },
+  "failure_policy": {
+   "a1_failed": [
+    "v4",
+    "v2",
+    "B0"
+   ],
+   "display": "a failed or skipped fit is displayed as such, even when a fallback issues",
+   "gfs_late_disclosure": "CP-17's item 1: v2 +2.27% MAE and +6.68% WIS against A1's GFS +6 h route on 1,354 paired affected development dates",
+   "gfs_missing_in_training_window": "decision 17 (G2): A1's fit fails, v4 fails for the same reason, v2 issues",
+   "gfs_unavailable": [
+    "v2",
+    "B0"
+   ],
+   "partial_days": "decision 13 (C2)",
+   "rulings": "decisions 11 and 12, kept by decision 15"
+  },
+  "governance": {
+   "anchor_v21_r17": {
+    "copy": "docs/track-b/evidence/cp-17b/pinned/anchor-capstone-v21-r17.md",
+    "sha256": "3124451da84c3cd99fae728c371207aace6ae537474f7769d0ff6333ee53e4fc",
+    "source_at_freeze": "capstone_v21.md"
+   },
+   "cp17_brief_9e522b9a": {
+    "copy": "docs/track-b/evidence/cp-17b/pinned/cp-17-brief-9e522b9a.md",
+    "sha256": "9e522b9a42ea3c02574bd2cde4fad97266bdfd8dc38a104c13566e05c80164fa",
+    "source_at_freeze": "docs/track-b/evidence/cp-17/issued-brief-v1-9e522b9a.md"
+   },
+   "cp17_brief_9f235cf8": {
+    "copy": "docs/track-b/evidence/cp-17b/pinned/cp-17-brief-9f235cf8.md",
+    "sha256": "9f235cf84876db4975930f1fce8fb62dbe188b8be4130e692eda9b5b7e1b1a73",
+    "source_at_freeze": "docs/track-b/evidence/cp-17/issued-brief.md"
+   },
+   "cp17b_brief_b9aeeee4": {
+    "copy": "docs/track-b/evidence/cp-17b/pinned/cp-17b-brief-b9aeeee4.md",
+    "sha256": "b9aeeee4131cadd060d35e05d8d0c04f114a8ec764b5c141dc893863fdd75034",
+    "source_at_freeze": "docs/track-b/evidence/cp-17b/issued-brief.md"
+   },
+   "cp25_rulings": {
+    "copy": "docs/track-b/evidence/cp-17b/pinned/cp-25-rulings-2026-10-12.md",
+    "sha256": "c7af67f88157277aafd8dd2b1b49e12a1d9ff4b747ca5bdf178fac664fba53c1",
+    "source_at_freeze": "docs/track-b/cp-25-rulings-2026-10-12.md"
+   },
+   "cp26_gfs_ruling": {
+    "copy": "docs/track-b/evidence/cp-17b/pinned/cp-26-gfs-ruling-2026-10-19.md",
+    "sha256": "3b97ff6abdf9a30ddd8c950cf3c459301d757aa1af08f6d8121bc73f92ba2373",
+    "source_at_freeze": "docs/track-b/cp-26-gfs-ruling-2026-10-19.md"
+   },
+   "decisions_13_19": {
+    "copy": "docs/track-b/evidence/cp-17b/pinned/cp-17-owner-decisions-2026-10-28.md",
+    "sha256": "4d049770e51a37a806c52a4ae681f70aae62ac1847a67c7c0c3109385da3ac37",
+    "source_at_freeze": "docs/track-b/cp-17-owner-decisions-2026-10-28.md"
+   },
+   "decisions_1_12": {
+    "copy": "docs/track-b/evidence/cp-17b/pinned/pre-cp-17-rulings-2026-10-25.md",
+    "sha256": "d29b0abc6a17dcb6bca2cbd464c1dcc5858c50e2b653a42e646d3dc66ea8f6b0",
+    "source_at_freeze": "docs/track-b/pre-cp-17-rulings-2026-10-25.md"
+   }
+  },
+  "hyperparameters": {
+   "A1_search": {
+    "content_sha256": "6090f4abaeca028694aa9941ce1240001e12b5965d3d9d0b72fe43cf77ee384f",
+    "file": "reports/rebaseline/cold-rerun-2026-10-15/search-results/nominal/k13.json",
+    "file_sha256": "17ade4513a39dffdf6b3fc90e5d45228bbafa71b86af04af22ae4b2418f9d5dc",
+    "k": 13,
+    "members": [
+     {
+      "config_id": "cp26-k13-t040",
+      "rank": 1,
+      "repeat": 1,
+      "seed": 27390011
+     },
+     {
+      "config_id": "cp26-k13-t040",
+      "rank": 1,
+      "repeat": 2,
+      "seed": 27390012
+     },
+     {
+      "config_id": "cp26-k13-t094",
+      "rank": 2,
+      "repeat": 1,
+      "seed": 27390021
+     },
+     {
+      "config_id": "cp26-k13-t094",
+      "rank": 2,
+      "repeat": 2,
+      "seed": 27390022
+     },
+     {
+      "config_id": "cp26-k13-t030",
+      "rank": 3,
+      "repeat": 1,
+      "seed": 27390031
+     },
+     {
+      "config_id": "cp26-k13-t030",
+      "rank": 3,
+      "repeat": 2,
+      "seed": 27390032
+     },
+     {
+      "config_id": "cp26-k13-t005",
+      "rank": 4,
+      "repeat": 1,
+      "seed": 27390041
+     },
+     {
+      "config_id": "cp26-k13-t005",
+      "rank": 4,
+      "repeat": 2,
+      "seed": 27390042
+     }
+    ],
+    "route": "nominal",
+    "search_day": "2026-07-08"
+   },
+   "cp15_protocol_sha256": "b70a6e8f330da11e97a970c9e767aa3e580e6a7f473a35c89b100dfb59049c9f",
+   "lightgbm_grid": [
+    {
+     "id": "G1",
+     "n_estimators": 150,
+     "num_leaves": 15
+    },
+    {
+     "id": "G2",
+     "n_estimators": 300,
+     "num_leaves": 31
+    },
+    {
+     "id": "G3",
+     "n_estimators": 600,
+     "num_leaves": 31
+    },
+    {
+     "id": "G4",
+     "n_estimators": 600,
+     "num_leaves": 63
+    }
+   ],
+   "v2_blend": "A1/2 + B2/2 (hg_central)",
+   "v4_blend": "A1_w/3 + B2_w/3 + L-N/6 + L-R/6 (cp21.lgbm.hgl_central)",
+   "v5_blend_control": "A1_w/3 + B2_w/3 + L-N/12 + L-R/12 + D2/6 (cp24.execution.v5_central)"
+  },
+  "issuing_host": {
+   "node": {
+    "path": "/opt/homebrew/Cellar/node/26.7.0/bin/node",
+    "sha256": "1ef99ea25fe70c9b67e7efe768ef8ee22148d3cabc703db6131b57aeb617d040",
+    "version": "v26.7.0"
+   },
+   "pyodide": {
+    "files_sha256": {
+     "certifi-2025.6.15-py3-none-any.whl": "34f344ea116df36539073746484be3f2914f8e47fedcafde80883573b602f658",
+     "charset_normalizer-3.4.2-py3-none-any.whl": "f739b10c6fea56128c644f0a77eb664d3d48150e66c265564455e5f2da11a68e",
+     "idna-3.10-py3-none-any.whl": "f888c1ff570957d24fb2065102bc8f62ba69ede4ef641783385c8e0c2bb56984",
+     "joblib-1.4.2-py3-none-any.whl": "0442695c4d63401b25202dd7db4fb3027085612364ee5ce077a39f3329ca75a9",
+     "lightgbm-4.6.0-py3-none-pyodide_2025_0_wasm32.whl": "3d5f16949ccd99eb6fa9fa91fde7a4297b19a720bb0d6cd413656ab24730ff8e",
+     "numpy-2.2.5-cp313-cp313-pyodide_2025_0_wasm32.whl": "467a88e8c79f9e10c8e7052bcc32dd12d44d51098beb3b8f970e1cfc965c6757",
+     "openblas-0.3.26.zip": "c0beb80dfe34e9c55f4da8a90bf7479278cc7833c20c4498dd0475a08457369e",
+     "pandas-2.3.0-cp313-cp313-pyodide_2025_0_wasm32.whl": "921a819fd1d60b69e46c74b09827d8c2405ade44ea278ba94c02d4d1b854c938",
+     "pyodide-lock.json": "6c6ba6e257a75193fc935a456963b0bfd3f9f4e307c52378b030e25b0b968227",
+     "pyodide.asm.js": "da195d86c80caece821124dcd4f049e6465a7a73797f1b2b4147283e445d02a2",
+     "pyodide.asm.wasm": "4ee3dc1deab639b454fdc6683651b4cf6c86fc587072e4f7b6c8eaed777d9db6",
+     "pyodide.js": "564b1acbfeb07eda9ba849ee0a0ed1eb8587aab62d9f18082ed905ed36432384",
+     "pyodide.mjs": "e056e624b55134dd4723130594c4cb0f6cb7ed8d331a5653929a00fe0784469c",
+     "python_dateutil-2.9.0.post0-py2.py3-none-any.whl": "9792745fdfff19fe681a2d2ccd1b72de71650d4b09151567ff85fb266ca86291",
+     "python_stdlib.zip": "1cc90fccf52e5145bd1bd3ef3540f5e1dd8bf17c5fc66c3e037802ef06ea62af",
+     "pytz-2025.2-py2.py3-none-any.whl": "4a449e011aa4eacfa58b6c06cd4db6581cf86f62d4caa320b8c30e54f4a1accb",
+     "requests-2.32.3-py3-none-any.whl": "d3a7e98f61896015484938be512e1f88902268727c7687bbd96c0c052a3cc4a6",
+     "scikit_learn-1.7.0-cp313-cp313-pyodide_2025_0_wasm32.whl": "71a6ad732e0d7e52aa4b81cc4ef4f26a1c45917f38a6ca296d5b33737dd56b2e",
+     "scipy-1.14.1-cp313-cp313-pyodide_2025_0_wasm32.whl": "4e1b9bf1d135ab3f81e65653988cdfe6fb05a703938b35d1397ab7b327dc2251",
+     "six-1.17.0-py2.py3-none-any.whl": "f213e36bbaae4640f256c86a6626e9122ce2b02b8b02e88a82053d0e4c50c02a",
+     "threadpoolctl-3.5.0-py3-none-any.whl": "4c7afd9a403c3ac4db535d6aca2090cfde391c0883b15080cbc3c573e4fcae9b",
+     "tzdata-2025.2-py2.py3-none-any.whl": "0701e11f6d1a30d77913de74b915df3cd08ad4590fad6b670d6f6228b5d001d2",
+     "urllib3-2.3.0-py3-none-any.whl": "2b347fd6e69835a1c53f8c2263aca2efb493d5d1d85563b3f2a7499ff7b3944f"
+    },
+    "lock_info": {
+     "abi_version": "2025_0",
+     "arch": "wasm32",
+     "platform": "emscripten_4_0_9",
+     "python": "3.13.2",
+     "version": "0.28.0.dev0"
+    },
+    "retrieval_manifest": "reports/cp17-probe/retrieval-manifest.json",
+    "retrieval_manifest_sha256": "37bf451ff50af2699978cc408e2e5ea1da6539abb0a648ac6a11b2d909cfdfa2",
+    "version": "0.28.0"
+   },
+   "runtime": "Pyodide in Node.js (decision 10)",
+   "workers": 1
+  },
+  "lock_price_policy": "not adopted (decision 3)",
+  "product": "delu-day-ahead-policy",
+  "reference_runtime": {
+   "chromium": "153.0.8010.12",
+   "machine_class": "Apple M3, 8 cores, 16 GB, macOS 26.5.2",
+   "measured": {
+    "browsers": {
+     "chromium": "153.0.8010.12",
+     "webkit": "26.6"
+    },
+    "cpu_count": 8,
+    "machine": "arm64",
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+   },
+   "node": "v26.7.0",
+   "playwright": "1.63.0",
+   "pyodide": "0.28.0",
+   "webkit": "26.6"
+  },
+  "refit_schedule": {
+   "current": "S_13 = 2026-07-08",
+   "daily": "every delivery day, including DST days",
+   "next": "S_14 = 2027-01-06",
+   "note": "protocol dates only, never permission to read future data",
+   "search": "S_k = 2020-01-15 + 182k"
+  },
+  "registry": {
+   "experiment_live": "delu-live",
+   "registered_model": "delu-day-ahead-policy",
+   "state": "local names and versions only; nothing is uploaded or registered at CP-17b",
+   "version": 1
+  },
+  "retrain": {
+   "binding": "the retrain must run on the issued fit's training window (payload identity) first",
+   "status": [
+    "identical bit for bit",
+    "within \u00b10.01 EUR/MWh",
+    "different"
+   ],
+   "tau_eq_eur": 0.01
+  },
+  "schema": "cp17b-policy-identity-v1",
+  "schemas_sha256": {
+   "docs/track-b/evidence/cp-17b/schemas/evaluation.schema.json": "4e00438f86deb4ff56903572856bdc2061b4a8cfc056b7dbb17700db91613bf3",
+   "docs/track-b/evidence/cp-17b/schemas/fitted_artifact.schema.json": "62dff76fba20ef683716732198b231fb17a966a45871543d5013be3c60448b2a",
+   "docs/track-b/evidence/cp-17b/schemas/issued_forecasts.schema.json": "054d79300d1778a899a6d26c068466622353b953688003d05f7b9fb889cf9ca1",
+   "docs/track-b/evidence/cp-17b/schemas/manifest.schema.json": "4c83ea926b966626e0003cbac41038e15af8e139dcfb1be1e0c3d7f6149cfe71",
+   "docs/track-b/evidence/cp-17b/schemas/outcomes.schema.json": "b8096c1e1ba54b6801e516586518ea03e825452c2dc012c2fb958f9136dfb882",
+   "docs/track-b/evidence/cp-17b/schemas/series.schema.json": "927a632847b77dbe365797b7014d435bdc2606f3ed704b8007e3c02c69daff05",
+   "docs/track-b/evidence/cp-17b/schemas/training_window.schema.json": "be1e96f92aea84d959e38d20d135151db03ed5ecce143816243c4021fb6e7226"
+  },
+  "seeds": {
+   "A1_members": [
+    27390011,
+    27390012,
+    27390021,
+    27390022,
+    27390031,
+    27390032,
+    27390041,
+    27390042
+   ],
+   "lear": null,
+   "lightgbm_random_state": 42,
+   "search_seeds": "trial/batch 26_000_000 + k*100_000 + trial*100 + batch; members 26_000_000 + k*100_000 + 90_000 + 10*rank + repeat; sampler SeedSequence([26, k, 0x5A3])"
+  },
+  "shadow": {
+   "b0": "B0 is shadow-issued too: its buffer rebuilt from published prices alone does not equal CP-26's (reports/cp17b/b0-rebuild.json)",
+   "decision": 14,
+   "initial_state": "CP-17's freeze-origin state (CP-26's final replay state), carried by reference",
+   "policies": [
+    "v4",
+    "v2",
+    "B0"
+   ],
+   "rule": "every delivery day, whether or not A1 succeeds, v4, v2 and B0 are fitted under the issuing host as shadow issuances, never published, displayed or scored as the product's forecast; each central and scale is registered before the outcome, and each policy's own errors from complete delivery days enter its own buffer once, after D-2's release (CP-26's intake: a complete canonical issuance with a valid central and scale); a fallback the chain fitted is not fitted twice; v4's shadow is skipped when GFS is late or missing"
+  },
+  "success_definition": {
+   "criteria": [
+    "inputs: the payload identity, the embargo, released errors <= D-2, training targets before D; a day with no forecastable hour fails here for every policy, so it is a failed issuance (decision 13)",
+    "training: the frozen rules, no guard refusal, no non-finite value",
+    "emission: seven finite, ordered quantiles on every hour of D the frozen design can forecast (cp15.data.Inputs.rows); fewer than the day's hours is successful on those hours, displayed as partial with the missing hours named (decision 13)",
+    "artifact: written and verified inside the chain, before it moves on (N3)",
+    "resources: per attempt, in its own fresh issuing-host process, <= 900 s wall and <= 4 GiB peak; an issued artifact carries the measurement, and the native comparison never issues (N2)"
+   ],
+   "driver": "cp17.daily: one fresh process per attempt, a fresh output path, a 900 s timeout; a killed, timed-out, non-zero, missing, unreadable or foreign record is a failed fit, and the chain moves on (N1)",
+   "labels": "released errors from complete delivery days <= D-2 (\u00a72); training targets the delivery days before D published strictly before the issue time, so D-1 is one (decision 16, C1)",
+   "peak_bytes": 4294967296,
+   "wall_seconds": 900
+  },
+  "supersedes": {
+   "checkpoint": "CP-17",
+   "note": "CP-17's freeze is superseded, not edited; its records stay as committed",
+   "policy_identity_sha256": "b304d6479a8628a26014422c6682f1e6543bd0d9ff656ad34b2d87b163bc254e",
+   "records": {
+    "freeze_manifest": {
+     "path": "docs/track-b/evidence/cp-17/freeze-manifest.json",
+     "sha256": "4af62410c2d08442b85cd11cd271f0eb367bfb019196784d1e048a46a908a544"
+    },
+    "freeze_record": {
+     "path": "docs/track-b/evidence/cp-17/freeze-record.md",
+     "sha256": "4a47623718441cca1eb7210dfa3b47dcfcc5c421b8e3a57b858282281b5e0cec"
+    },
+    "integration": {
+     "path": "docs/track-b/evidence/cp-17/integration.md",
+     "sha256": "7083bfb7176a9b7fbb4bfc4e03d00317f0c5601ec5360c006de1a2b4e066319d"
+    },
+    "protocol": {
+     "path": "docs/track-b/evidence/cp-17/4-7t-frozen-protocol.md",
+     "sha256": "337a102d6bbbf6d9335fe6ed701a4c80ea1b9172344ffc0f63909b155b567c58"
+    }
+   }
+  },
+  "uncertainty": {
+   "A1": "DDNN-2's own Johnson SU quantiles, per-level median of the eight members",
+   "B0": "28 released raw errors, pooled linear quantiles",
+   "v4_v2": "the H layer (cp16.residuals): 28 released standardized errors, hour shrinkage n/(n+56) from 14 distinct days",
+   "v5_control": "v5's own H layer"
+  },
+  "windows": {
+   "A1": "[max(2019-01-01, D-728), D) training days, with lags reaching D-735; held-out weeks and early stopping per member (cp24.member.fit_member)",
+   "LEAR": "cp15.models.history_start by member, to D exclusive; chronological inner validation on the last 28 days",
+   "LightGBM": "[max(2019-01-01, D-728), D); capacity on the window minus its last 28 days (cp21.lgbm)",
+   "released_errors": "complete delivery days <= D-2, consumed once (\u00a72)",
+   "training_targets": "delivery days < D published strictly before the issue time (D-1 is published on D-2)"
+  }
+ },
+ "policy_identity_sha256": "439115fb984359c0c68f79b77a6da4b85a5e75677cfbeb24e043876793ca9893",
+ "reference_bundle_manifest_sha256": "abb65542fa3a868869995635f1ccb18c8303e79d0f92b9d6ca13672277612cfb",
+ "schema": "cp17b-freeze-manifest-v1",
+ "verification": {
+  "freeze_origin.artifact_arrays_sha256": "local reproduction material (the issued fit's exported arrays); not recomputed by verify",
+  "freeze_origin.artifact_file_sha256 / artifact_sha256": "the committed artifact hashed, its identity recomputed, and `cp17.issue.verify_artifact` and the schema applied",
+  "initial_state": "CP-17's state, carried by reference (rebuilt from CP-26's ledger by cp17.tools.states and compared by the shadow run, reports/cp17b/shadow-run-*.json); not recomputed by verify",
+  "policy_identity.code.files_sha256 / runner_files_sha256 / pipeline_files_sha256": "each file hashed live",
+  "policy_identity.code.package_sha256 / zip_sha256": "the package rebuilt from src/ (cp17.tools.bundle) and compared; the zip where the zlib runtime equals zip_zlib_runtime, else reported unchecked",
+  "policy_identity.computational_sha256": "each file hashed live",
+  "policy_identity.governance": "each frozen copy hashed, and the set of pins is the frozen set",
+  "policy_identity.hyperparameters.A1_search": "k13.json hashed and its content digest read (local; required where any local runtime is present)",
+  "policy_identity.hyperparameters.cp15_protocol_sha256": "recomputed from reports/cp15/protocol.json",
+  "policy_identity.issuing_host": "the 23 Pyodide files and the Node.js binary hashed (local; as above); the retrieval manifest hashed live",
+  "policy_identity.schemas_sha256": "each schema file hashed, and equal to the package's own schema",
+  "policy_identity.supersedes.records": "CP-17's evidence files hashed live",
+  "policy_identity_sha256 / content_sha256": "the manifest's own digests recomputed",
+  "reference_bundle_manifest_sha256": "local reproduction material; `cp17.schema.verify_bundle` checks the bundle"
+ }
+}

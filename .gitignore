@@ -1,0 +1,51 @@
+.DS_Store
+
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Track B control and local evidence state (never committed or exposed to Critics)
+/workbench.md
+
+# Secrets
+.env
+*.env
+
+# CP-3B browser payload: the nine boosters as text, the row slice, the calendar
+# facts and the equivalence fixture. All of it is derived losslessly and
+# deterministically from the committed models/champion/ by `make wasm-payload`,
+# so committing 31 MB of it would duplicate the artifact rather than preserve
+# anything. Tests fail loudly with that instruction when it is absent.
+/app/public/
+
+# CP-3 deployable bundle: a copy of committed files, assembled by
+# `make space` for the owner to push. Never a second source of truth.
+/dist/
+
+# Scratch data / probe evidence. CP-1's frozen snapshot and manifests are
+# explicitly committed; transient downloads remain ignored.
+data/*
+!data/README.md
+!data/snapshot.parquet
+!data/snapshot.sha256
+!data/source_manifest.json
+!data/partitions.json
+!data/reconciliation_sample.json
+!data/reconciliation.csv
+!data/reconciliation_summary.json
+data/raw/
+
+# macOS custom folder icon (filename ends with CR)
+Icon?
+
+# marimo's per-session cache, written beside the notebook when the app runs.
+app/__marimo__/
+__marimo__/
+
+# Project-local scratch, handoff packets, recovery backups and temporary worktrees.
+/.local/
+
+# Microsoft Office creates these while a document is open.
+~$*.docx

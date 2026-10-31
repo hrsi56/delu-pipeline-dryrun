@@ -1,0 +1,195 @@
+{
+  "schema": "cp17-probe-retrieval-v1",
+  "authorized_by": "CP-17-probe brief 2afc610e\u2026; the Owner confirmed both retrievals in the Lead session on 2026-10-27",
+  "data_bytes_retrieved": 0,
+  "pyodide": {
+    "version": "0.28.0",
+    "lock_info": {
+      "abi_version": "2025_0",
+      "arch": "wasm32",
+      "platform": "emscripten_4_0_9",
+      "python": "3.13.2",
+      "version": "0.28.0.dev0"
+    },
+    "source": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/",
+    "files": [
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/pyodide-lock.json",
+        "bytes": 108703,
+        "sha256": "6c6ba6e257a75193fc935a456963b0bfd3f9f4e307c52378b030e25b0b968227",
+        "path": ".local/tools/pyodide-0.28.0/pyodide-lock.json",
+        "lock_sha256_match": null
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/pyodide.js",
+        "bytes": 16811,
+        "sha256": "564b1acbfeb07eda9ba849ee0a0ed1eb8587aab62d9f18082ed905ed36432384",
+        "path": ".local/tools/pyodide-0.28.0/pyodide.js",
+        "lock_sha256_match": null
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/pyodide.mjs",
+        "bytes": 15828,
+        "sha256": "e056e624b55134dd4723130594c4cb0f6cb7ed8d331a5653929a00fe0784469c",
+        "path": ".local/tools/pyodide-0.28.0/pyodide.mjs",
+        "lock_sha256_match": null
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/pyodide.asm.js",
+        "bytes": 1072130,
+        "sha256": "da195d86c80caece821124dcd4f049e6465a7a73797f1b2b4147283e445d02a2",
+        "path": ".local/tools/pyodide-0.28.0/pyodide.asm.js",
+        "lock_sha256_match": null
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/pyodide.asm.wasm",
+        "bytes": 8645010,
+        "sha256": "4ee3dc1deab639b454fdc6683651b4cf6c86fc587072e4f7b6c8eaed777d9db6",
+        "path": ".local/tools/pyodide-0.28.0/pyodide.asm.wasm",
+        "lock_sha256_match": null
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/python_stdlib.zip",
+        "bytes": 2416414,
+        "sha256": "1cc90fccf52e5145bd1bd3ef3540f5e1dd8bf17c5fc66c3e037802ef06ea62af",
+        "path": ".local/tools/pyodide-0.28.0/python_stdlib.zip",
+        "lock_sha256_match": null
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/numpy-2.2.5-cp313-cp313-pyodide_2025_0_wasm32.whl",
+        "bytes": 3109648,
+        "sha256": "467a88e8c79f9e10c8e7052bcc32dd12d44d51098beb3b8f970e1cfc965c6757",
+        "path": ".local/tools/pyodide-0.28.0/numpy-2.2.5-cp313-cp313-pyodide_2025_0_wasm32.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/pandas-2.3.0-cp313-cp313-pyodide_2025_0_wasm32.whl",
+        "bytes": 5291112,
+        "sha256": "921a819fd1d60b69e46c74b09827d8c2405ade44ea278ba94c02d4d1b854c938",
+        "path": ".local/tools/pyodide-0.28.0/pandas-2.3.0-cp313-cp313-pyodide_2025_0_wasm32.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/scipy-1.14.1-cp313-cp313-pyodide_2025_0_wasm32.whl",
+        "bytes": 13258840,
+        "sha256": "4e1b9bf1d135ab3f81e65653988cdfe6fb05a703938b35d1397ab7b327dc2251",
+        "path": ".local/tools/pyodide-0.28.0/scipy-1.14.1-cp313-cp313-pyodide_2025_0_wasm32.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/scikit_learn-1.7.0-cp313-cp313-pyodide_2025_0_wasm32.whl",
+        "bytes": 6385309,
+        "sha256": "71a6ad732e0d7e52aa4b81cc4ef4f26a1c45917f38a6ca296d5b33737dd56b2e",
+        "path": ".local/tools/pyodide-0.28.0/scikit_learn-1.7.0-cp313-cp313-pyodide_2025_0_wasm32.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/lightgbm-4.6.0-py3-none-pyodide_2025_0_wasm32.whl",
+        "bytes": 960089,
+        "sha256": "3d5f16949ccd99eb6fa9fa91fde7a4297b19a720bb0d6cd413656ab24730ff8e",
+        "path": ".local/tools/pyodide-0.28.0/lightgbm-4.6.0-py3-none-pyodide_2025_0_wasm32.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/requests-2.32.3-py3-none-any.whl",
+        "bytes": 64928,
+        "sha256": "d3a7e98f61896015484938be512e1f88902268727c7687bbd96c0c052a3cc4a6",
+        "path": ".local/tools/pyodide-0.28.0/requests-2.32.3-py3-none-any.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/tzdata-2025.2-py2.py3-none-any.whl",
+        "bytes": 347839,
+        "sha256": "0701e11f6d1a30d77913de74b915df3cd08ad4590fad6b670d6f6228b5d001d2",
+        "path": ".local/tools/pyodide-0.28.0/tzdata-2025.2-py2.py3-none-any.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+        "bytes": 229892,
+        "sha256": "9792745fdfff19fe681a2d2ccd1b72de71650d4b09151567ff85fb266ca86291",
+        "path": ".local/tools/pyodide-0.28.0/python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/pytz-2025.2-py2.py3-none-any.whl",
+        "bytes": 509225,
+        "sha256": "4a449e011aa4eacfa58b6c06cd4db6581cf86f62d4caa320b8c30e54f4a1accb",
+        "path": ".local/tools/pyodide-0.28.0/pytz-2025.2-py2.py3-none-any.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/openblas-0.3.26.zip",
+        "bytes": 1916561,
+        "sha256": "c0beb80dfe34e9c55f4da8a90bf7479278cc7833c20c4498dd0475a08457369e",
+        "path": ".local/tools/pyodide-0.28.0/openblas-0.3.26.zip",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/joblib-1.4.2-py3-none-any.whl",
+        "bytes": 175432,
+        "sha256": "0442695c4d63401b25202dd7db4fb3027085612364ee5ce077a39f3329ca75a9",
+        "path": ".local/tools/pyodide-0.28.0/joblib-1.4.2-py3-none-any.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/threadpoolctl-3.5.0-py3-none-any.whl",
+        "bytes": 18414,
+        "sha256": "4c7afd9a403c3ac4db535d6aca2090cfde391c0883b15080cbc3c573e4fcae9b",
+        "path": ".local/tools/pyodide-0.28.0/threadpoolctl-3.5.0-py3-none-any.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/charset_normalizer-3.4.2-py3-none-any.whl",
+        "bytes": 52626,
+        "sha256": "f739b10c6fea56128c644f0a77eb664d3d48150e66c265564455e5f2da11a68e",
+        "path": ".local/tools/pyodide-0.28.0/charset_normalizer-3.4.2-py3-none-any.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/idna-3.10-py3-none-any.whl",
+        "bytes": 70442,
+        "sha256": "f888c1ff570957d24fb2065102bc8f62ba69ede4ef641783385c8e0c2bb56984",
+        "path": ".local/tools/pyodide-0.28.0/idna-3.10-py3-none-any.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/urllib3-2.3.0-py3-none-any.whl",
+        "bytes": 128399,
+        "sha256": "2b347fd6e69835a1c53f8c2263aca2efb493d5d1d85563b3f2a7499ff7b3944f",
+        "path": ".local/tools/pyodide-0.28.0/urllib3-2.3.0-py3-none-any.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/certifi-2025.6.15-py3-none-any.whl",
+        "bytes": 157650,
+        "sha256": "34f344ea116df36539073746484be3f2914f8e47fedcafde80883573b602f658",
+        "path": ".local/tools/pyodide-0.28.0/certifi-2025.6.15-py3-none-any.whl",
+        "lock_sha256_match": true
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/six-1.17.0-py2.py3-none-any.whl",
+        "bytes": 11050,
+        "sha256": "f213e36bbaae4640f256c86a6626e9122ce2b02b8b02e88a82053d0e4c50c02a",
+        "path": ".local/tools/pyodide-0.28.0/six-1.17.0-py2.py3-none-any.whl",
+        "lock_sha256_match": true
+      }
+    ],
+    "total_bytes": 44962352
+  },
+  "chromium": {
+    "playwright": "1.63.0",
+    "build": "chromium-1243",
+    "browser": "Chrome for Testing 153.0.8010.12",
+    "url": "https://cdn.playwright.dev/builds/cft/153.0.8010.12/mac-arm64/chrome-mac-arm64.zip",
+    "bytes": 190970181,
+    "archive_sha256": null,
+    "archive_note": "Playwright's installer downloads to a temporary file, extracts it and deletes it; the archive's SHA-256 was not observable. The installed tree is fingerprinted instead.",
+    "installed_files": 348,
+    "installed_bytes": 375624473,
+    "installed_tree_sha256": "955ce3e002af9c2c165acf194d95a59ec427c4e8c2b543ebca44304cf7aea007",
+    "binary_sha256": "8319963f6625accf51c0dd4f55091ceaf9f09ed39e7a52fed4fae12b2a6b668a",
+    "ffmpeg": "ffmpeg-1011 was already installed; the installer did not download it"
+  },
+  "install_log": ".local/tmp/cp-17-probe/retrieval/chromium-install.log"
+}

@@ -1,0 +1,77 @@
+{
+  "best_arm": "A1",
+  "best_wis": 9.682532615295441,
+  "control_wis_on_each_arm_pairs": {
+    "A1": 10.870736536297818,
+    "A2": 10.870736536297818,
+    "A3": 10.870736536297818,
+    "A4": 10.870736536297818,
+    "A5": 10.870736536297818,
+    "A6": 10.870736536297818,
+    "A7": 10.870736536297818
+  },
+  "inconclusive_primary_pass_failed_variant": [],
+  "paired_counts": {
+    "A1": {
+      "control_dates_without_arm_loss": 0,
+      "paired_dates": 2068
+    },
+    "A2": {
+      "control_dates_without_arm_loss": 0,
+      "paired_dates": 2068
+    },
+    "A3": {
+      "control_dates_without_arm_loss": 0,
+      "paired_dates": 2068
+    },
+    "A4": {
+      "control_dates_without_arm_loss": 0,
+      "paired_dates": 2068
+    },
+    "A5": {
+      "control_dates_without_arm_loss": 0,
+      "paired_dates": 2068
+    },
+    "A6": {
+      "control_dates_without_arm_loss": 0,
+      "paired_dates": 2068
+    },
+    "A7": {
+      "control_dates_without_arm_loss": 0,
+      "paired_dates": 2068
+    }
+  },
+  "passes_all_four": {
+    "A1": true,
+    "A2": true,
+    "A3": true,
+    "A4": true,
+    "A5": true,
+    "A6": true,
+    "A7": true
+  },
+  "primary_rejections": {
+    "A1": true,
+    "A2": true,
+    "A3": true,
+    "A4": true,
+    "A5": true,
+    "A6": true,
+    "A7": true
+  },
+  "reason": "lowest WIS",
+  "selected": "A1",
+  "tie_bound": 9.730945278371918,
+  "tie_set": [
+    "A1"
+  ],
+  "wis_paired_with_control": {
+    "A1": 9.682532615295441,
+    "A2": 10.364086910046503,
+    "A3": 10.308612951388104,
+    "A4": 10.231349531310398,
+    "A5": 10.382390606933981,
+    "A6": 10.129356652838439,
+    "A7": 10.294043652189552
+  }
+}
