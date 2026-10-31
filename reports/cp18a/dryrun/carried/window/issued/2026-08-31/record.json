@@ -1,0 +1,123 @@
+{
+ "artifact_sha256": "3bb25a1a5e4bec66f53cca813c88c84fdd4d27685d234912047bb902b3c50c0f",
+ "artifact_verifies": true,
+ "blocked_non_local_requests": [],
+ "causes": {},
+ "cutoff_utc": "2026-08-30T09:00:00+00:00",
+ "day": "2026-08-31",
+ "display": "successful daily fit",
+ "gate": {
+  "machine": {
+   "cpu_count": 3,
+   "cpu_model": "Apple M1 (Virtual)",
+   "hardware_model": "VirtualMac2,1",
+   "machine": "arm64",
+   "memory_bytes": 7516192768,
+   "os_version": "26.6.2",
+   "physical_cores": 3,
+   "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+   "runner_env": {
+    "GITHUB_ACTIONS": "true",
+    "GITHUB_JOB": "pipeline",
+    "GITHUB_REPOSITORY": "hrsi56/delu-pipeline-dryrun",
+    "GITHUB_RUN_ATTEMPT": "1",
+    "GITHUB_RUN_ID": "41185674168",
+    "GITHUB_SHA": "9dfb8959e1dc909654f79c939fc5dd02cc741c38",
+    "ImageOS": "macos26",
+    "ImageVersion": "20261026.0455.2",
+    "RUNNER_ARCH": "ARM64",
+    "RUNNER_ENVIRONMENT": "github-hosted",
+    "RUNNER_NAME": "GitHub Actions 1000001313",
+    "RUNNER_OS": "macOS"
+   },
+   "system": "Darwin"
+  },
+  "passed": true,
+  "started_utc": "2026-10-31T08:43:03+00:00"
+ },
+ "gfs_available": true,
+ "host_kind": "runner",
+ "inputs": {
+  "availability": [
+   {
+    "admitted": true,
+    "basis": "development day built by cp17.tools.payloads from the recorded snapshot (pulled 2026-09-08): admitted under the tier register and the Owner's ruling 1 (the load forecast's recorded exception for the stored development history); development data only",
+    "cutoff_utc": "2026-08-30T09:00:00+00:00",
+    "input": "all"
+   }
+  ],
+  "data_refresh_utc": "",
+  "gfs_available": true,
+  "payload_sha256": {
+   "A1": "f4cdb04dd0c55c0a3d64a0e3f0a6a5f1abd7d041d6b48defc1bb51b765d18ee6",
+   "B0": "e845d1b8d9d66b72d2c72357e67862e79c36d379c0517860d857df75892759c7",
+   "v2": "067bca666c98330bf8be220fd463cb13a0c9e3f08614bfce79cc398c403b8f97",
+   "v4": "ce684869ad1c8adc27b61c462a725adbab7cbaed04425bfd9c8867cddeb108f9"
+  },
+  "reasons": [],
+  "search_file": "/Users/runner/work/delu-pipeline-dryrun/delu-pipeline-dryrun/.local/artifacts/cp-17/inputs/reports/rebaseline/cold-rerun-2026-10-15/search-results/nominal/k13.json",
+  "shown": true,
+  "source": "prebuilt development payloads"
+ },
+ "issuance_finished_utc": "2026-10-31T08:52:47+00:00",
+ "issuance_started_utc": "2026-10-31T08:45:53+00:00",
+ "issue_day_seconds": 414.33008637499995,
+ "issued_policy": "A1",
+ "path": [
+  [
+   "A1",
+   "ok"
+  ]
+ ],
+ "process_seconds": {
+  "A1": 173.61104075,
+  "B0": 8.820252875,
+  "v2": 100.23934299999999,
+  "v4": 130.7008065
+ },
+ "process_seconds_sum": 413.371443125,
+ "run_id": "gh-41185674168-1",
+ "run_started_utc": "2026-10-31T08:43:02+00:00",
+ "schema": "cp18a-day-record-v1",
+ "shadows": {
+  "B0": {
+   "cause": null,
+   "central_sha256": "ddd7f3eacb84218785ddfa499035b0d4af1fcee1ce30f2576b36674c7897bf2d",
+   "fitted_by": "shadow",
+   "intake": "registered",
+   "keys": 24,
+   "peak_bytes": 860258304,
+   "quantiles_sha256": "f02ac4e9358ded882e71380848e5293e79cf04b27b7f78f3e8af6a7657b62e0b",
+   "role": "shadow: never published, displayed or scored as the product's forecast",
+   "scale_sha256": null,
+   "status": "ok",
+   "wall_seconds": 8.820252875
+  },
+  "v2": {
+   "cause": null,
+   "central_sha256": "8a1d82c87bbe2820b11d9a46ed14748e7ccf09126c74a9dfaa493be4c6d4c9f9",
+   "fitted_by": "shadow",
+   "intake": "registered",
+   "keys": 24,
+   "peak_bytes": 955711488,
+   "quantiles_sha256": "b7ada794d543b6429ebcb61522608b70a05e53bb3cc66e45d8912cdebfd23d7d",
+   "role": "shadow: never published, displayed or scored as the product's forecast",
+   "scale_sha256": "ac8c43736da36fea896850a48188d72451504dd77fa95e230ecee7f01293d469",
+   "status": "ok",
+   "wall_seconds": 100.23934299999999
+  },
+  "v4": {
+   "cause": null,
+   "central_sha256": "a0d17c654b133681a5f8e82cd7612c74de525f95041d4c1048c76f27f27f02f8",
+   "fitted_by": "shadow",
+   "intake": "registered",
+   "keys": 24,
+   "peak_bytes": 943996928,
+   "quantiles_sha256": "bbdaa9d207bceaa5a03150c289f34137a9261a3e34097357c942a61a86c454a9",
+   "role": "shadow: never published, displayed or scored as the product's forecast",
+   "scale_sha256": "ac8c43736da36fea896850a48188d72451504dd77fa95e230ecee7f01293d469",
+   "status": "ok",
+   "wall_seconds": 130.7008065
+  }
+ }
+}

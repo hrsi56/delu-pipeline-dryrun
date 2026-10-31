@@ -129,7 +129,7 @@ jobs:
           INPUTS: ${{ inputs.inputs }}
         run: |
           # Fake credentials in the consuming process only, derived from the run id and never printed.
-          eval "$(.venv/bin/python -c "from cp18.guarddemo import fake_environment as f; import os, shlex; [print(f'export {k}={shlex.quote(v)}') for k, v in f(os.environ['GITHUB_RUN_ID']).items()]")"
+          eval "$(.venv/bin/python -c "from cp18.guarddemo import fake_environment as f; import os, shlex; [print(f'export {k}={shlex.quote(v)}') for k, v in f(os.environ.get('GITHUB_RUN_ID', '')).items()]")"
           set -o pipefail
           .venv/bin/python -m cp18 run --root . --project . --out "$RESULTS/run" --host runner --now "$NOW" \
               --inputs "$INPUTS" --remote dryrun --run-label "gh-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" 2>&1 | tee "$RESULTS/run.log"

@@ -4,9 +4,11 @@
 #   git config core.hooksPath <this directory, absolute>
 # Both fail closed: a push is refused when either guard cannot run or finds a problem. The secret
 # guard always runs first; the publication guard runs only after it has passed.
+# The value-free leak scan (scripts/leak_scan.py) runs between them and fails closed the same way.
 root="$(cd "$(dirname "$0")/.." && pwd)"
 guard="$root/scripts/secret_guard.py"
 publication="$root/scripts/publication_guard.py"
+leak="$root/scripts/leak_scan.py"
 python=""
 for py in python3 /usr/bin/python3; do
   if command -v "$py" >/dev/null 2>&1; then
@@ -21,6 +23,11 @@ fi
 # Git gives a pre-push hook the refs being pushed on stdin; both guards read the same lines.
 refs="$(cat)" || exit 1
 printf '%s\n' "$refs" | "$python" "$guard" "$(basename "$0")" "$@" || exit 1
+if [ ! -f "$leak" ]; then
+  echo "leak-scan: $leak is missing; refusing to push unchecked (AGENTS.md § Credentials)" >&2
+  exit 1
+fi
+printf '%s\n' "$refs" | "$python" "$leak" pre-push "$@" || exit 1
 if [ ! -f "$publication" ]; then
   echo "publication-guard: $publication is missing; refusing to push unchecked (Publication Standard v1 §9)" >&2
   exit 1
