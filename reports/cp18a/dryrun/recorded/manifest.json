@@ -1,0 +1,259 @@
+{
+ "bytes_per_day": 293181,
+ "bytes_total": 2931806,
+ "days": [
+  "2026-08-28",
+  "2026-08-29",
+  "2026-08-30",
+  "2026-08-31",
+  "2026-09-01",
+  "2026-09-02",
+  "2026-09-03",
+  "2026-09-04",
+  "2026-09-05",
+  "2026-09-06"
+ ],
+ "files": {
+  "gfs/listing.jsonl": {
+   "bytes": 42230,
+   "sha256": "dcfd1304a770b55e0c7cffd053294282d83651901455d06578fab1541e9dd0e7"
+  },
+  "gfs/origin.json": {
+   "bytes": 483,
+   "sha256": "6db3f50145466edef8a0e1845e51df73acc2bc4f977b5ad2497923a6ee281a4b"
+  },
+  "gfs/runs/2026-08-27.json": {
+   "bytes": 111293,
+   "sha256": "f631c0fd4246b010103cda4f52cbf381752316785fe190b82eb0914adae41a95"
+  },
+  "gfs/runs/2026-08-27.npz": {
+   "bytes": 188440,
+   "sha256": "9247c640a0debbc0aca2ea5a94d19fcb591301f466c88aae5c20ab56a57fcfb0"
+  },
+  "gfs/runs/2026-08-28.json": {
+   "bytes": 111310,
+   "sha256": "6a1d5ced395d0c3e1b9437f988976c3ce6a46f81983a25d8dc283b8e1da26b2d"
+  },
+  "gfs/runs/2026-08-28.npz": {
+   "bytes": 178878,
+   "sha256": "941e83fd4d5414e041f7d21ece1c50417937573729e053c4015e20ca08839188"
+  },
+  "gfs/runs/2026-08-29.json": {
+   "bytes": 111300,
+   "sha256": "8c73753da73639d3992dd5ffe24e66571906809e94bfcf02f34baf2e58ed5ba2"
+  },
+  "gfs/runs/2026-08-29.npz": {
+   "bytes": 179756,
+   "sha256": "da280e9304505d5aa0886def26daf7f212f2d78b8634747493511209a155d267"
+  },
+  "gfs/runs/2026-08-30.json": {
+   "bytes": 111307,
+   "sha256": "74aa7439ad5ebd9c83d5f6da0a628364f262dfd91260612a974c7c491d825ac9"
+  },
+  "gfs/runs/2026-08-30.npz": {
+   "bytes": 176202,
+   "sha256": "f427bf6a57c0660322d6c05e7f81843d85a1ccb32eb963c68c61648dff85d896"
+  },
+  "gfs/runs/2026-08-31.json": {
+   "bytes": 111291,
+   "sha256": "947dd637a017c88e86a59384a979334ddb547b2093020abdcbf256cbae9516b3"
+  },
+  "gfs/runs/2026-08-31.npz": {
+   "bytes": 174623,
+   "sha256": "e36cf8b588479679bef6532f933490d005f3bf39e2b1a182d4ae9b806909106a"
+  },
+  "gfs/runs/2026-09-01.json": {
+   "bytes": 111286,
+   "sha256": "4a0ea6e1f3d20bffa31dbaf7461f9a02cebe17dbac56537e2d73ffa121614bde"
+  },
+  "gfs/runs/2026-09-01.npz": {
+   "bytes": 173539,
+   "sha256": "57e64ebc6536da8277742d4a33db7682ae5a44e3bd063d5e05ca4b4f66c3c4f4"
+  },
+  "gfs/runs/2026-09-02.json": {
+   "bytes": 111276,
+   "sha256": "f0a62d4e57910009edd488c3855db1e23e6d6cfb96c6f440e11dcdae339b9ffb"
+  },
+  "gfs/runs/2026-09-02.npz": {
+   "bytes": 170908,
+   "sha256": "474c7e8f276af2930a6a2dd744b09828988ca4bdb6b7aeccb38d5b173a99c1e8"
+  },
+  "gfs/runs/2026-09-03.json": {
+   "bytes": 111283,
+   "sha256": "390061f478f7fe4f6990892ccc847efad3cc124f22e237d2066f4c367af07132"
+  },
+  "gfs/runs/2026-09-03.npz": {
+   "bytes": 172755,
+   "sha256": "ff30103c01228ba1cccdb941dfc84c867d72bbc8397c9d5433a9a641c164dfe8"
+  },
+  "gfs/runs/2026-09-04.json": {
+   "bytes": 111255,
+   "sha256": "1fdcbb6caefb7a749f77083e20656234f1d284e927a8f96b3f8d56875ee60368"
+  },
+  "gfs/runs/2026-09-04.npz": {
+   "bytes": 138185,
+   "sha256": "02ee175941f982332ab37ea7a2d310240c3bed430eb36ce08c010b613b9ae18d"
+  },
+  "gfs/runs/2026-09-05.json": {
+   "bytes": 112499,
+   "sha256": "79b33f6eed338ca66a44f2cb29c2366046dccc34b84ac68c5c2ac7bf0ee34764"
+  },
+  "gfs/runs/2026-09-05.npz": {
+   "bytes": 147175,
+   "sha256": "1212607215e44d3d8906f790a240dc67975289d48b45050566bb3dc62abd2c66"
+  },
+  "replay/entsoe/26690aebecfe9b0b62293d54eaf6b750196845fe085e54122b5cb7ad7fd2cae5.gz": {
+   "bytes": 1064,
+   "sha256": "2eace4c9946c64916bec5bce5642371da8c42c4c37f1086120bd797d843f8b58"
+  },
+  "replay/entsoe/2a1300bccdec5a55b15a298592cd33ea4da9241b0078d6d6702fad12aa94f3b5.gz": {
+   "bytes": 1058,
+   "sha256": "150303d0be24a4caab1dc74125d54378abcd60e845231bd1ba60f5204e77ab2d"
+  },
+  "replay/entsoe/3a8dccecb524fb21342969f5bbb09b62e1eeb92dbe553ada168b07f6c81f4f00.gz": {
+   "bytes": 1058,
+   "sha256": "2bc9af898e3b1e7cb9c1e5d06e4ffde7fee9b7189948c4d8e4f8e6d84bfd4d39"
+  },
+  "replay/entsoe/40fdb3cc47dabea200f7348860fb11c70ef9afdb486e246a0674d4ea934d2e89.gz": {
+   "bytes": 1058,
+   "sha256": "4d7f17de781116ebc41f22813604ed5f0249654007f0ad73ac70c13f9d7dbb8f"
+  },
+  "replay/entsoe/4424b1ddd0293e92d0bd25d4ef1d00ee639249decc7a4ff9f699d199bb63f6a4.gz": {
+   "bytes": 1072,
+   "sha256": "c626c22a0096e2aea2cfb8d167938b73cea5bc66736e4b437616d334bff425e8"
+  },
+  "replay/entsoe/597941fdc93c524f5cc2445f96cb65b4abc922bbd37ffa30b4bc62547f05827d.gz": {
+   "bytes": 1056,
+   "sha256": "4f66a95177ad1b1cff833c72f1497be862ea4f75ff8c062491b14a056cd29454"
+  },
+  "replay/entsoe/623686db42306692c828f2ac24d3fa09a75455876a0c6ff894b774566197ecda.gz": {
+   "bytes": 1061,
+   "sha256": "a2ad383311a16fd6f5de3aa0cd8287703c3f49909392d39edbd539fedde49d76"
+  },
+  "replay/entsoe/6b3964ed22dc13e310c0df91c3ccccaa0746daba2b7c48d35132c127758ea46d.gz": {
+   "bytes": 1057,
+   "sha256": "f161ec1e7391831c9b3ea5d7c397e0edffeb48b855717e525216044868ad1547"
+  },
+  "replay/entsoe/725a05d471b8c6b0182456710a606edba43b1035c65f1aea7c83a847c402b846.gz": {
+   "bytes": 1065,
+   "sha256": "15d42cb99601fdbc8ec04434732bc03807b4b8a8f1a3d7bd829a398b8120c012"
+  },
+  "replay/entsoe/745e5010a5889e99c81c78316f483c088cececc91922777bf6c3a744e99e585d.gz": {
+   "bytes": 1055,
+   "sha256": "5f9c616c6f80f727ba96c0aad7ddc7e52852b490b06c9be6ff38d0e108866abb"
+  },
+  "replay/entsoe/780e3f05b61a32dc08337241b021bd01e278fc9c04b4b0cb3abb07d07840681d.gz": {
+   "bytes": 1063,
+   "sha256": "343fd30cff4a87b6c6989d209554d4ffb5d9872c4c4495706def9030c2e9ef60"
+  },
+  "replay/entsoe/7b1ef42d977cc963f38b96040905ce9cfd277b57c1167cd1ef92754acdc7ba25.gz": {
+   "bytes": 1060,
+   "sha256": "59f52a6db45c4e3683b7870f3a71e4c7c4b30899e03640152913b0a6426ea8dc"
+  },
+  "replay/entsoe/8ae2372b7e26b3bb885b9c36c6c1c92b955ff2eb8f62ae359b78b7727a022529.gz": {
+   "bytes": 1054,
+   "sha256": "61d069f7e6fd90e0a333ff374949971959a70935bed2c427dbf47bdfe7cbf7cc"
+  },
+  "replay/entsoe/9374af33d7b5ed2eb1c9c7568cc90a44be8cfefbc704b9ce1b5fe72f2b66c83b.gz": {
+   "bytes": 1054,
+   "sha256": "5bad61946a5c0ef5c3e5bc30ec8021f812c46ac3f9413ac16feea107a9273dad"
+  },
+  "replay/entsoe/b730dcf8f7627cdcdd4b028ab78aab8c5529d5464f163c5c5240270f653fa88b.gz": {
+   "bytes": 1077,
+   "sha256": "4cd0f4893a4c40ef870e7c3230f8bd2b9678f3f448238fb887f28aabd5bc2e7b"
+  },
+  "replay/entsoe/bb8f3f6a49f2588d0b4636456dae3e4e797aa02ca60e416aa23323de25d74d8d.gz": {
+   "bytes": 1078,
+   "sha256": "cc842f5150529e4853bdbf6c98bc9a1e330f431ede9208514be27768aa7c7ee1"
+  },
+  "replay/entsoe/bda5a2cdc4858b9eb80de0e69762ed117530d36455801cdbfced7bd90c34ce24.gz": {
+   "bytes": 1069,
+   "sha256": "eb0e3f677a1113aa8c018aae9d0981f0af7c2fe0f23598b706158874c210f70e"
+  },
+  "replay/entsoe/c52771e235690cb58b839d20b94c4dcb46f0759ab3dc1af61e4112a01b661281.gz": {
+   "bytes": 1068,
+   "sha256": "cd42f84472d702c842605d810fdffeb822791dbd8e08492c308b0b1f4112769a"
+  },
+  "replay/entsoe/c9fa69a13cbccc81d5e9883391f8e6786859f665298dc57746810aecd0b40da4.gz": {
+   "bytes": 1043,
+   "sha256": "5f0ff3709be43feffbdf071182493571edcec40bdd4d338de43b9cc4f16ab2a3"
+  },
+  "replay/entsoe/d0ecb93d045ad9d776dc710a5e27ba9cf24ccb8395cabf47a55dbd149d787b4f.gz": {
+   "bytes": 1068,
+   "sha256": "ecc3714fb2954fc4106a10bb74882fb136e75f5357aac5b71fb8cae6fcdb8e34"
+  },
+  "replay/entsoe/d2ca87abb9f78b0fdcafcc3538e9ac408c7d1ce345a4fe6efcb7a67ac6345dc2.gz": {
+   "bytes": 1064,
+   "sha256": "11fd591359408f4ea67086451b132e6283f7edd9a7a100d9c490b5de00fa2947"
+  },
+  "replay/entsoe/d4d2afe828d830beff26e6d57f805e902c46327b0ccf56cdbfaac6ac1d26642d.gz": {
+   "bytes": 1045,
+   "sha256": "fb82c0640346060f03f150e3e61f390d8860593e22cde6fafc3c824c786d789b"
+  },
+  "replay/entsoe/d9e8ed46895828e1dfd2840fdd3eb692073effc694e6815e0a4674e640994ca5.gz": {
+   "bytes": 1059,
+   "sha256": "af0dfd381e8eaf5ec6b7d79886fc637d8d1c98b6710da66ed53319ce2430214d"
+  },
+  "replay/entsoe/ed644d6d43394cc0c6bdf787f262fcee3ecd6c4bbf3749e55fb4e0499b898ccc.gz": {
+   "bytes": 1073,
+   "sha256": "71c1ca12c4ff646993406dd6103b0cd348f4909ff9ec656808ab260c95c95fb6"
+  },
+  "replay/entsoe/f06e1863d78e9499a696e020064893116068d705cc15dcd9cfd524297aa7744d.gz": {
+   "bytes": 1080,
+   "sha256": "eed0f319a8bb99b443193e9ce8aa9c3bfc30867f4af2c4b3ab119ff084c69757"
+  },
+  "replay/entsoe/fe0baab391ff45a0c177e0f880dc3906cc7501a39f6ee2146b127fc3353e973d.gz": {
+   "bytes": 1056,
+   "sha256": "d5a6b9e235acc962b0bcbfaaf3f01165197451a9abfac6d2256112b7ce55126b"
+  },
+  "replay/entsoe/index.json": {
+   "bytes": 27299,
+   "sha256": "7964b6e686e8a6fc1df64b36f3ccfa9ebfb0edae1d5130302d5590f1f393c3cc"
+  },
+  "replay/smard/0e6d77d4b3db25ba8ba15c4a6cba422f1f1e7502036da7638d36de56ffb9a688.gz": {
+   "bytes": 1666,
+   "sha256": "5ae759ef377c59c5d7b15b1e0721e713d4dd7df3c933eb7ed6e1fb224129e43c"
+  },
+  "replay/smard/57bbbb2b9b9d50ded1b6d27c1b6ce1c8f36ca942a72ed16a7873059c3ed43ae2.gz": {
+   "bytes": 2998,
+   "sha256": "9069fb37e0c3c767f6ac11da06e7b99bb95c608b67673dd696474906f4eba30b"
+  },
+  "replay/smard/714fe5f3b0a4401e3d7600653c77fc6acfa724add2791dada8428f1e6bf896f4.gz": {
+   "bytes": 2965,
+   "sha256": "614d3c0eec58861a9a2885953b878cf0210288cfbc27d105aa45bc5ff548e726"
+  },
+  "replay/smard/eba855cb4f710dff73d800dc21d3f90a4576496b2567e36a7b7a88c1061cfcbf.gz": {
+   "bytes": 3159,
+   "sha256": "eccf8ea9d3daadefbc50faf265bc9cad56335800563c5b35be7cffdd4415ea5c"
+  },
+  "replay/smard/fd5c14e6df32e1c6f497a47a19d219333ecec85bc085cd2925562ffecea6c4c2.gz": {
+   "bytes": 3178,
+   "sha256": "a6601f2cf6a56626d133bed2f81b1ab82aada0602c348ac03da16ef5614c52c7"
+  },
+  "replay/smard/index.json": {
+   "bytes": 5652,
+   "sha256": "52c72b890feb173d91ffb1b75dcc8f493e6fbe3df260b7b3a09446406a4aa849"
+  }
+ },
+ "market_days": [
+  "2026-08-25",
+  "2026-08-26",
+  "2026-08-27",
+  "2026-08-28",
+  "2026-08-29",
+  "2026-08-30",
+  "2026-08-31",
+  "2026-09-01",
+  "2026-09-02",
+  "2026-09-03",
+  "2026-09-04",
+  "2026-09-05",
+  "2026-09-06"
+ ],
+ "provenance": {
+  "gfs": "truly recorded: CP-20/CP-25 decoded runs (CP-20 decoder output) and CP-25 listing values, copied byte for byte from .local/artifacts",
+  "replay": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in SMARD chart_data's documented shape; not a recorded raw response; quarter-hour values rendered as four equal quarters (price v, load v/4); meta_data.created is null | rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time"
+ },
+ "schema": "cp18a-live-dry-run-inputs-v1",
+ "use": "python -m cp18.live.recorded archive --replay <this>/replay --gfs-sources <this>/gfs --archive <archive> --days <days> [--source smard|entsoe]"
+}

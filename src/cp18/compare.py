@@ -118,6 +118,42 @@ def run_timing(folder: Path, reference: dict) -> dict:
                                                      if d['equal_to_cp17c'] is not None)}
 
 
+def carry(carried: Path, resumed: dict[str, Path]) -> dict:
+    """The carry rehearsal: a store carried across a gap, resumed on two machines. The carried ledger is a byte prefix
+    of each resumed ledger and every carried file is unchanged; the resumed days' fits and the state after them are
+    the same on both machines; the days of the gap are recorded as outside, never issued."""
+    from .store import LiveStore
+    carried = Path(carried)
+    base = (carried / 'ledger.jsonl').read_bytes()
+    files = {p.relative_to(carried).as_posix(): runtime.sha256_file(p) for p in carried.rglob('*') if p.is_file()
+             and p.name not in ('head.json', 'ledger.jsonl')}
+    out = {'carried': {'head_sha256': runtime.sha256_file(carried / 'head.json'),
+                       'ledger_sha256': runtime.sha256_file(carried / 'ledger.jsonl'),
+                       'entries': len(base.splitlines())}, 'resumed': {}}
+    fits = {}
+    for name, folder in resumed.items():
+        store = LiveStore(folder)
+        head = store.verify()
+        ledger = (Path(folder) / 'ledger.jsonl').read_bytes()
+        unchanged = all((Path(folder) / rel).is_file() and runtime.sha256_file(Path(folder) / rel) == h for rel, h in files.items())
+        days = store.days()
+        new = [e for e in store.entries()[out['carried']['entries']:] if e['kind'] == 'issuance']
+        fits[name] = {}
+        for e in new:
+            rec = json.loads((Path(folder) / e['record_file']).read_text())
+            art = json.loads((Path(folder) / e['artifact_file']).read_text())
+            fits[name][e['day']] = {'issued': (art['issued_policy'], art['quantiles_sha256']),
+                                    **{p: sh.get('quantiles_sha256') for p, sh in rec['shadows'].items()},
+                                    'state_sha256': e['state_sha256']}
+        out['resumed'][name] = {'ledger_prefix': ledger.startswith(base), 'carried_files_unchanged': unchanged,
+                                'head': head['entry_sha256'], 'days': {d: v['status'] for d, v in days.items()},
+                                'resumed_days': list(fits[name])}
+    names = list(fits)
+    out['same_on_both'] = len(names) == 2 and fits[names[0]] == fits[names[1]] and bool(fits[names[0]])
+    out['fits'] = fits
+    return out
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog='python -m cp18.compare')
     sub = ap.add_subparsers(dest='cmd', required=True)
@@ -131,7 +167,17 @@ def main(argv=None) -> int:
     t.add_argument('--downloads', required=True, type=Path)
     t.add_argument('--record', required=True, nargs='+', type=Path)
     t.add_argument('--out', required=True, type=Path)
+    c = sub.add_parser('carry')
+    c.add_argument('--carried', required=True, type=Path)
+    c.add_argument('--resumed', required=True, action='append', help='<name>=<resumed store folder>')
+    c.add_argument('--out', required=True, type=Path)
     args = ap.parse_args(argv)
+    if args.cmd == 'carry':
+        value = carry(args.carried, dict((s.split('=', 1)[0], Path(s.split('=', 1)[1])) for s in args.resumed))
+        dump(args.out, value)
+        print(json.dumps({k: value[k] for k in ('carried', 'same_on_both')}, indent=1),
+              json.dumps(value['resumed'], indent=1))
+        return 0 if value['same_on_both'] else 1
     if args.cmd == 'fetch':
         record = fetch(args.repo, args.run, args.dest)
         dump(args.record, record)

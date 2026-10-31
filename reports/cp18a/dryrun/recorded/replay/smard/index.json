@@ -1,0 +1,177 @@
+{
+"entries": {
+"03f3fbb41fb7979123adb82849509dd270c293148062493cfbd0d55664fa76a1": {
+"body": "fd5c14e6df32e1c6f497a47a19d219333ecec85bc085cd2925562ffecea6c4c2.gz",
+"bytes": 19970,
+"headers": {
+"Content-Type": "application/json"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in SMARD chart_data's documented shape; not a recorded raw response; quarter-hour values rendered as four equal quarters (price v, load v/4); meta_data.created is null",
+"provenance": "rendered",
+"request": {
+"credential_variable": null,
+"headers": {},
+"method": "GET",
+"params": {},
+"range": null,
+"scope": [
+"market",
+"2026-08-24",
+"2026-08-25",
+"2026-08-26",
+"2026-08-27",
+"2026-08-28",
+"2026-08-29",
+"2026-08-30"
+],
+"url": "https://www.smard.de/app/chart_data/411/DE-LU/411_DE-LU_quarterhour_1787522400000.json"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "fd5c14e6df32e1c6f497a47a19d219333ecec85bc085cd2925562ffecea6c4c2",
+"status": 200
+},
+"30b8e1afeaf87d7885fbede0cb8733bfc2d528a51d0a91eca5d98aa3282495a3": {
+"body": "714fe5f3b0a4401e3d7600653c77fc6acfa724add2791dada8428f1e6bf896f4.gz",
+"bytes": 18646,
+"headers": {
+"Content-Type": "application/json"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in SMARD chart_data's documented shape; not a recorded raw response; quarter-hour values rendered as four equal quarters (price v, load v/4); meta_data.created is null",
+"provenance": "rendered",
+"request": {
+"credential_variable": null,
+"headers": {},
+"method": "GET",
+"params": {},
+"range": null,
+"scope": [
+"market",
+"2026-08-24",
+"2026-08-25",
+"2026-08-26",
+"2026-08-27",
+"2026-08-28",
+"2026-08-29",
+"2026-08-30"
+],
+"url": "https://www.smard.de/app/chart_data/4169/DE-LU/4169_DE-LU_quarterhour_1787522400000.json"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "714fe5f3b0a4401e3d7600653c77fc6acfa724add2791dada8428f1e6bf896f4",
+"status": 200
+},
+"38a651ae86959d6b6680e82bf60d329c2a5ab859c5efcd6649e6feaaddfadc4f": {
+"body": "57bbbb2b9b9d50ded1b6d27c1b6ce1c8f36ca942a72ed16a7873059c3ed43ae2.gz",
+"bytes": 18526,
+"headers": {
+"Content-Type": "application/json"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in SMARD chart_data's documented shape; not a recorded raw response; quarter-hour values rendered as four equal quarters (price v, load v/4); meta_data.created is null",
+"provenance": "rendered",
+"request": {
+"credential_variable": null,
+"headers": {},
+"method": "GET",
+"params": {},
+"range": null,
+"scope": [
+"market",
+"2026-08-31",
+"2026-09-01",
+"2026-09-02",
+"2026-09-03",
+"2026-09-04",
+"2026-09-05",
+"2026-09-06"
+],
+"url": "https://www.smard.de/app/chart_data/4169/DE-LU/4169_DE-LU_quarterhour_1788127200000.json"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "57bbbb2b9b9d50ded1b6d27c1b6ce1c8f36ca942a72ed16a7873059c3ed43ae2",
+"status": 200
+},
+"87f16a901827ef41e19f86051293b52b3db32fe4bce976315d32ed59422bda5d": {
+"body": "0e6d77d4b3db25ba8ba15c4a6cba422f1f1e7502036da7638d36de56ffb9a688.gz",
+"bytes": 6031,
+"headers": {
+"Content-Type": "application/json"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in SMARD chart_data's documented shape; not a recorded raw response; quarter-hour values rendered as four equal quarters (price v, load v/4); meta_data.created is null",
+"provenance": "rendered",
+"request": {
+"credential_variable": null,
+"headers": {},
+"method": "GET",
+"params": {},
+"range": null,
+"scope": [
+"metadata"
+],
+"url": "https://www.smard.de/app/chart_data/4169/DE-LU/index_quarterhour.json"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "0e6d77d4b3db25ba8ba15c4a6cba422f1f1e7502036da7638d36de56ffb9a688",
+"status": 200
+},
+"c52e89b36e43932cefc2934c1829594d1fca422e11643f19cab597db8087fd8a": {
+"body": "eba855cb4f710dff73d800dc21d3f90a4576496b2567e36a7b7a88c1061cfcbf.gz",
+"bytes": 19858,
+"headers": {
+"Content-Type": "application/json"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in SMARD chart_data's documented shape; not a recorded raw response; quarter-hour values rendered as four equal quarters (price v, load v/4); meta_data.created is null",
+"provenance": "rendered",
+"request": {
+"credential_variable": null,
+"headers": {},
+"method": "GET",
+"params": {},
+"range": null,
+"scope": [
+"market",
+"2026-08-31",
+"2026-09-01",
+"2026-09-02",
+"2026-09-03",
+"2026-09-04",
+"2026-09-05",
+"2026-09-06"
+],
+"url": "https://www.smard.de/app/chart_data/411/DE-LU/411_DE-LU_quarterhour_1788127200000.json"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "eba855cb4f710dff73d800dc21d3f90a4576496b2567e36a7b7a88c1061cfcbf",
+"status": 200
+},
+"cf16f9c63faac1f0edf7676f23680f1e24bb3b7108c4c57790f925ae0255bc34": {
+"body": "0e6d77d4b3db25ba8ba15c4a6cba422f1f1e7502036da7638d36de56ffb9a688.gz",
+"bytes": 6031,
+"headers": {
+"Content-Type": "application/json"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in SMARD chart_data's documented shape; not a recorded raw response; quarter-hour values rendered as four equal quarters (price v, load v/4); meta_data.created is null",
+"provenance": "rendered",
+"request": {
+"credential_variable": null,
+"headers": {},
+"method": "GET",
+"params": {},
+"range": null,
+"scope": [
+"metadata"
+],
+"url": "https://www.smard.de/app/chart_data/411/DE-LU/index_quarterhour.json"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "0e6d77d4b3db25ba8ba15c4a6cba422f1f1e7502036da7638d36de56ffb9a688",
+"status": 200
+}
+},
+"schema": "cp18-live-replay-v1"
+}

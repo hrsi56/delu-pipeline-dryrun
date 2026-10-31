@@ -38,12 +38,11 @@ from cp25 import guard
 
 from . import causes, plan
 from .claim import Claim, ClaimError
+from .host import MANIFEST, PACKAGE_ZIP
 from .store import INPUTS_PATH, STORE_PATH, LiveStore, StoreRefused
 
 SCHEMA = 'cp18a-run-v1'
 RECORD_SCHEMA = 'cp18a-day-record-v1'
-MANIFEST = 'docs/track-b/evidence/cp-17c/freeze-manifest.json'
-PACKAGE_ZIP = '.local/artifacts/cp-17c/bundle/src.zip'
 RED_LINE = ('refused: the plan holds a delivery day after the development boundary (cp25.guard, §24.2); '
             'nothing was synchronized, checked, retrieved or issued')
 
@@ -123,6 +122,8 @@ def _close(store: LiveStore, day: date, record: dict) -> None:
     store.record_not_issued(day, cause, [a['run_id'] for a in attempts])
     record['closed'].append({'day': str(day), 'cause': cause, 'cause_text': causes.text(cause),
                              'attempts': [a['run_id'] for a in attempts]})
+    if this and this.get('status') == 'open':
+        this.update(status='not issued', closed=True)          # closed once: never closed again in this run
 
 
 def run(settings: Settings, now: datetime, *, claim: Claim, inputs, checks: dict | None = None,
@@ -195,6 +196,9 @@ def run(settings: Settings, now: datetime, *, claim: Claim, inputs, checks: dict
         built = inputs.build(day, buffers={p: state.buffer(p) for p in ('v4', 'v2', 'B0')}, search_file=Path(search),
                              out=settings.out / 'payloads' / str(day))
         item['inputs'] = {k2: v for k2, v in built.items() if k2 not in ('payloads',)}
+        if built.get('search_missing'):
+            item.update(status='open', cause=causes.S14, cause_text=causes.text(causes.S14), search=k)
+            continue
         if not built.get('shown'):
             item.update(status='open', cause=causes.INPUTS, cause_text=causes.text(causes.INPUTS))
             continue
@@ -228,7 +232,7 @@ def run(settings: Settings, now: datetime, *, claim: Claim, inputs, checks: dict
                     process_seconds_sum=result['process_seconds_sum'],
                     cause=None if art['issued_policy'] else causes.CHAIN,
                     cause_text=None if art['issued_policy'] else causes.text(causes.CHAIN))
-        paths = [STORE_PATH] + ([f'{INPUTS_PATH}/{day}'] if (settings.root / INPUTS_PATH / str(day)).exists() else [])
+        paths = [STORE_PATH] + ([INPUTS_PATH] if (settings.root / INPUTS_PATH).exists() else [])
         try:
             pushed = publish(paths, f'live: {day} {status} ({art["display"]})\n\nDelu-Daily: {day}')
         except ClaimError as exc:

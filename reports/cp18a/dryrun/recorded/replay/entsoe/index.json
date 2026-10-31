@@ -1,0 +1,811 @@
+{
+"entries": {
+"0638a8482760763c4aa4f01f92e99e7b2f1973a59ff26b21f53db2235b53db27": {
+"body": "f06e1863d78e9499a696e020064893116068d705cc15dcd9cfd524297aa7744d.gz",
+"bytes": 7917,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608282200",
+"periodStart": "202608272200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-28"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "f06e1863d78e9499a696e020064893116068d705cc15dcd9cfd524297aa7744d",
+"status": 200
+},
+"0a544765e1ac63f45a4c3996b399f880b215c4f1b5e93eb03b2e826729a4a8a3": {
+"body": "bb8f3f6a49f2588d0b4636456dae3e4e797aa02ca60e416aa23323de25d74d8d.gz",
+"bytes": 7945,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609012200",
+"periodStart": "202608312200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-01"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "bb8f3f6a49f2588d0b4636456dae3e4e797aa02ca60e416aa23323de25d74d8d",
+"status": 200
+},
+"0ddee005716c13b226013d8ccae09eb6b4be9a6e392f3c9f3f784a62b40220b1": {
+"body": "d2ca87abb9f78b0fdcafcc3538e9ac408c7d1ce345a4fe6efcb7a67ac6345dc2.gz",
+"bytes": 7833,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609062200",
+"periodStart": "202609052200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-06"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "d2ca87abb9f78b0fdcafcc3538e9ac408c7d1ce345a4fe6efcb7a67ac6345dc2",
+"status": 200
+},
+"2cfa5744969d3ceb3edb562cd30849e62882e466028ef794eaa5228f17ecd41d": {
+"body": "4424b1ddd0293e92d0bd25d4ef1d00ee639249decc7a4ff9f699d199bb63f6a4.gz",
+"bytes": 8820,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609042200",
+"periodStart": "202609032200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-04"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "4424b1ddd0293e92d0bd25d4ef1d00ee639249decc7a4ff9f699d199bb63f6a4",
+"status": 200
+},
+"3dc90b650d2beedcf61242403b2a4577068fb72efedbc31925332ab1aa9342b5": {
+"body": "6b3964ed22dc13e310c0df91c3ccccaa0746daba2b7c48d35132c127758ea46d.gz",
+"bytes": 8592,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608282200",
+"periodStart": "202608272200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-28"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "6b3964ed22dc13e310c0df91c3ccccaa0746daba2b7c48d35132c127758ea46d",
+"status": 200
+},
+"43ce15a26053a399e296ebe96de4a4be78e12d3ace7189fde6015f7fabcc1d9b": {
+"body": "3a8dccecb524fb21342969f5bbb09b62e1eeb92dbe553ada168b07f6c81f4f00.gz",
+"bytes": 8588,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608302200",
+"periodStart": "202608292200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-30"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "3a8dccecb524fb21342969f5bbb09b62e1eeb92dbe553ada168b07f6c81f4f00",
+"status": 200
+},
+"5fc969abf9c20407b9fce7a2c6d195a163cbc74a2547eb5e83d10678520c4eb8": {
+"body": "d0ecb93d045ad9d776dc710a5e27ba9cf24ccb8395cabf47a55dbd149d787b4f.gz",
+"bytes": 8748,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608272200",
+"periodStart": "202608262200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-27"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "d0ecb93d045ad9d776dc710a5e27ba9cf24ccb8395cabf47a55dbd149d787b4f",
+"status": 200
+},
+"6472a3da43a5373c09392600b2af4e34855d721f34fe43026341c97b74a1d79f": {
+"body": "c9fa69a13cbccc81d5e9883391f8e6786859f665298dc57746810aecd0b40da4.gz",
+"bytes": 8504,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608292200",
+"periodStart": "202608282200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-29"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "c9fa69a13cbccc81d5e9883391f8e6786859f665298dc57746810aecd0b40da4",
+"status": 200
+},
+"670e146ec6b139a76884e47a25be2a64b71aa4b1882d1785e730194aeffca890": {
+"body": "2a1300bccdec5a55b15a298592cd33ea4da9241b0078d6d6702fad12aa94f3b5.gz",
+"bytes": 7861,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608272200",
+"periodStart": "202608262200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-27"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "2a1300bccdec5a55b15a298592cd33ea4da9241b0078d6d6702fad12aa94f3b5",
+"status": 200
+},
+"67ed71d916825553ec464bef699a6a637f346b0f40e0b8e05bf19c6eb31b8437": {
+"body": "ed644d6d43394cc0c6bdf787f262fcee3ecd6c4bbf3749e55fb4e0499b898ccc.gz",
+"bytes": 7821,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608312200",
+"periodStart": "202608302200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-31"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "ed644d6d43394cc0c6bdf787f262fcee3ecd6c4bbf3749e55fb4e0499b898ccc",
+"status": 200
+},
+"7086bd3e346b0409e92b9aaabe0253db4f591275072c6d45d4bce5a86eac170d": {
+"body": "7b1ef42d977cc963f38b96040905ce9cfd277b57c1167cd1ef92754acdc7ba25.gz",
+"bytes": 7829,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608292200",
+"periodStart": "202608282200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-29"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "7b1ef42d977cc963f38b96040905ce9cfd277b57c1167cd1ef92754acdc7ba25",
+"status": 200
+},
+"74a4d518b4300c39486fe6aa5839f8d32f1799d652f68f01fd856f8154f794b5": {
+"body": "b730dcf8f7627cdcdd4b028ab78aab8c5529d5464f163c5c5240270f653fa88b.gz",
+"bytes": 8672,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608252200",
+"periodStart": "202608242200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-25"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "b730dcf8f7627cdcdd4b028ab78aab8c5529d5464f163c5c5240270f653fa88b",
+"status": 200
+},
+"753c2307d96830c9e28dff03d81889fc2c696e87dd7fe26d1a52b95a8c8e7fe8": {
+"body": "745e5010a5889e99c81c78316f483c088cececc91922777bf6c3a744e99e585d.gz",
+"bytes": 7781,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608262200",
+"periodStart": "202608252200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-26"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "745e5010a5889e99c81c78316f483c088cececc91922777bf6c3a744e99e585d",
+"status": 200
+},
+"7ca39a6f26193060b3cc8cfc4b48c9912149faff26fd1b44cb733b01d3530012": {
+"body": "597941fdc93c524f5cc2445f96cb65b4abc922bbd37ffa30b4bc62547f05827d.gz",
+"bytes": 8528,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608262200",
+"periodStart": "202608252200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-26"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "597941fdc93c524f5cc2445f96cb65b4abc922bbd37ffa30b4bc62547f05827d",
+"status": 200
+},
+"80f26703df6c166365f3ef08e2d6e065743e8b8f25c58599ebccb7387f516eaa": {
+"body": "623686db42306692c828f2ac24d3fa09a75455876a0c6ff894b774566197ecda.gz",
+"bytes": 7905,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608252200",
+"periodStart": "202608242200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-25"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "623686db42306692c828f2ac24d3fa09a75455876a0c6ff894b774566197ecda",
+"status": 200
+},
+"8a973f2259e4e678d59385d389dbab2ee079e20180b990b76ee456823bb2ac7b": {
+"body": "40fdb3cc47dabea200f7348860fb11c70ef9afdb486e246a0674d4ea934d2e89.gz",
+"bytes": 8536,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609012200",
+"periodStart": "202608312200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-01"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "40fdb3cc47dabea200f7348860fb11c70ef9afdb486e246a0674d4ea934d2e89",
+"status": 200
+},
+"8e1ad3500332c36d4469cec6243e36dbeabce338dec3bd89daeb6c661e942c79": {
+"body": "725a05d471b8c6b0182456710a606edba43b1035c65f1aea7c83a847c402b846.gz",
+"bytes": 7797,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609052200",
+"periodStart": "202609042200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-05"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "725a05d471b8c6b0182456710a606edba43b1035c65f1aea7c83a847c402b846",
+"status": 200
+},
+"996995c9407c24d31e30506d000db755f3819e6845f3bf2a90c7d36c0f5b786c": {
+"body": "8ae2372b7e26b3bb885b9c36c6c1c92b955ff2eb8f62ae359b78b7727a022529.gz",
+"bytes": 8552,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608312200",
+"periodStart": "202608302200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-31"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "8ae2372b7e26b3bb885b9c36c6c1c92b955ff2eb8f62ae359b78b7727a022529",
+"status": 200
+},
+"a45311b007c72f040821c718115788324e8b5855fdd9b701a8f28e61e675d6cc": {
+"body": "bda5a2cdc4858b9eb80de0e69762ed117530d36455801cdbfced7bd90c34ce24.gz",
+"bytes": 7829,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609042200",
+"periodStart": "202609032200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-04"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "bda5a2cdc4858b9eb80de0e69762ed117530d36455801cdbfced7bd90c34ce24",
+"status": 200
+},
+"a55b42d1f047e0b0c04f658a93b08919f9b1b6f03af1a8c46a323c79f9e175fb": {
+"body": "c52771e235690cb58b839d20b94c4dcb46f0759ab3dc1af61e4112a01b661281.gz",
+"bytes": 7777,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202608302200",
+"periodStart": "202608292200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-08-30"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "c52771e235690cb58b839d20b94c4dcb46f0759ab3dc1af61e4112a01b661281",
+"status": 200
+},
+"b327fd04f7de052a1c694fe65e9c90b813b14272f8cc77618ff59599a93c76c1": {
+"body": "d4d2afe828d830beff26e6d57f805e902c46327b0ccf56cdbfaac6ac1d26642d.gz",
+"bytes": 8472,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609062200",
+"periodStart": "202609052200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-06"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "d4d2afe828d830beff26e6d57f805e902c46327b0ccf56cdbfaac6ac1d26642d",
+"status": 200
+},
+"c98783e1fb1a67094ac2998bc3c8c7345320dd75a8841dccc87913857ea35ac7": {
+"body": "780e3f05b61a32dc08337241b021bd01e278fc9c04b4b0cb3abb07d07840681d.gz",
+"bytes": 8564,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609032200",
+"periodStart": "202609022200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-03"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "780e3f05b61a32dc08337241b021bd01e278fc9c04b4b0cb3abb07d07840681d",
+"status": 200
+},
+"cb5b8cdaa53f415df9c6ff22116450ef9b3337bec6a8139c4ccb68499606f44b": {
+"body": "fe0baab391ff45a0c177e0f880dc3906cc7501a39f6ee2146b127fc3353e973d.gz",
+"bytes": 7701,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609032200",
+"periodStart": "202609022200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-03"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "fe0baab391ff45a0c177e0f880dc3906cc7501a39f6ee2146b127fc3353e973d",
+"status": 200
+},
+"cb99a6ed150bd4cca53916c59a482d419f0feb422990ad9e2d1bc54f6959c2ea": {
+"body": "26690aebecfe9b0b62293d54eaf6b750196845fe085e54122b5cb7ad7fd2cae5.gz",
+"bytes": 7833,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A65",
+"outBiddingZone_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609022200",
+"periodStart": "202609012200",
+"processType": "A01"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-02"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "26690aebecfe9b0b62293d54eaf6b750196845fe085e54122b5cb7ad7fd2cae5",
+"status": 200
+},
+"ead2a379857c65f805de4fd7f1c61a42e3dc5ae2ef946812ad051aa2728ac7ed": {
+"body": "d9e8ed46895828e1dfd2840fdd3eb692073effc694e6815e0a4674e640994ca5.gz",
+"bytes": 8640,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609052200",
+"periodStart": "202609042200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-05"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "d9e8ed46895828e1dfd2840fdd3eb692073effc694e6815e0a4674e640994ca5",
+"status": 200
+},
+"f7e51060ca6174b46272cf207ca05ace9059c0b215809e7ee73c9c64034b1e80": {
+"body": "9374af33d7b5ed2eb1c9c7568cc90a44be8cfefbc704b9ce1b5fe72f2b66c83b.gz",
+"bytes": 8548,
+"headers": {
+"Content-Type": "text/xml"
+},
+"meta": {},
+"note": "rendered from data/snapshot.parquet (SMARD values pulled 2026-09-08T13:34:33Z) in ENTSO-E's documented A44/A65 XML shape; not a recorded raw response (the API was unavailable at the pull); quarter-hour values rendered as four equal quarters (v); createdDateTime is the pull time, not a source document time",
+"provenance": "rendered",
+"request": {
+"credential_variable": "ENTSOE_API_TOKEN",
+"headers": {},
+"method": "GET",
+"params": {
+"documentType": "A44",
+"in_Domain": "10Y1001A1001A82H",
+"out_Domain": "10Y1001A1001A82H",
+"periodEnd": "202609022200",
+"periodStart": "202609012200"
+},
+"range": null,
+"scope": [
+"market",
+"2026-09-02"
+],
+"url": "https://web-api.tp.entsoe.eu/api"
+},
+"retrieved_utc": "2026-09-08T13:34:33Z",
+"sha256": "9374af33d7b5ed2eb1c9c7568cc90a44be8cfefbc704b9ce1b5fe72f2b66c83b",
+"status": 200
+}
+},
+"schema": "cp18-live-replay-v1"
+}
