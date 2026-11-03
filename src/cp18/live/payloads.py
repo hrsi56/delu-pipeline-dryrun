@@ -8,11 +8,14 @@ development boundary:
 
 | Step | Landed block |
 |---|---|
-| the issue-time label in the landed records | `cp26.harness.install_issue_label` (settings named `new`) |
 | CP-15's prepared inputs | `cp15.data.prepare(frame, protocol, spec)`, the spec's cutoff being D itself |
 | the weather design | `cp20.weather.WeatherDesign.from_features` |
 | LEAR's weather columns, LightGBM's weather matrix | `cp20.components.augment`, `cp26.harness.weather_matrix` |
 | DDNN-2's day table and keys | `cp24.design.build`, `cp24.member.Keys.from_data` |
+
+`cp26.harness.install_issue_label`, which `Context.build` calls first, is not: it only rebinds the issue-time label
+in the members' fit records, and it imports the native LightGBM, which a GitHub runner cannot load (no libomp).
+Nothing here fits or writes a fit record.
 
 **The one construction difference.** The development builder's frame holds D's price, so CP-15's `eligible`
 on D's own rows is `feature_valid & isfinite(price)`. The live frame never holds D's price (the embargo), so
@@ -70,11 +73,14 @@ def context(root: Path, frame, features, day: date) -> LiveContext:
     from cp20.weather import WeatherDesign
     from cp24 import design as G
     from cp24.member import Keys
-    from cp26.harness import HarnessError, Settings, check_blas, install_issue_label, weather_matrix
+    from cp26.harness import HarnessError, check_blas, weather_matrix
     check_blas()
     guard.admit_delivery_day(day)
     t0 = time.perf_counter()
-    install_issue_label(Settings('new', day, 'live'))
+    # CP-26's `install_issue_label` is not called: it rebinds the issue-time label in the landed members' fit records
+    # (cp15.models, cp21.lgbm, cp24.member), and importing them loads the native LightGBM, which a GitHub runner
+    # cannot load (no libomp). Building a payload fits nothing and writes no fit record, so the bytes are the same
+    # (tests/cp18a/test_live_runner_env.py builds with LightGBM blocked).
     data = prepare(frame, protocol(root), LiveSpec(day))
     rows = np.flatnonzero(data.dates == np.datetime64(day))
     if not len(rows) or data.dates.max() != np.datetime64(day):
@@ -149,8 +155,8 @@ def a1_payload(ctx: LiveContext, day: date, ens: dict) -> tuple[dict, dict]:
 
 
 def _rows(data, day: date, policies) -> np.ndarray:
-    import cp15.models as m
-    lower = min(m.history_start(day, p) for p in policies)
+    from cp15.data import history_start     # the function cp15.models re-exports, without its LightGBM import
+    lower = min(history_start(day, p) for p in policies)
     sel = np.flatnonzero((data.dates >= np.datetime64(lower)) & (data.dates <= np.datetime64(day)))
     if not len(sel) or not np.array_equal(sel, np.arange(sel[0], sel[-1] + 1)):
         raise ValueError('payload rows are not one contiguous block')

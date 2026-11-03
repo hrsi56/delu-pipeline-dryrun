@@ -6,6 +6,7 @@
     PYTHONPATH=src python -m cp18 run --root . --project . --out <dir> --host runner --now <ISO> \
         --inputs prebuilt:<payload folder> | live:<recorded responses> [--remote origin]
     PYTHONPATH=src python -m cp18 carry --root . --last-window-day <day> --first-live-day <day> --reason <text>
+    PYTHONPATH=src python -m cp18 search --root . --k 14 --file <k14.json> --provenance <text>
     PYTHONPATH=src python -m cp18 status --root .
 
 **This round runs dry runs only** (`--mode dry-run`, the default and the only mode accepted): development days through
@@ -116,6 +117,16 @@ def cmd_carry(args) -> int:
     return 0
 
 
+def cmd_search(args) -> int:
+    """S_14 (H4): a search state written natively on the Owner's M3 enters the store, bound by hash."""
+    from .store import STORE_PATH, LiveStore
+    store = LiveStore(args.root / STORE_PATH)
+    store.verify()
+    entry = store.record_search(args.k, args.file, args.provenance)
+    print('search', entry['k'], entry['search_file'], entry['search_file_sha256'][:16], 'head', store.verify()['entry_sha256'][:16])
+    return 0
+
+
 def cmd_status(args) -> int:
     from .store import STORE_PATH, LiveStore
     store = LiveStore(args.root / STORE_PATH)
@@ -157,11 +168,16 @@ def main(argv=None) -> int:
     c.add_argument('--last-window-day', required=True)
     c.add_argument('--first-live-day', required=True)
     c.add_argument('--reason', required=True)
+    k = sub.add_parser('search')
+    k.add_argument('--root', default=Path('.'), type=Path)
+    k.add_argument('--k', required=True, type=int)
+    k.add_argument('--file', required=True, type=Path)
+    k.add_argument('--provenance', required=True)
     s = sub.add_parser('status')
     s.add_argument('--root', default=Path('.'), type=Path)
     args = ap.parse_args(argv)
     return {'prepare': cmd_prepare, 'run': cmd_run, 'seed-store': cmd_seed_store, 'carry': cmd_carry,
-            'status': cmd_status}[args.cmd](args)
+            'search': cmd_search, 'status': cmd_status}[args.cmd](args)
 
 
 if __name__ == '__main__':
