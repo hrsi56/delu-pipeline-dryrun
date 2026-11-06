@@ -1,0 +1,510 @@
+{
+ "boundary": {
+  "boundary": "2026-09-06",
+  "gfs_run_cutoff": "2026-09-06T00:00:00+00:00",
+  "mode": "development",
+  "rule": "cp25.guard (\u00a724.2): nothing after 2026-09-06"
+ },
+ "closed": [],
+ "commits": [
+  {
+   "pushed": "f3f90d94066f603096023116816b5fb53ea4dcbd"
+  }
+ ],
+ "days": {
+  "2026-08-31": {
+   "artifact_sha256": "1e08a67d37964a194a589fd8c4251c1aed2519da24564e0ba31ee26edb8b5638",
+   "cause": null,
+   "cause_text": null,
+   "display": "successful daily fit",
+   "inputs": {
+    "acquired": [],
+    "archive_days": [
+     "2026-08-28",
+     "2026-08-29",
+     "2026-08-30",
+     "2026-08-31"
+    ],
+    "availability": {
+     "base": {
+      "load_forecast_basis": "the committed development history; its tier-3 load forecast is admitted under ruling 1's recorded exception (development data only)",
+      "ruling_4": [
+       "2022-12-01",
+       "2023-01-21"
+      ],
+      "snapshot": "data/snapshot.parquet",
+      "through": "2026-08-27",
+      "weather": [
+       "reports/weather-ablation/weather-features.parquet",
+       "reports/development-inputs/weather-features-gaps.parquet"
+      ]
+     },
+     "by_exception": [
+      {
+       "basis": "Owner's ruling 1 (2026-10-12, docs/track-b/cp-25-rulings-2026-10-12.md): recorded exception for the stored development history of the tier-3 load forecast; development data only (delivery days to 2026-09-06)",
+       "data_day": "2026-08-28",
+       "input": "load_forecast",
+       "record": "load_forecast-smard-bucket-01"
+      },
+      {
+       "basis": "Owner's ruling 1 (2026-10-12, docs/track-b/cp-25-rulings-2026-10-12.md): recorded exception for the stored development history of the tier-3 load forecast; development data only (delivery days to 2026-09-06)",
+       "data_day": "2026-08-29",
+       "input": "load_forecast",
+       "record": "load_forecast-smard-bucket-01"
+      },
+      {
+       "basis": "Owner's ruling 1 (2026-10-12, docs/track-b/cp-25-rulings-2026-10-12.md): recorded exception for the stored development history of the tier-3 load forecast; development data only (delivery days to 2026-09-06)",
+       "data_day": "2026-08-30",
+       "input": "load_forecast",
+       "record": "load_forecast-smard-bucket-01"
+      },
+      {
+       "basis": "Owner's ruling 1 (2026-10-12, docs/track-b/cp-25-rulings-2026-10-12.md): recorded exception for the stored development history of the tier-3 load forecast; development data only (delivery days to 2026-09-06)",
+       "data_day": "2026-08-31",
+       "input": "load_forecast",
+       "record": "load_forecast-smard-bucket-01"
+      }
+     ],
+     "reasons": [],
+     "records": [
+      {
+       "admitted": true,
+       "archive_day": "2026-08-29",
+       "basis": "tier 2 (ruling 2): SDAC results for delivery day P are published no later than one hour after the 12:00 gate on P-1, so by 13:00 Europe/Berlin (Reg. 543/2013 Art. 12(1)(d); CACM Arts. 47-48; the tier register)",
+       "basis_id": "documented_schedule",
+       "by_exception": false,
+       "candidates": 3,
+       "cutoff_utc": "2026-08-30T09:00:00Z",
+       "data_day": "2026-08-28",
+       "for_day": "2026-08-31",
+       "input": "price",
+       "provenance": "rendered",
+       "publication_utc": "2026-08-27T11:00:00Z",
+       "reason": "published 2026-08-27T11:00:00Z, strictly before the cutoff 2026-08-30T09:00:00Z",
+       "record": "price-smard-bucket-01",
+       "required": true,
+       "sha256": "714fe5f3b0a4401e3d7600653c77fc6acfa724add2791dada8428f1e6bf896f4",
+       "tier": 2
+      },
+      {
+       "admitted": true,
+       "archive_day": "2026-08-28",
+       "basis": "Owner's ruling 1 (2026-10-12, docs/track-b/cp-25-rulings-2026-10-12.md): recorded exception for the stored development history of the tier-3 load forecast; development data only (delivery days to 2026-09-06)",
+       "basis_id": "ruling_1_exception",
+       "by_exception": true,
+       "candidates": 1,
+       "cutoff_utc": "2026-08-30T09:00:00Z",
+       "data_day": "2026-08-28",
+       "for_day": "2026-08-31",
+       "input": "load_forecast",
+       "provenance": "rendered",
+       "publication_utc": null,
+       "reason": "admitted under ruling 1's recorded exception (development data only)",
+       "record": "load_forecast-smard-bucket-01",
+       "required": false,
+       "sha256": "fd5c14e6df32e1c6f497a47a19d219333ecec85bc085cd2925562ffecea6c4c2",
+       "tier": 3
+      },
+      {
+       "admitted": true,
+       "archive_day": "2026-08-30",
+       "basis": "tier 2 (ruling 2): SDAC results for delivery day P are published no later than one hour after the 12:00 gate on P-1, so by 13:00 Europe/Berlin (Reg. 543/2013 Art. 12(1)(d); CACM Arts. 47-48; the tier register)",
+       "basis_id": "documented_schedule",
+       "by_exception": false,
+       "candidates": 2,
+       "cutoff_utc": "2026-08-30T09:00:00Z",
+       "data_day": "2026-08-29",
+       "for_day": "2026-08-31",
+       "input": "price",
+       "provenance": "rendered",
+       "publication_utc": "2026-08-28T11:00:00Z",
+       "reason": "published 2026-08-28T11:00:00Z, strictly before the cutoff 2026-08-30T09:00:00Z",
+       "record": "price-smard-bucket-01",
+       "required": true,
+       "sha256": "714fe5f3b0a4401e3d7600653c77fc6acfa724add2791dada8428f1e6bf896f4",
+       "tier": 2
+      },
+      {
+       "admitted": true,
+       "archive_day": "2026-08-29",
+       "basis": "Owner's ruling 1 (2026-10-12, docs/track-b/cp-25-rulings-2026-10-12.md): recorded exception for the stored development history of the tier-3 load forecast; development data only (delivery days to 2026-09-06)",
+       "basis_id": "ruling_1_exception",
+       "by_exception": true,
+       "candidates": 1,
+       "cutoff_utc": "2026-08-30T09:00:00Z",
+       "data_day": "2026-08-29",
+       "for_day": "2026-08-31",
+       "input": "load_forecast",
+       "provenance": "rendered",
+       "publication_utc": null,
+       "reason": "admitted under ruling 1's recorded exception (development data only)",
+       "record": "load_forecast-smard-bucket-01",
+       "required": false,
+       "sha256": "fd5c14e6df32e1c6f497a47a19d219333ecec85bc085cd2925562ffecea6c4c2",
+       "tier": 3
+      },
+      {
+       "admitted": true,
+       "archive_day": "2026-08-31",
+       "basis": "tier 2 (ruling 2): SDAC results for delivery day P are published no later than one hour after the 12:00 gate on P-1, so by 13:00 Europe/Berlin (Reg. 543/2013 Art. 12(1)(d); CACM Arts. 47-48; the tier register)",
+       "basis_id": "documented_schedule",
+       "by_exception": false,
+       "candidates": 1,
+       "cutoff_utc": "2026-08-30T09:00:00Z",
+       "data_day": "2026-08-30",
+       "for_day": "2026-08-31",
+       "input": "price",
+       "provenance": "rendered",
+       "publication_utc": "2026-08-29T11:00:00Z",
+       "reason": "published 2026-08-29T11:00:00Z, strictly before the cutoff 2026-08-30T09:00:00Z",
+       "record": "price-smard-bucket-01",
+       "required": true,
+       "sha256": "714fe5f3b0a4401e3d7600653c77fc6acfa724add2791dada8428f1e6bf896f4",
+       "tier": 2
+      },
+      {
+       "admitted": true,
+       "archive_day": "2026-08-30",
+       "basis": "Owner's ruling 1 (2026-10-12, docs/track-b/cp-25-rulings-2026-10-12.md): recorded exception for the stored development history of the tier-3 load forecast; development data only (delivery days to 2026-09-06)",
+       "basis_id": "ruling_1_exception",
+       "by_exception": true,
+       "candidates": 1,
+       "cutoff_utc": "2026-08-30T09:00:00Z",
+       "data_day": "2026-08-30",
+       "for_day": "2026-08-31",
+       "input": "load_forecast",
+       "provenance": "rendered",
+       "publication_utc": null,
+       "reason": "admitted under ruling 1's recorded exception (development data only)",
+       "record": "load_forecast-smard-bucket-01",
+       "required": false,
+       "sha256": "fd5c14e6df32e1c6f497a47a19d219333ecec85bc085cd2925562ffecea6c4c2",
+       "tier": 3
+      },
+      {
+       "admitted": true,
+       "archive_day": "2026-08-31",
+       "basis": "Owner's ruling 1 (2026-10-12, docs/track-b/cp-25-rulings-2026-10-12.md): recorded exception for the stored development history of the tier-3 load forecast; development data only (delivery days to 2026-09-06)",
+       "basis_id": "ruling_1_exception",
+       "by_exception": true,
+       "candidates": 1,
+       "cutoff_utc": "2026-08-30T09:00:00Z",
+       "data_day": "2026-08-31",
+       "for_day": "2026-08-31",
+       "input": "load_forecast",
+       "provenance": "rendered",
+       "publication_utc": null,
+       "reason": "admitted under ruling 1's recorded exception (development data only)",
+       "record": "load_forecast-smard-bucket-01",
+       "required": true,
+       "sha256": "eba855cb4f710dff73d800dc21d3f90a4576496b2567e36a7b7a88c1061cfcbf",
+       "tier": 3
+      },
+      {
+       "admitted": true,
+       "basis": "AWS LastModified of the run's 10 objects and 10 indexes (ruling 4's criterion)",
+       "basis_id": "aws_last_modified",
+       "by_exception": false,
+       "cutoff_utc": "2026-08-27T09:00:00Z",
+       "data_day": "2026-08-28",
+       "for_day": "2026-08-31",
+       "input": "gfs",
+       "provenance": "recorded",
+       "publication_utc": "2026-08-27T04:03:34Z",
+       "reason": "published 2026-08-27T04:03:34Z, strictly before the cutoff 2026-08-27T09:00:00Z",
+       "record": "gfs-run-2026-08-27",
+       "required": false,
+       "run": "2026-08-27",
+       "sha256": "9247c640a0debbc0aca2ea5a94d19fcb591301f466c88aae5c20ab56a57fcfb0",
+       "status": "ok",
+       "tier": 2,
+       "vector_valid": true
+      },
+      {
+       "admitted": true,
+       "basis": "AWS LastModified of the run's 10 objects and 10 indexes (ruling 4's criterion)",
+       "basis_id": "aws_last_modified",
+       "by_exception": false,
+       "cutoff_utc": "2026-08-28T09:00:00Z",
+       "data_day": "2026-08-29",
+       "for_day": "2026-08-31",
+       "input": "gfs",
+       "provenance": "recorded",
+       "publication_utc": "2026-08-28T03:57:16Z",
+       "reason": "published 2026-08-28T03:57:16Z, strictly before the cutoff 2026-08-28T09:00:00Z",
+       "record": "gfs-run-2026-08-28",
+       "required": false,
+       "run": "2026-08-28",
+       "sha256": "941e83fd4d5414e041f7d21ece1c50417937573729e053c4015e20ca08839188",
+       "status": "ok",
+       "tier": 2,
+       "vector_valid": true
+      },
+      {
+       "admitted": true,
+       "basis": "AWS LastModified of the run's 10 objects and 10 indexes (ruling 4's criterion)",
+       "basis_id": "aws_last_modified",
+       "by_exception": false,
+       "cutoff_utc": "2026-08-29T09:00:00Z",
+       "data_day": "2026-08-30",
+       "for_day": "2026-08-31",
+       "input": "gfs",
+       "provenance": "recorded",
+       "publication_utc": "2026-08-29T03:48:40Z",
+       "reason": "published 2026-08-29T03:48:40Z, strictly before the cutoff 2026-08-29T09:00:00Z",
+       "record": "gfs-run-2026-08-29",
+       "required": false,
+       "run": "2026-08-29",
+       "sha256": "da280e9304505d5aa0886def26daf7f212f2d78b8634747493511209a155d267",
+       "status": "ok",
+       "tier": 2,
+       "vector_valid": true
+      },
+      {
+       "admitted": true,
+       "basis": "AWS LastModified of the run's 10 objects and 10 indexes (ruling 4's criterion)",
+       "basis_id": "aws_last_modified",
+       "by_exception": false,
+       "cutoff_utc": "2026-08-30T09:00:00Z",
+       "data_day": "2026-08-31",
+       "for_day": "2026-08-31",
+       "input": "gfs",
+       "provenance": "recorded",
+       "publication_utc": "2026-08-30T03:59:28Z",
+       "reason": "published 2026-08-30T03:59:28Z, strictly before the cutoff 2026-08-30T09:00:00Z",
+       "record": "gfs-run-2026-08-30",
+       "required": false,
+       "run": "2026-08-30",
+       "sha256": "f427bf6a57c0660322d6c05e7f81843d85a1ccb32eb963c68c61648dff85d896",
+       "status": "ok",
+       "tier": 2,
+       "vector_valid": true
+      }
+     ],
+     "shown": true
+    },
+    "build_cause": null,
+    "build_status": "built",
+    "data_refresh_utc": "2026-10-12T10:59:45+00:00",
+    "gfs": {
+     "available": true,
+     "day": "2026-08-31",
+     "judgement": {
+      "admitted": true,
+      "archive_day": "2026-08-31",
+      "basis": "AWS LastModified of the run's 10 objects and 10 indexes (ruling 4's criterion)",
+      "basis_id": "aws_last_modified",
+      "by_exception": false,
+      "cutoff_utc": "2026-08-30T09:00:00Z",
+      "data_day": "2026-08-31",
+      "for_day": "2026-08-31",
+      "input": "gfs",
+      "provenance": "recorded",
+      "publication_utc": "2026-08-30T03:59:28Z",
+      "reason": "published 2026-08-30T03:59:28Z, strictly before the cutoff 2026-08-30T09:00:00Z",
+      "record": "gfs-run-2026-08-30",
+      "sha256": "f427bf6a57c0660322d6c05e7f81843d85a1ccb32eb963c68c61648dff85d896",
+      "tier": 2
+     },
+     "reason": "published 2026-08-30T03:59:28Z, strictly before the cutoff 2026-08-30T09:00:00Z",
+     "run": "2026-08-30",
+     "status": "ok",
+     "vector_valid": true
+    },
+    "gfs_available": true,
+    "history": {
+     "base_end": "2026-08-27",
+     "frame_rows": 67199,
+     "increment_days": [
+      "2026-08-28",
+      "2026-08-29",
+      "2026-08-30",
+      "2026-08-31"
+     ],
+     "weather_rows": 67199
+    },
+    "payload_sha256": {
+     "A1": "f4cdb04dd0c55c0a3d64a0e3f0a6a5f1abd7d041d6b48defc1bb51b765d18ee6",
+     "B0": "e845d1b8d9d66b72d2c72357e67862e79c36d379c0517860d857df75892759c7",
+     "v2": "067bca666c98330bf8be220fd463cb13a0c9e3f08614bfce79cc398c403b8f97",
+     "v4": "ce684869ad1c8adc27b61c462a725adbab7cbaed04425bfd9c8867cddeb108f9"
+    },
+    "problems": [],
+    "reasons": [],
+    "search": {
+     "content_sha256": "6090f4abaeca028694aa9941ce1240001e12b5965d3d9d0b72fe43cf77ee384f",
+     "file_sha256": "17ade4513a39dffdf6b3fc90e5d45228bbafa71b86af04af22ae4b2418f9d5dc",
+     "k": 13,
+     "path": "/Users/runner/work/delu-pipeline-dryrun/delu-pipeline-dryrun/.local/artifacts/cp-17/inputs/reports/rebaseline/cold-rerun-2026-10-15/search-results/nominal/k13.json",
+     "present": true,
+     "search_day": "2026-07-08"
+    },
+    "shown": true,
+    "source": "cp18.live (replayed recorded responses)",
+    "timings": {
+     "context_seconds": 23.561,
+     "history_seconds": 0.739,
+     "total_seconds": 25.96
+    }
+   },
+   "policy": "A1",
+   "process_seconds_sum": 385.689271541,
+   "seconds": 414.980612,
+   "started_utc": "2026-11-06T13:01:24+00:00",
+   "status": "issued"
+  }
+ },
+ "exit": 0,
+ "finished_utc": "2026-11-06T13:08:21+00:00",
+ "gate": {
+  "checks": [
+   {
+    "check": "pins",
+    "exit": 0,
+    "manifest": "docs/track-b/evidence/cp-17c/freeze-manifest.json",
+    "output": [
+     "verified"
+    ],
+    "passed": true,
+    "problems": [],
+    "seconds": 7.622332166999968
+   },
+   {
+    "check": "binary",
+    "node": "/Users/runner/work/delu-pipeline-dryrun/delu-pipeline-dryrun/.local/tools/node-v26.7.0-official/node-v26.7.0-darwin-arm64/bin/node",
+    "passed": true,
+    "pins": {
+     "binary": {
+      "bytes": 145238560,
+      "sha256": "a9bd0630891c2dcdee70de88270fee2cc0c4a9e76495039dd3b4f91c5e6b71df"
+     },
+     "tarball": {
+      "bytes": 57622243,
+      "name": "node-v26.7.0-darwin-arm64.tar.gz",
+      "sha256": "7ee659a7768e641bbfd5360940660b8e8fd0052f77488f365562bac522fc15d4"
+     }
+    },
+    "problems": [],
+    "seconds": 0.3021174579999979,
+    "tarball": "/Users/runner/work/delu-pipeline-dryrun/delu-pipeline-dryrun/.local/tools/node-v26.7.0-official/dl/node-v26.7.0-darwin-arm64.tar.gz"
+   },
+   {
+    "check": "machine",
+    "described": {
+     "cpu_count": 3,
+     "cpu_model": "Apple M1 (Virtual)",
+     "hardware_model": "VirtualMac2,1",
+     "machine": "arm64",
+     "memory_bytes": 7516192768,
+     "os_version": "26.6.2",
+     "physical_cores": 3,
+     "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+     "runner_env": {
+      "GITHUB_ACTIONS": "true",
+      "GITHUB_JOB": "dry-run",
+      "GITHUB_REPOSITORY": "hrsi56/delu-pipeline-dryrun",
+      "GITHUB_RUN_ATTEMPT": "1",
+      "GITHUB_RUN_ID": "42221640423",
+      "GITHUB_SHA": "a08a304aabf9ec8d08f46c582df706d62f805468",
+      "ImageOS": "macos26",
+      "ImageVersion": "20261026.0455.2",
+      "RUNNER_ARCH": "ARM64",
+      "RUNNER_ENVIRONMENT": "github-hosted",
+      "RUNNER_NAME": "GitHub Actions 1000001356",
+      "RUNNER_OS": "macOS"
+     },
+     "system": "Darwin"
+    },
+    "image_version": "20261026.0455.2",
+    "kind": "GitHub-hosted runner",
+    "passed": true,
+    "problems": [],
+    "seconds": 0.12660029200003464
+   },
+   {
+    "attempt": {
+     "cause": null,
+     "partial": null,
+     "policy": "A1",
+     "resources": {
+      "limits": {
+       "peak_bytes": 4294967296,
+       "wall_seconds": 900
+      },
+      "peak_bytes": 808042496,
+      "wall_seconds": 155.236929958
+     },
+     "seconds": 155.50295550000004,
+     "status": "ok"
+    },
+    "check": "canary",
+    "executed_files": {
+     "cp15/__init__.py": "51729f693956953e59a18758f88755165cc0f5b5dad9194517599128181504c7",
+     "cp15/data.py": "c76fb1d78c6bbd17d1a1172ace6548a6f41711d138ce4b055b9c80cf0edabff3",
+     "cp17/__init__.py": "6d590a0a1f4c1c63bfad9bfadf08855082aa969290d55587d9237d1ab5ba90c2",
+     "cp17/attribution.py": "ec21364a8e16445fa097cd903e5953aa48d91b8b2e934cb883b2b54b1b3d54de",
+     "cp17/dailyfit.py": "65b36b86fbd5b096f6dc9657086928f8592db9e4616ad97be6a6cafd5926522f",
+     "cp17/host/driver.py": "b22f4db0d03e98122350faf164a111a48a5fed296816b62569ea325fbe630a68",
+     "cp17/stubs/absent/holidays.py": "252bd4f757d5926a5a61940beb783eaabdb7eaaff5c2c847f8e1a64da53b2559",
+     "cp17/stubs/fallback/resource.py": "4ff3227ba5afeec42b99cbec0c78f669512a72a733806c7757699f9223929581",
+     "cp24/__init__.py": "01e59a51ef166fcf206bdaad67703ee440c569be04d16800f4db4ed0f25c33e4",
+     "cp24/ddnn2.py": "a70cbea6e9533ffb0c4030a8c40b7c6978f9a218f17213c30fbb5c6850827067",
+     "cp24/design.py": "585b0673846e0e459eb700be24d12a46554172ee2c52600d86947645a0d03190",
+     "cp24/member.py": "d5df1ef4f81a3ce5fe01349588259aa32ce6fd32064581f1c5947822431538ec",
+     "delu_forecast/__init__.py": "c39e1809e51a396dd0c88f8af8ef31ee3cb125637e8edccad76486be4b089fa7",
+     "delu_forecast/baselines.py": "4e234cda6d09366b6136b2c2f4635dabdaa8aefe8d85ef0da41d9ad4912eea52",
+     "delu_forecast/features.py": "114cc25c8e93d0ddf2cec56f09674a484038983240d8d22d32bcb0f011a5bb3b",
+     "delu_forecast/folds.py": "71743a4f677507afea215902ee82a8e9f990fc128f4456afc47c3f4e0bd11078",
+     "delu_forecast/ingest.py": "e7a1cd415733eccd4460a49ba3d3ea465a90259e92ae657436b1baf3bd0ce04c",
+     "delu_forecast/partitions.py": "9633b4cce7a6538bb726ead77b140db37d2c503b727896214d54bb47b80d4f89"
+    },
+    "expected_quantiles_sha256": "4e6abb02fbb02aa8ef202207f21b76bc33b34c37d025a0a93a491135ea43cea5",
+    "folder": "/Users/runner/work/_temp/results/run/canary/A1-2026-09-06-t0k6_36y",
+    "node": "v26.7.0",
+    "node_execpath": "/Users/runner/work/delu-pipeline-dryrun/delu-pipeline-dryrun/.local/tools/node-v26.7.0-official/node-v26.7.0-darwin-arm64/bin/node",
+    "passed": true,
+    "payload_sha256": "63ce7f452987d453cd55635b5739dfc579ade191c67b31e888fcc3884dd043a4",
+    "problems": [],
+    "pyodide": "0.28.0",
+    "quantiles_sha256": "4e6abb02fbb02aa8ef202207f21b76bc33b34c37d025a0a93a491135ea43cea5",
+    "seconds": 155.50953312500002
+   }
+  ],
+  "consequence": "the run may issue",
+  "failed": null,
+  "not_run": [],
+  "order": [
+   "pins",
+   "binary",
+   "machine",
+   "canary"
+  ],
+  "passed": true,
+  "python": "3.13.15",
+  "schema": "cp17c-host-checks-v1",
+  "started_utc": "2026-11-06T12:58:41+00:00"
+ },
+ "host_kind": "runner",
+ "lookback": [
+  "2026-08-28",
+  "2026-08-29",
+  "2026-08-30"
+ ],
+ "machine": {
+  "github_run_id": "42221640423",
+  "machine": "arm64",
+  "runner_image": "20261026.0455.2",
+  "system": "Darwin"
+ },
+ "mode": "dry-run",
+ "outcome": "done",
+ "planned": [
+  "2026-08-31"
+ ],
+ "run_id": "gh-42221640423-1",
+ "schema": "cp18a-run-v1",
+ "seconds": 580.1276306249999,
+ "started_utc": "2026-11-06T12:58:41+00:00",
+ "target_day": "2026-08-31",
+ "wall_clock": "2026-08-30T12:00:00+02:00"
+}

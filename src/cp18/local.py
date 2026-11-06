@@ -87,9 +87,9 @@ def dump(path: Path, value) -> None:
 def pin_project(project: Path) -> dict:
     """Name the project to every stage: `CP17_PROJECT_ROOT` for the H2 pins check and the issuing host's `.local/`,
     `CP26_PROJECT_ROOT` for `cp18.live.gfs`'s ecCodes environment. Set before anything runs, unconditionally."""
-    os.environ['CP17_PROJECT_ROOT'] = str(project)
-    os.environ['CP26_PROJECT_ROOT'] = str(project)
-    return {'CP17_PROJECT_ROOT': str(project), 'CP26_PROJECT_ROOT': str(project)}
+    named = {'CP17_PROJECT_ROOT': str(project), 'CP26_PROJECT_ROOT': str(project)}
+    os.environ.update(named)
+    return named
 
 
 def stage_env(*keep: str) -> dict:

@@ -1,0 +1,13 @@
+{
+ "entries": 3,
+ "entry_sha256": "1ab343b92a9b7b3a76d60eafbf4fdeff11b61b35268e57cd2b30d04f2449cb3c",
+ "last_artifact_sha256": "1e08a67d37964a194a589fd8c4251c1aed2519da24564e0ba31ee26edb8b5638",
+ "last_day": "2026-08-31",
+ "schema": "cp17c-state-store-v1",
+ "state_file": "states/2026-08-31.json",
+ "state_sha256": {
+  "B0": "a07a1704f35b7d0828d51071ef2f3b5428c575513975843c2bebc93b2e269ac6",
+  "v2": "8552561b386131aa966b43cdd58707877b97216da0c99da249502b32c1ac683f",
+  "v4": "2bbe15fc835fa9de31d0a075bafea56ddf212d9c1d677f62dbeca3fc1fce8d6b"
+ }
+}
