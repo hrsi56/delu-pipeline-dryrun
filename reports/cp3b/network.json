@@ -1,0 +1,75 @@
+{
+  "attempted_reduction": "scipy (13.9 MB) and scikit-learn (4.4 MB) arrive as LightGBM dependencies this page never imports; micropip.install(\"lightgbm\", deps=False) does not avoid them, because micropip defers to Pyodide's own dependency graph for distributed packages. Tried and measured.",
+  "compression": {
+    "at_rest": "Boosters: 30,823,690 B of model text -> 11,125,154 B gzip -> 14,833,552 B base64, decoded in the browser. Base64 costs 3.7 MB over binary gzip on a first visit and keeps the model off the uncacheable redirect path. Lossless; the equivalence gate proves the decoded model bitwise.",
+    "not_compressed": "marimo's interface assets are served as marimo emits them.",
+    "platform": "none \u2014 Hugging Face Static Spaces serve files as stored"
+  },
+  "contrast_with_the_static_page": "docs/index.html fetches nothing: 1 request (itself), 0 resources, verified in a browser. At CP-3, marimo export html was rejected for it because it emitted 181 references to cdn.jsdelivr.net. marimo export html-wasm differs in kind: it bundles marimo's frontend with the page and reaches a CDN only for the Python runtime.",
+  "hosts": {
+    "cdn.jsdelivr.net": {
+      "bytes": 31936965,
+      "redirects": 0,
+      "requests": 18,
+      "source": "DevTools, first visit"
+    },
+    "files.pythonhosted.org": {
+      "bytes": 2755848,
+      "redirects": 0,
+      "requests": 4,
+      "source": "DevTools, first visit"
+    },
+    "us.aws.cdn.hf.co": {
+      "bytes": 985713,
+      "redirects": 0,
+      "requests": 12,
+      "source": "DevTools, first visit (served by the emulator)"
+    },
+    "wasm.marimo.app": {
+      "bytes": 28417,
+      "redirects": 0,
+      "requests": 1,
+      "source": "DevTools, first visit"
+    },
+    "yarden-viktor-delu-day-ahead-forecast.static.hf.space": {
+      "bytes": 21545223,
+      "redirects": 12,
+      "requests": 317,
+      "source": "DevTools, first visit (served by the emulator)"
+    }
+  },
+  "measured_on": "2026-09-15",
+  "method": "headless Chrome over the DevTools protocol, brand-new profile, page and every worker attached. Bytes are DevTools encodedDataLength: what Chrome received per request, headers and body, as encoded. DevTools is not subject to Timing-Allow-Origin, so every host is sized directly. Reproduce: make wasm && uv run python scripts/record_wasm_load.py (writes reports/cp3b/cdp_load.json).",
+  "page": "dist/space-wasm/index.html (marimo export html-wasm, --mode run)",
+  "platform_serving_model": {
+    "binary_files": "302 from the static host with Cache-Control: no-store and a 1,048-byte body, to us.aws.cdn.hf.co with a signed query that changed on each of three consecutive requests; both hops send Access-Control-Allow-Origin: *.",
+    "consequence_for_design": "The nine boosters ship as base64-encoded gzip \u2014 ASCII text, served directly \u2014 rather than binary gzip, which would be routed through the rotating signed redirect on every visit. marimo's fonts and images are binary and unavoidably take the redirect.",
+    "text_files": "200 from the Space's static host, no Content-Encoding even to a client sending gzip, deflate, br; ETag present; no Cache-Control.",
+    "verified_on": "live public Static Spaces (nanotron/ultrascale-playbook, xenova/whisper-web), read-only, 2026-09-15"
+  },
+  "repeat_visit": {
+    "bytes": 1046158,
+    "measured": true,
+    "requests": 350,
+    "what": "Same profile, second visit: the page's text revalidated (304s), jsDelivr, PyPI and the marimo lockfile came from cache, and the fonts and images behind the no-store redirects were fetched again (970,079 B)."
+  },
+  "revision": "Final: measured in headless Chrome 152 over the DevTools protocol with a brand-new profile, page and Pyodide worker attached, against emulated Hugging Face serving (HTTP/1.1; text direct with ETag; binary files as a no-store 302 to a CDN stand-in). Supersedes the earlier stitched measurements, which missed browser favicon/manifest requests and used an HTTP/1.0 emulator.",
+  "self_reference": "The Space serves files that print this size, so an exact byte count drifts by a few bytes whenever the wording changes; the surfaces publish two-decimal millions, which that drift cannot move.",
+  "totals": {
+    "bytes": 57252166,
+    "hosts": 5,
+    "mb_decimal": 57.25,
+    "mib_binary": 54.6,
+    "plain_language": "about 57 MB on a first visit (57,252,166 bytes), 352 requests from 5 hosts",
+    "requests": 352
+  },
+  "units_note": "Published in decimal megabytes (1 MB = 1,000,000 bytes) to two decimals, with exact bytes here.",
+  "via_the_huggingface_page": {
+    "app_url": "https://yarden-viktor-delu-day-ahead-forecast.static.hf.space/",
+    "hosts": 5,
+    "measured_bytes": 1216418,
+    "requests": 202,
+    "url": "https://huggingface.co/spaces/Yarden-Viktor/delu-day-ahead-forecast",
+    "what": "Opening the canonical Space link loads Hugging Face's own page, which runs the app in an iframe from the static host. Measured once, read-only, on 2026-09-15 against the already-created Space (then holding template files): the wrapper's document (12,685 B) plus 201 resource entries \u2014 huggingface.co 190 requests 953,085 B, js.stripe.com 2 requests 247,693 B, cdnjs.cloudflare.com 1 request 2,955 B, de5282c3ca0c.edge.sdk.awswaf.com 6 requests (sizes not disclosed by the browser), and the static host 2 requests (the iframe, sized inside it). Hugging Face controls that page and it may change; the app's own figures do not include it."
+  }
+}

@@ -35,6 +35,8 @@ from cp15.data import RAW_COLUMNS, day_hours
 from cp20 import weather as W
 from cp25 import guard
 
+from .. import boundary
+
 from . import availability as A
 from . import entsoe, smard
 from .archive import Archive
@@ -147,6 +149,7 @@ class _Reader:
 def market(reader: _Reader, input_name: str, data_day: date) -> tuple[np.ndarray | None, dict, list]:
     """The admitted values of one input on one data day for D, its judgement, and any problems."""
     problems, chosen, chosen_values, judgements = [], None, None, []
+    partial = None                    # the first admitted record holding no complete day (CP-18c)
     for x, rec in reader.candidates(input_name, data_day):
         pub = rec['publication'].get(data_day.isoformat(), {})
         j = A.judge(input_name, reader.for_day, data_day, pub, rec, archive_day=x)
@@ -154,11 +157,18 @@ def market(reader: _Reader, input_name: str, data_day: date) -> tuple[np.ndarray
         if not j['admitted']:
             continue
         values = reader.values(x, rec, input_name, data_day)
+        if np.isnan(values).any():
+            # A live source answers "no data yet" (ENTSO-E's acknowledgement) or a partial day before it publishes;
+            # an archived retrieval of that kind never hides a later complete one. Development records are complete.
+            partial = partial or (j, values)
+            continue
         if chosen is None:
             chosen, chosen_values = j, values
         elif input_name == 'price' and not np.array_equal(values, chosen_values, equal_nan=True):
             problems.append(f'price {data_day}: archived records disagree ({chosen["record"]} on '
                             f'{chosen["archive_day"]} vs {rec["id"]} on {x}); the earliest is used')
+    if chosen is None and partial is not None:
+        chosen, chosen_values = partial
     if chosen is None:
         reason = ('no archived record covers it' if not judgements else
                   '; '.join(f'{j["record"]}@{j["archive_day"]}: {j["reason"]}' for j in judgements))
@@ -217,7 +227,7 @@ def gfs_for_day(archive: Archive, day: date) -> dict:
 
 def assemble(root: Path, archive: Archive, day: date, base_end: date) -> History:
     """The frame (RAW_COLUMNS) and the weather record through D: the base, then the archive's increments."""
-    guard.admit_delivery_day(day)
+    boundary.admit_delivery_day(day)
     if not FLOOR < base_end < day:
         raise HistoryError('the base must end before the day being built')
     frame = base_frame(root, base_end)
@@ -256,7 +266,7 @@ def assemble(root: Path, archive: Archive, day: date, base_end: date) -> History
         wx.append(g['features'])
     inc = pd.concat(rows, ignore_index=True)
     inc['timestamp_utc'] = inc['timestamp_utc'].astype(frame['timestamp_utc'].dtype)
-    guard.admit_rows(pd.DatetimeIndex(inc['timestamp_utc']).tz_convert('UTC'))
+    boundary.admit_rows(pd.DatetimeIndex(inc['timestamp_utc']).tz_convert('UTC'))
     last = pd.Timestamp(frame['timestamp_utc'].iloc[-1])
     if pd.Timestamp(inc['timestamp_utc'].iloc[0]) != last + pd.Timedelta(hours=1):
         raise HistoryError('the increments do not continue the base hour by hour')
@@ -269,7 +279,7 @@ def assemble(root: Path, archive: Archive, day: date, base_end: date) -> History
     for col, dtype in features.dtypes.items():
         if str(wxf[col].dtype) != str(dtype):
             wxf[col] = wxf[col].astype(dtype)
-    guard.admit_rows(pd.DatetimeIndex(wxf.timestamp_utc))
+    boundary.admit_rows(pd.DatetimeIndex(wxf.timestamp_utc))
     allf = pd.concat([features, wxf], ignore_index=True)
     if allf.timestamp_utc.duplicated().any():
         raise HistoryError('duplicate canonical weather hour')

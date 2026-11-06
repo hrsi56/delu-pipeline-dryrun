@@ -1,0 +1,62 @@
+{
+  "artifact_fingerprint_sha256": "57e3ad40a7f48bb7896628ce2e5dec61314dea567da9867aede4bf1b0a10e0fb",
+  "compared_against": "frozen mlflow.pyfunc champion, models/champion/",
+  "delivery_day_availability": {
+    "d_minus_1": "2026-09-05",
+    "d_minus_1_control_max_abs_difference": 220.9433340396028,
+    "d_minus_1_rows_mutated_by_plus_250": 24,
+    "delivery_day": "2026-09-06",
+    "masked_max_abs_difference": 0.0,
+    "masked_output_bitwise_identical": true,
+    "masked_rows": 24
+  },
+  "fixture": {
+    "delivery_days": 54,
+    "fail_closed_rows": 4,
+    "first_day": "2020-07-01",
+    "includes_23_hour_day": true,
+    "last_day": "2026-09-06",
+    "quantile_values_compared": 11628,
+    "regimes": {
+      "crisis": 12,
+      "dst-fall-back": 3,
+      "dst-spring-forward": 7,
+      "post-crisis (holdout)": 12,
+      "post-crisis (holidays, bridge days)": 8,
+      "pre-crisis": 12
+    },
+    "rows": 1296
+  },
+  "gate": {
+    "bitwise_identical": true,
+    "max_abs_deviation": 0.0,
+    "null_pattern_mismatches": 0,
+    "tolerance": 0.0
+  },
+  "module": "app/public/browser_champion.py",
+  "module_sha256": "9efb73f6bb29a60248ca6a4141b074c81a8ecc6e127396dfce52d4ff4b03df1b",
+  "positive_controls": {
+    "cqr_threshold_plus_0.01": {
+      "broke_the_gate": true,
+      "max_abs_deviation": 0.010000000000104592,
+      "null_mismatches": 0,
+      "perturbed_pair": "p025|p975",
+      "rows": 1296,
+      "values": 11628
+    },
+    "median_head_599_of_600_trees": {
+      "broke_the_gate": true,
+      "max_abs_deviation": 0.42703391961529746,
+      "null_mismatches": 0,
+      "rows": 1296,
+      "values": 11628
+    },
+    "p25_p50_heads_swapped": {
+      "broke_the_gate": true,
+      "max_abs_deviation": 50.20473786601394,
+      "null_mismatches": 0,
+      "rows": 1296,
+      "values": 11628
+    }
+  }
+}

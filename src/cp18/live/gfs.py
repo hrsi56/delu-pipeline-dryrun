@@ -34,6 +34,8 @@ import tempfile
 
 from cp20.gfs import FIELDS, LEADS, V16_FIRST, Contradiction, IntegrityError, aws_url, check_frame, parse_idx
 from cp25 import guard
+
+from .. import boundary
 from cp25.extract import parse_listing
 
 from .transport import ReplayMiss, Request, Response, TransportError
@@ -88,7 +90,7 @@ def retrieve_run(transport, run: date, raw_dir: Path) -> Retrieval:
     raw = Path(raw_dir) / run.isoformat()
     raw.mkdir(parents=True, exist_ok=True)
     for lead in LEADS:
-        guard.admit_gfs(guard.run_init(run), lead)
+        boundary.admit_gfs(guard.run_init(run), lead)
         key = f'f{lead:03d}'
         req = listing_request(run, lead)
         try:
@@ -164,7 +166,7 @@ def _env() -> dict:
 def decode_run(run: date, delivery: date, messages: list, raw_dir: Path, out_dir: Path,
                python: Path = WX_PYTHON, timeout: float = 900.0) -> dict:
     """Decode the run's messages with CP-20's decoder in the ecCodes environment; CP-20's run layout out."""
-    guard.admit_delivery_day(delivery)
+    boundary.admit_delivery_day(delivery)
     if delivery != run + timedelta(days=1):
         raise ValueError('the D-1 00 UTC run serves the delivery day after its run date')
     if not Path(python).exists():

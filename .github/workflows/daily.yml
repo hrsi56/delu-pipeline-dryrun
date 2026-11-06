@@ -1,57 +1,100 @@
-# CP-18's daily pipeline on a GitHub-hosted macos-26 runner (capstone v21-r19 §24.13, "For CP-18").
+# The live product's daily operation on GitHub-hosted macos-26 runners (capstone v21-r20 §24.14; CP-18c item 8), and
+# CP-18a's dispatch-only dry run on development days.
 #
-# CP-18a: workflow_dispatch only, dry runs on development days through 2026-09-06 (decision 7). There is no
-# schedule: CP-18's activation adds one, and the live mode, after 4.7T retires the boundary guard. Until then the
-# pipeline refuses any plan holding a delivery day after 2026-09-06 (cp25.guard), whatever the inputs say.
+# Three jobs, selected by the event (and, for a schedule, by github.event.schedule):
+#   acquire  before each day's cutoff: `cp18 acquire` retrieves the next delivery day D's inputs, its tier-3 load
+#            forecast above all (shown only by a retrieval before D's cutoff), archives them and pushes live/inputs/
+#            through the claim. D's cutoff is D-1 11:00 Europe/Berlin: 09:00 UTC in summer time (CEST), 10:00 UTC in
+#            winter time (CET); the TSOs publish the load forecast by D-1 10:00 Berlin (08:00 / 09:00 UTC). Three crons
+#            cover both rules and GitHub's scheduling delays: 07:40 UTC (summer 80 min before the cutoff, winter 140),
+#            08:20 UTC (summer 40, winter 100) and 09:20 UTC (winter 40; in summer the cutoff has passed, so the next
+#            cutoff is a day away and `--window-hours 3` makes the run do nothing). An acquisition polls until the
+#            forecast is published, at most until shortly before the cutoff.
+#   run      after the cutoff: `cp18 run --mode live` (the real clock, inside cp18.boundary.live()) issues the target
+#            day and decision 23's catch-up through the frozen chain; then, once per as-of day, the dated bundle
+#            (`cp18.bundle`, its arrays from this run's own A1 attempt before the results step deletes them, else a
+#            refit), the Space build, the publication to the Hugging Face Space, and the day's data-only records
+#            pushed through the claim. 10:40 UTC (40 min after the winter cutoff, 100 after the summer one) and a retry
+#            at 13:40 UTC: the claim makes a second run find nothing to issue, record its run and build no second bundle.
+#   dry-run  workflow_dispatch only (mode dry-run, the default): CP-18a's dry run on development days through 2026-09-06,
+#            replayed inputs, fake credentials, the claim's origin a bare repository on the runner; now with the same
+#            post-run sequence (the bundle with --arrays, the Space build, a local static publication target, the
+#            records through the claim) and a development-day GFS decode in the runner's ecCodes environment.
+# A dispatch with mode live or acquire-live starts the live jobs by hand (the Orchestrator's first dispatch).
 #
-# One run, in order: the uv environment uv.lock pins (uv's CPython 3.13.15); the guards on the runner's own commits
-# and pushes, shown with fake credentials; the pinned states materialized by hash (reports/cp18a/dryrun/pinned in a
-# dry run, live/pinned at activation), Pyodide's 23 files and the official Node.js binary retrieved from their
-# official release URLs and checked by hash, the package zip rebuilt and compared; then the pipeline: the H2 gate
-# once, decision 23's catch-up, each issuance through cp17.daily, the store, the claim.
+# Where the live jobs run: only in hrsi56/delu-day-ahead-forecast, so a copy of this file (the public scratch repository)
+# never runs them; and a schedule starts them only while the repository variable DAILY_SCHEDULE is `enabled`. Setting it
+# is "enabling the schedule", after the Owner has entered the secrets (`gh variable set DAILY_SCHEDULE --body enabled`).
 #
-# In a dry run the claim's origin is a bare repository on the runner, seeded from this checkout plus the dry run's
-# store (a development state, or a store an earlier run carried out): the pipeline's commits and pushes run through
-# .githooks there, and nothing is pushed to GitHub. CP-18's activation points the claim at this repository's main,
-# with the day's data-only records (live/store/, live/inputs/<day>/).
+# Credentials (decision 25): ENTSOE_API_TOKEN and HF_TOKEN are repository secrets the Owner enters himself; agents never
+# handle their values. Each is read only in the steps that use it: ENTSOE_API_TOKEN in the acquisition and the run,
+# HF_TOKEN in the publication, both in the by-value scan of the results before their upload (a found value uploads
+# nothing). DAGSHUB_USER_TOKEN is not used. Nothing is at job or workflow level. The checkout keeps no credential
+# (persist-credentials: false); a push authenticates through a credential helper that reads DELU_PUSH_TOKEN (the job's
+# own token), which only the steps that push hold. The secret guard (.githooks) checks every commit and push against the
+# values of every credential-named variable in the pushing process. The dry run uses no secret: fake values derived from
+# the run id (cp18.guarddemo.fake_environment), never printed, scanned for by value afterwards.
 #
-# Credentials (decision 25): ENTSOE_API_TOKEN, HF_TOKEN and DAGSHUB_USER_TOKEN are repository secrets the Owner enters
-# himself; agents never handle their values. This dry run uses none: it sets fake values derived from the run id
-# (cp18.guarddemo.fake_value), never printed, so the public log and the artifacts can be scanned for them by value
-# afterwards. The MLflow URI is public configuration, not a secret.
+# Permissions: `{}` at the top; `contents: write` only on the jobs that push to main (acquire, run: N6); the dry run
+# reads only; the keep-alive job holds `actions: write` and nothing else.
 #
-# Staying enabled: GitHub disables a scheduled workflow in a public repository after 60 days without repository
-# activity. Every run of this pipeline, whatever it issues (an issuance, a day not issued, a failed H2 gate, nothing
-# to do), pushes its run record to main, so a schedule that fires keeps the repository active; the local fallback
-# (cp18.local) pushes its own runs too. See reports/cp18a/report.md.
+# Staying enabled (GitHub disables a scheduled workflow in a public repository after 60 days without repository
+# activity): every live run, acquisition included, pushes a data-only commit to main through the claim, every day
+# (an acquisition's archive, a run's issuance and its run record, which every run pushes whatever it did, the day's
+# bundle records). That is repository activity. Belt and braces, at no cost and with no external service: the
+# keep-alive job, on the 13:40 UTC schedule, re-enables this workflow through GitHub's own API (a no-op while it is
+# enabled) and records its state; and the local fallback on the Owner's Mac (cp18.local, reports/cp18c/launchd/),
+# if installed, pushes its own runs.
 #
-# Retrieval is software only: GitHub's own actions pinned by commit SHA, uv and the Python packages uv.lock pins, uv's
-# CPython 3.13.15, and Node.js v26.7.0's tarball and SHASUMS256.txt, checked by hash.
+# Retrieval is software only, plus the live sources in the live jobs: GitHub's own actions pinned by commit SHA; uv and
+# the Python packages uv.lock pins; uv's CPython 3.13.15; CP-20's pinned ecCodes environment
+# (reports/weather-admission/scripts/requirements.freeze.txt), recorded by version and content hash; Node.js v26.7.0's
+# tarball and SHASUMS256.txt and Pyodide's 23 files, checked by hash.
 name: daily
 
 on:
+  schedule:
+    - cron: '40 7 * * *'     # acquire: before the cutoff (summer and winter)
+    - cron: '20 8 * * *'     # acquire: before the cutoff (summer and winter)
+    - cron: '20 9 * * *'     # acquire: before the cutoff (winter; a no-op in summer)
+    - cron: '40 10 * * *'    # run: after the cutoff
+    - cron: '40 13 * * *'    # run: the retry (and the keep-alive)
   workflow_dispatch:
     inputs:
+      mode:
+        description: 'dry-run (development days, replayed inputs, fake credentials), live (the run), acquire-live'
+        type: choice
+        options: [dry-run, live, acquire-live]
+        default: dry-run
       now:
-        description: 'The dry run''s simulated wall clock, ISO 8601 with its offset (a development day''s run)'
-        required: true
+        description: 'dry-run only: the simulated wall clock, ISO 8601 with its offset (a development day''s run)'
+        required: false
+        default: ''
       inputs:
-        description: 'The inputs: live:<recorded responses> (the live-input builder, replayed) or prebuilt:<payloads>'
-        required: true
+        description: 'dry-run only: live:<recorded responses> (the live-input builder, replayed) or prebuilt:<payloads>'
+        required: false
         default: 'live:reports/cp18a/dryrun/recorded'
       store:
-        description: 'The dry run''s store: genesis:<development state>:<first day>, or carried:<a store folder>'
-        required: true
+        description: 'dry-run only: genesis:<development state>:<first day>, or carried:<a store folder>'
+        required: false
         default: 'genesis:reports/cp18a/dryrun/states/start-2026-08-31.json:2026-08-31'
+      decode_run:
+        description: 'dry-run only: a development GFS run (its day) decoded in the ecCodes environment and compared with the archive ('''' skips)'
+        required: false
+        default: '2026-09-05'
+      day:
+        description: 'acquire-live only: the delivery day (default: the next one whose cutoff is ahead, within 3 h)'
+        required: false
+        default: ''
       minutes:
-        description: 'The job''s time limit in minutes (a four-issuance run with its canary is bounded at about 255)'
-        required: true
+        description: 'dry-run only: the job''s time limit in minutes'
+        required: false
         default: '120'
 
 permissions: {}
 
 concurrency:
-  group: daily-pipeline
+  group: daily-${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'dry-run') && 'dry-run' || 'live' }}
   cancel-in-progress: false
 
 env:
@@ -66,37 +109,58 @@ env:
   UV_VERSION: "0.12.6"
   CPYTHON: "3.13.15"
   UV_PYTHON_PREFERENCE: only-managed
+  WX_FREEZE: reports/weather-admission/scripts/requirements.freeze.txt
+  SPACE_HUB: Yarden-Viktor/delu-day-ahead-forecast
+  SPACE_HISTORY: reports/cp18c/history-v1/files
 
 jobs:
-  pipeline:
-    name: macos-26 daily pipeline (dry run)
+  dry-run:
+    name: macos-26 daily pipeline (dry run, development days)
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'dry-run'
     runs-on: macos-26
-    timeout-minutes: ${{ fromJSON(inputs.minutes) }}
+    timeout-minutes: ${{ fromJSON(inputs.minutes || '120') }}
     permissions:
-      contents: write     # only for the day's data-only commit to main at activation; a dry run pushes to GitHub nothing
+      contents: read      # the checkout only: a dry run pushes nothing to GitHub (its origin is a bare repository here)
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - &checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+      - &setup-python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
           python-version: "3.13"
-      - name: uv, from PyPI, recorded
+      - &uv
+        name: uv, from PyPI, recorded
         run: |
           mkdir -p "$RUNNER_TEMP/results" "$RUNNER_TEMP/dl"
           echo "RESULTS=$RUNNER_TEMP/results" >> "$GITHUB_ENV"
+          # The project named to every step: the issuing host's .local/ (H2's pins) and the ecCodes environment.
           echo "CP17_PROJECT_ROOT=$GITHUB_WORKSPACE" >> "$GITHUB_ENV"
+          echo "CP26_PROJECT_ROOT=$GITHUB_WORKSPACE" >> "$GITHUB_ENV"
           python -m pip install --no-deps --report "$RUNNER_TEMP/results/uv-pip-report.json" "uv==${UV_VERSION}"
           python -m pip download --no-deps --only-binary=:all: -d "$RUNNER_TEMP/dl" "uv==${UV_VERSION}"
           shasum -a 256 "$RUNNER_TEMP"/dl/uv-*.whl > "$RUNNER_TEMP/results/uv-wheel-sha256.txt"
-      - name: The pinned CPython and the environment uv.lock pins
+      - &environment
+        name: The pinned CPython and the environment uv.lock pins
         run: |
           python -m uv python install "$CPYTHON"
           python -m uv sync --locked --no-install-project --no-dev --python "$CPYTHON"
           python -m uv pip freeze --python .venv > "$RESULTS/uv-freeze.txt"
           shasum -a 256 uv.lock pyproject.toml > "$RESULTS/project-sha256.txt"
           .venv/bin/python -c "import platform, zlib, json; print(json.dumps({'python': platform.python_version(), 'zlib': zlib.ZLIB_RUNTIME_VERSION}))" > "$RESULTS/cpython.json"
-      - name: The guards on the runner's own commits and pushes (fake credentials, blocked by value)
+      - &ecCodes
+        name: The ecCodes environment for GFS decoding (CP-20's pinned versions), recorded by version and content hash
+        run: |
+          wx="$CP26_PROJECT_ROOT/.local/artifacts/cp-20/wx-venv"     # cp18.live.gfs.WX_PYTHON's venv
+          mkdir -p "$RESULTS/wx-env"
+          python -m uv venv --quiet --python "$CPYTHON" "$wx"
+          python -m uv pip install --python "$wx/bin/python" --no-deps -r "$WX_FREEZE" 2>&1 | tee "$RESULTS/wx-env/install.log"
+          python -m uv pip freeze --python "$wx/bin/python" > "$RESULTS/wx-env/freeze.txt"
+          .venv/bin/python -m cp18.local wx-env --python "$wx/bin/python" --freeze "$WX_FREEZE" \
+              --out "$RESULTS/wx-env/wx-env.json"
+      - &guards
+        name: The guards on the runner's own commits and pushes (fake credentials, blocked by value)
         run: |
           git config core.hooksPath .githooks
           .venv/bin/python -m cp18.guarddemo --checkout . --work "$RUNNER_TEMP/guard-demo" \
@@ -105,10 +169,14 @@ jobs:
         run: |
           .venv/bin/python -m cp18 prepare --root . --project . --pinned reports/cp18a/dryrun/pinned \
               --retrieve-pyodide --retrieve-node --out "$RESULTS/prepare.json"
-      - name: The dry run's store and its origin, on the runner
+      - name: The dry run's store and its origin, on the runner (the live record set aside in this throwaway checkout)
         env:
           STORE: ${{ inputs.store }}
         run: |
+          # The product's live record (live/) never enters a dry run: it is removed from this checkout and from the
+          # dry run's seed commit, so the bare origin holds the dry run's own store only. Nothing touches GitHub.
+          git rm -r -q --ignore-unmatch -- live
+          rm -rf live
           case "$STORE" in
             genesis:*) .venv/bin/python -m cp18 seed-store --root . --genesis "${STORE#genesis:}" ;;
             carried:*) .venv/bin/python -m cp18 seed-store --root . --carried "${STORE#carried:}" ;;
@@ -124,24 +192,85 @@ jobs:
           git remote add dryrun "$RUNNER_TEMP/origin.git"
           git push --quiet dryrun "$seed:refs/heads/main"
       - name: The pipeline (dry run, development days)
+        id: run
         env:
           NOW: ${{ inputs.now }}
           INPUTS: ${{ inputs.inputs }}
         run: |
+          [ -n "$NOW" ] || { echo "a dry run needs the input now (its simulated wall clock)" >&2; exit 2; }
           # Fake credentials in the consuming process only, derived from the run id and never printed.
           eval "$(.venv/bin/python -c "from cp18.guarddemo import fake_environment as f; import os, shlex; [print(f'export {k}={shlex.quote(v)}') for k, v in f(os.environ.get('GITHUB_RUN_ID', '')).items()]")"
-          set -o pipefail
+          set +e -o pipefail
           .venv/bin/python -m cp18 run --root . --project . --out "$RESULTS/run" --host runner --now "$NOW" \
               --inputs "$INPUTS" --remote dryrun --run-label "gh-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" 2>&1 | tee "$RESULTS/run.log"
-      - name: The dry run's store, carried out of the runner
+          code=$?
+          echo "exit=$code" >> "$GITHUB_OUTPUT"
+          [ "$code" != 1 ] || echo "::warning title=Not issued::a day was not issued; its cause is in the run record"
+          case "$code" in 0|1) exit 0 ;; *) exit "$code" ;; esac
+      - name: The bundle's plan (once per as-of day; the served day's A1 arrays from this run, else a refit)
+        id: plan
+        env:
+          NOW: ${{ inputs.now }}
+        run: .venv/bin/python -m cp18.local bundle-plan --root . --runs "$RESULTS/run/runs" --now "$NOW" | tee -a "$GITHUB_OUTPUT"
+      - name: The dated bundle, before the results step deletes the arrays (exit 0 publishable, 1 refused)
+        id: bundle
+        if: steps.plan.outputs.build == 'true'
+        env:
+          NOW: ${{ steps.plan.outputs.now }}
+          HOW: ${{ steps.plan.outputs.how }}
+          ARRAYS: ${{ steps.plan.outputs.arrays }}
+          INPUTS: ${{ inputs.inputs }}
+        run: |
+          case "$HOW" in arrays) how=(--arrays "$ARRAYS") ;; refit) how=(--refit) ;; *) how=() ;; esac
+          extra=()
+          [ ! -d "$RESULTS/run/payloads" ] || extra+=(--cache "$RESULTS/run/payloads")
+          case "$INPUTS" in live:*) extra+=(--recorded "${INPUTS#live:}") ;; esac
+          set +e -o pipefail
+          .venv/bin/python -m cp18.bundle --root . --project . --now "$NOW" --out "$RESULTS/bundle" "${how[@]}" \
+              "${extra[@]}" --record "$RESULTS/bundle-record.json" --commit-records \
+              --run-id "gh-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" 2>&1 | tee "$RESULTS/bundle.log"
+          code=$?
+          echo "publishable=$([ "$code" = 0 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          exit "$code"
+      - name: The Space, from the bundle
+        id: space
+        if: steps.bundle.outputs.publishable == 'true'
+        run: |
+          extra=()
+          [ ! -d "$SPACE_HISTORY" ] || extra+=(--history "$SPACE_HISTORY")
+          ! grep -q "'--live'" scripts/build_product_space.py || extra+=(--live live)
+          .venv/bin/python scripts/build_product_space.py --bundle "$RESULTS/bundle" --out "$RESULTS/space" "${extra[@]}"
+      - name: The publication, to a local static target (a dry run never publishes to the Space)
+        id: publish
+        if: steps.space.outcome == 'success'
+        run: |
+          .venv/bin/python -m cp18.publish --build "$RESULTS/space" --bundle "$RESULTS/bundle" --target "$RUNNER_TEMP/served" \
+              --root . --live live --record "$RESULTS/publication.json"
+      - name: The day's records, committed and pushed through the claim (to the dry run's origin)
+        if: ${{ !cancelled() && steps.run.outcome == 'success' }}
+        run: |
+          .venv/bin/python -m cp18.local records --root . --remote dryrun --run-id "gh-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" \
+              --out "$RESULTS/records.json"
+      - name: A development-day GFS run decoded in the runner's ecCodes environment, against the archived decode
+        if: ${{ !cancelled() && inputs.decode_run != '' }}
+        env:
+          RUN: ${{ inputs.decode_run }}
+        run: |
+          .venv/bin/python -m cp18.local decode-check --run "$RUN" \
+              --python "$CP26_PROJECT_ROOT/.local/artifacts/cp-20/wx-venv/bin/python" \
+              --archived reports/cp18a/dryrun/recorded/gfs --work "$RUNNER_TEMP/decode" --out "$RESULTS/decode-check.json"
+          mkdir -p "$RESULTS/decode" && cp "$RUNNER_TEMP"/decode/decoded/runs/* "$RESULTS/decode/"
+      - name: The dry run's store and records, carried out of the runner
         if: always()
         run: |
           git -C "$RUNNER_TEMP/origin.git" bundle create "$RESULTS/origin.bundle" main || true
-          git -C "$RUNNER_TEMP/origin.git" archive --format=tar main live/store | tar -x -C "$RESULTS" || true
+          git -C "$RUNNER_TEMP/origin.git" archive --format=tar main live | tar -x -C "$RESULTS" || true
+          rm -rf "$RESULTS/space/pyodide" "$RESULTS/space/bundle" "$RESULTS/space/history" "$RESULTS/space/payloads" || true
       - name: No fake credential in any result (by value)
         if: always()
         run: .venv/bin/python -m cp18.guarddemo scan --run-id "$GITHUB_RUN_ID" "$RESULTS" > "$RUNNER_TEMP/scan.json"; cat "$RUNNER_TEMP/scan.json"
-      - name: The results' own hashes
+      - &hashes
+        name: The results' own hashes (the fitted arrays deleted first)
         if: always()
         run: |
           find "$RESULTS" -type f -name '*-arrays.npz' -delete
@@ -153,3 +282,160 @@ jobs:
           path: ${{ env.RESULTS }}
           retention-days: 30
           if-no-files-found: error
+
+  acquire:
+    name: macos-26 acquisition before the cutoff (live)
+    if: >-
+      github.repository == 'hrsi56/delu-day-ahead-forecast' && (
+        (github.event_name == 'schedule' && vars.DAILY_SCHEDULE == 'enabled' &&
+         contains(fromJSON('["40 7 * * *", "20 8 * * *", "20 9 * * *"]'), github.event.schedule)) ||
+        (github.event_name == 'workflow_dispatch' && inputs.mode == 'acquire-live'))
+    runs-on: macos-26
+    timeout-minutes: 150
+    permissions:
+      contents: write     # the day's data-only commit of live/inputs/ to main, through the claim (N6)
+    steps:
+      - *checkout
+      - *setup-python
+      - *uv
+      - *environment
+      - *ecCodes
+      - &claim
+        name: The claim's checkout - the repository's guards active, a push credential only where a step holds one
+        run: |
+          git config core.hooksPath .githooks
+          git config credential.https://github.com.helper \
+              '!f() { test "$1" = get || exit 0; echo username=x-access-token; echo "password=${DELU_PUSH_TOKEN:?}"; }; f'
+      - name: The acquisition before the cutoff (live; nothing when the next cutoff is more than 3 h away)
+        id: acquire
+        env:
+          ENTSOE_API_TOKEN: ${{ secrets.ENTSOE_API_TOKEN }}
+          DELU_PUSH_TOKEN: ${{ github.token }}
+          DAY: ${{ inputs.day }}
+        run: |
+          .venv/bin/python -m cp18 acquire --root . --out "$RESULTS/acquire.json" --remote origin --window-hours 3 \
+              ${DAY:+--day "$DAY"}
+      - &scan
+        name: No credential in any result (by value; a found value uploads nothing)
+        id: scan
+        if: always()
+        env:
+          ENTSOE_API_TOKEN: ${{ secrets.ENTSOE_API_TOKEN }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          DELU_PUSH_TOKEN: ${{ github.token }}
+        run: |
+          .venv/bin/python -m cp18.local scan --name ENTSOE_API_TOKEN --name HF_TOKEN --name DELU_PUSH_TOKEN \
+              --out "$RUNNER_TEMP/scan.json" "$RESULTS"
+      - *hashes
+      - &upload
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
+        if: ${{ !cancelled() && steps.scan.outcome == 'success' }}
+        with:
+          name: daily
+          path: ${{ env.RESULTS }}
+          retention-days: 30
+          if-no-files-found: error
+
+  run:
+    name: macos-26 daily pipeline (live)
+    if: >-
+      github.repository == 'hrsi56/delu-day-ahead-forecast' && (
+        (github.event_name == 'schedule' && vars.DAILY_SCHEDULE == 'enabled' &&
+         contains(fromJSON('["40 10 * * *", "40 13 * * *"]'), github.event.schedule)) ||
+        (github.event_name == 'workflow_dispatch' && inputs.mode == 'live'))
+    runs-on: macos-26
+    timeout-minutes: 150
+    permissions:
+      contents: write     # the day's data-only records to main, through the claim (N6)
+    steps:
+      - *checkout
+      - *setup-python
+      - *uv
+      - *environment
+      - *ecCodes
+      - *guards
+      - *claim
+      - name: The pinned states by hash, Pyodide and the official binary retrieved by hash, the package zip rebuilt
+        run: |
+          .venv/bin/python -m cp18 prepare --root . --project . --pinned live/pinned \
+              --retrieve-pyodide --retrieve-node --out "$RESULTS/prepare.json"
+      - name: The pipeline (live, the real clock)
+        id: run
+        env:
+          ENTSOE_API_TOKEN: ${{ secrets.ENTSOE_API_TOKEN }}
+          DELU_PUSH_TOKEN: ${{ github.token }}
+        run: |
+          set +e -o pipefail
+          .venv/bin/python -m cp18 run --root . --project . --out "$RESULTS/run" --host runner --mode live \
+              --inputs live-http --remote origin --run-label "gh-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" 2>&1 | tee "$RESULTS/run.log"
+          code=$?
+          echo "exit=$code" >> "$GITHUB_OUTPUT"
+          [ "$code" != 1 ] || echo "::warning title=Not issued::a day was not issued; its cause is in the store"
+          case "$code" in 0|1) exit 0 ;; *) exit "$code" ;; esac
+      - name: The bundle's plan (once per as-of day; the served day's A1 arrays from this run, else a refit)
+        id: plan
+        run: |
+          .venv/bin/python -m cp18.local bundle-plan --mode live --root . --runs "$RESULTS/run/runs" \
+              --now "$(date -u +%Y-%m-%dT%H:%M:%S+00:00)" | tee -a "$GITHUB_OUTPUT"
+      - name: The dated bundle, before the results step deletes the arrays (exit 0 publishable, 1 refused)
+        id: bundle
+        if: steps.plan.outputs.build == 'true'
+        env:
+          NOW: ${{ steps.plan.outputs.now }}
+          HOW: ${{ steps.plan.outputs.how }}
+          ARRAYS: ${{ steps.plan.outputs.arrays }}
+        run: |
+          case "$HOW" in arrays) how=(--arrays "$ARRAYS") ;; refit) how=(--refit) ;; *) how=() ;; esac
+          extra=()
+          [ ! -d "$RESULTS/run/payloads" ] || extra+=(--cache "$RESULTS/run/payloads")
+          set +e -o pipefail
+          .venv/bin/python -m cp18.bundle --root . --project . --mode live --now "$NOW" --out "$RESULTS/bundle" \
+              "${how[@]}" "${extra[@]}" --record "$RESULTS/bundle-record.json" --commit-records \
+              --run-id "gh-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" 2>&1 | tee "$RESULTS/bundle.log"
+          code=$?
+          echo "publishable=$([ "$code" = 0 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          exit "$code"
+      - name: The Space, from the bundle
+        id: space
+        if: steps.bundle.outputs.publishable == 'true'
+        run: |
+          .venv/bin/python scripts/build_product_space.py --bundle "$RESULTS/bundle" --out "$RESULTS/space" --live live \
+              --history "$SPACE_HISTORY"
+      - name: The publication to the Hugging Face Space, then the served identity read back
+        id: publish
+        if: steps.space.outcome == 'success'
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          .venv/bin/python -m cp18.publish --build "$RESULTS/space" --bundle "$RESULTS/bundle" --hub "$SPACE_HUB" \
+              --root . --live live --record "$RESULTS/publication.json"
+      - name: The day's records, committed and pushed through the claim
+        if: ${{ !cancelled() && steps.run.outcome == 'success' }}
+        env:
+          DELU_PUSH_TOKEN: ${{ github.token }}
+        run: |
+          .venv/bin/python -m cp18.local records --root . --remote origin --run-id "gh-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" \
+              --out "$RESULTS/records.json"
+      - name: The Space build's large copies dropped from the results (its build record kept)
+        if: always()
+        run: rm -rf "$RESULTS/space/pyodide" "$RESULTS/space/bundle" "$RESULTS/space/history" "$RESULTS/space/payloads" || true
+      - *scan
+      - *hashes
+      - *upload
+
+  keep-alive:
+    name: The schedule stays enabled (belt and braces)
+    if: >-
+      github.repository == 'hrsi56/delu-day-ahead-forecast' && github.event_name == 'schedule' &&
+      vars.DAILY_SCHEDULE == 'enabled' && github.event.schedule == '40 13 * * *'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      actions: write      # PUT .../actions/workflows/daily.yml/enable, and nothing else
+    steps:
+      - name: Re-enable this workflow through GitHub's own API (a no-op while it is enabled), and record its state
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api -X PUT "repos/$GITHUB_REPOSITORY/actions/workflows/daily.yml/enable"
+          gh api "repos/$GITHUB_REPOSITORY/actions/workflows/daily.yml" --jq '{state, updated_at}'

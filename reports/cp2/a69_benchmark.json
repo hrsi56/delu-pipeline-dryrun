@@ -1,0 +1,51 @@
+{
+  "a69_augmented_arm": {
+    "arm": "base+a69",
+    "median_mae": 29.938304283078843,
+    "n_obs": 10747,
+    "per_fold_pinball": {
+      "fold_1": 1.4828565704881191,
+      "fold_2": 6.082768219658286,
+      "fold_3": 38.393321419086206,
+      "fold_4": 3.616555001890767,
+      "fold_5": 3.4232957956992953
+    },
+    "pooled_mean_pinball": 10.478714632475889
+  },
+  "a69_columns_added": [
+    "wind_onshore_forecast_mw",
+    "wind_offshore_forecast_mw",
+    "solar_forecast_mw",
+    "vre_forecast_mw",
+    "residual_load_fc",
+    "dunkelflaute_flag"
+  ],
+  "calibrated": false,
+  "code_sha": "525fc2d4c5bc8763b0da30197030740c49c73b34",
+  "coverage_reported": false,
+  "deployable_artifact": false,
+  "development_pooled_mean_pinball_for_selected_catalog": 13.015841509664993,
+  "headline_metric": "pooled mean pinball loss across nine quantiles and five folds, raw heads",
+  "limitation": "This uncalibrated raw-head comparison isolates the information content of post-gate A69. It makes no claim about calibrated interval quality and does not make A69 available at the forecast gate.",
+  "per_row_predictions": "reports/cp2/a69_benchmark_predictions.parquet -- both arms' raw head predictions on every evaluation row, so the headline percentage difference can be recomputed without re-running the training",
+  "percentage_difference_a69_vs_strict": -19.492607337797907,
+  "registry_version": false,
+  "seed": 42,
+  "snapshot_sha256": "7dd2dc73407706ca6bd3c1ad51d201ac0de35eec5ca129ce320cca639f697f00",
+  "strict_arm": {
+    "arm": "base",
+    "median_mae": 41.75983235890547,
+    "n_obs": 10747,
+    "per_fold_pinball": {
+      "fold_1": 2.0705486470152095,
+      "fold_2": 5.929467167913441,
+      "fold_3": 45.85218792826239,
+      "fold_4": 5.379494777794156,
+      "fold_5": 6.561973277720856
+    },
+    "pooled_mean_pinball": 13.015841509664993
+  },
+  "strict_arm_reproduces_development_selection_run": true,
+  "uncommitted_source_when_run_started": false,
+  "value_of_post_gate_information_pct": 19.492607337797907
+}

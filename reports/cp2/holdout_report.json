@@ -1,0 +1,93 @@
+{
+  "artifact_bytes_are_not_stable": "MLflow stamps a fresh model_uuid and creation time into MLmodel and cloudpickle is not byte-reproducible, so models/champion changes on every save while the model does not. artifact_fingerprint_sha256 -- catalog, feature list, quantiles, the four thresholds and the nine boosters' own serializations -- is the identity to check.",
+  "artifact_fingerprint_sha256": "57e3ad40a7f48bb7896628ce2e5dec61314dea567da9867aede4bf1b0a10e0fb",
+  "champion_mae": 25.907780440955044,
+  "champion_mean_pinball": 6.708294915819919,
+  "code_sha": "525fc2d4c5bc8763b0da30197030740c49c73b34",
+  "crossing_violations_final": 0,
+  "cutoffs": {
+    "final_calibration_window": "2026-04-09..2026-06-07",
+    "holdout_window": "2026-06-09..2026-09-06",
+    "raw_model_fit_cutoff": "2026-04-07",
+    "raw_model_fit_precedes_snapshot_by_delivery_days": "152",
+    "snapshot_cutoff": "2026-09-06"
+  },
+  "differences_from_previous_run": {},
+  "dm": {
+    "analysis": "probabilistic_daily_vector_pinball",
+    "comparator": "similar_day_naive",
+    "evidence_class": "one_shot_holdout",
+    "lag_truncation": 4,
+    "long_run_variance": 61.42255148654378,
+    "mean_loss_differential": -7.170588764735637,
+    "model_better_at_5pct": true,
+    "n_days": 90,
+    "p_value": 1.9814819075825897e-18,
+    "relative_improvement_pct": 51.66545761012248,
+    "standardized_effect_size": -1.0477562158534526,
+    "statistic": -8.679848490812438
+  },
+  "dm_label": "Pre-specified one-shot holdout DM test on a fixed 90-day window \u2014 confirmatory-style, not power-qualified.",
+  "eligibility_rule": "a row is eligible when its target is finite and every `base` feature is non-null; the rule depends on neither the augmented nor the A69 columns, so every arm sees identical rows. Ineligible rows are the feature warm-up (720h rolling window), the DST-null calendar-day lags, and days with a missing A65 hour.",
+  "evaluated_once": true,
+  "evaluation_decision_taken_once": true,
+  "execution_note": "'Evaluated exactly once' is a statement about the evaluation decision, not about how many times a deterministic script may be run -- the Integration Critic must re-run it from a clean worktree to verify, which is a reproduction rather than a second evaluation. This script was run repeatedly while CP-2 was authored: once aborted on the runtime firewall before any outcome was read, and every completed run reproduced the previous run's metrics and artifact fingerprint exactly (see reproduces_previous_run_exactly). No catalog, hyperparameter, threshold or analysis choice was changed after any of them. The authoritative run count is the public MLflow record, not a number written here. No count is kept in this file: a hardcoded one cannot update itself and was wrong once, and a local counter resets whenever a previous report lacked the field and was wrong differently.",
+  "fields_compared_against_previous_run": [
+    "artifact_fingerprint_sha256",
+    "champion_mae",
+    "champion_mean_pinball",
+    "final_coverage",
+    "final_cqr_thresholds",
+    "similar_day_naive_mae",
+    "similar_day_naive_mean_pinball"
+  ],
+  "final_coverage": {
+    "50": 0.44074074074074077,
+    "80": 0.7592592592592593,
+    "95": 0.9398148148148148
+  },
+  "final_cqr_thresholds": {
+    "p025_p975": 18.62289828175607,
+    "p05_p95": 14.455407162140105,
+    "p10_p90": 9.7117992990109,
+    "p25_p75": 3.516837342123054
+  },
+  "mae_percentage_difference_vs_naive": -6.664754034749622,
+  "n_holdout_days": 90,
+  "n_holdout_rows": 2160,
+  "n_raw_fit_rows": 62688,
+  "n_rows_before_embargo_a": 63695,
+  "n_rows_before_embargo_a_ineligible": 1007,
+  "pinball_percentage_difference_vs_naive": -51.66545761012248,
+  "post_cqr_coverage": {
+    "50": 0.4388888888888889,
+    "80": 0.7597222222222222,
+    "95": 0.9398148148148148
+  },
+  "raw_coverage": {
+    "50": 0.35462962962962963,
+    "80": 0.5990740740740741,
+    "95": 0.8393518518518519
+  },
+  "reproduces_previous_run_exactly": true,
+  "retrain_after_holdout": false,
+  "retune_after_holdout": false,
+  "selected_catalog": "base",
+  "sequential_equivalence": {
+    "days_checked": 90,
+    "mismatched_days": [],
+    "rows_checked": 2160
+  },
+  "similar_day_naive_mae": 27.75776736111111,
+  "similar_day_naive_mean_pinball": 13.878883680555557,
+  "snapshot_sha256": "7dd2dc73407706ca6bd3c1ad51d201ac0de35eec5ca129ce320cca639f697f00",
+  "source_paths_checked": [
+    "src",
+    "scripts",
+    "tests",
+    "pyproject.toml",
+    "uv.lock",
+    "data"
+  ],
+  "uncommitted_source_when_run_started": false
+}

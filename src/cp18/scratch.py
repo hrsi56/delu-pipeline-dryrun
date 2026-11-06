@@ -8,6 +8,10 @@ Built from a commit of the candidate, file by file, each recorded with its SHA-2
 - the guards the pipeline's commits and pushes run (`.githooks/`, `scripts/secret_guard.py`, `scripts/leak_scan.py`,
   `scripts/publication_guard.py` with the final page and build record it checks), and `.gitignore`;
 - the workflow at `.github/workflows/daily.yml`;
+- for CP-18c's post-run sequence: the Space's source (`space-product/`) and its build script, the static development
+  records the bundle carries, the host-parity record the Space build cites, the records and model card the Space's
+  claims read, and CP-20's pinned ecCodes requirements the runner's ecCodes environment is installed from
+  (`SEQUENCE`);
 - the dry run's material under `reports/cp18a/dryrun/`: A1's `k13.json`, the freeze-origin states and the canary
   payload (by the freeze manifest's hashes), the development state the store starts from, the recorded responses
   the live-input builder replays, and any store an earlier run carried out (`carried/<name>/`);
@@ -15,9 +19,16 @@ Built from a commit of the candidate, file by file, each recorded with its SHA-2
 
 Pyodide's 23 files and the Node.js binary are not in the tree: each run retrieves them from their official URLs and
 checks them by hash. Nothing dated after 2026-09-06 is shipped: the snapshot's and the weather features' rows pass the
-boundary guard (`cp25.guard`), and every shipped file passes the round's red-line scan.
+boundary guard (`cp25.guard`), and every shipped file passes the round's red-line scan. **The live record never enters
+the tree:** nothing under `live/` is shipped (`build` refuses it), so the scratch repository holds no live day, and v1's
+deployed files (`reports/cp18c/history-v1/`) stay out too (the dry run builds the Space without `/history/`).
 
-    PYTHONPATH=src python -m cp18.scratch --out <empty folder> --record <file> [--carried <name>=<store folder>]
+A candidate with uncommitted changes is refused, unless `--uncommitted` is given (a Builder's rehearsal of work it may
+not commit): the tree is then the working tree's content of the same tracked files, and the record lists every
+uncommitted path with its SHA-256 beside the base commit.
+
+    PYTHONPATH=src python -m cp18.scratch --out <empty folder> --record <file> [--carried <name>=<store folder>] \
+        [--uncommitted]
 """
 from __future__ import annotations
 
@@ -30,12 +41,22 @@ import subprocess
 EXTRA = ('.gitignore', '.githooks/pre-commit', '.githooks/commit-msg', '.githooks/pre-push', 'scripts/secret_guard.py',
          'scripts/leak_scan.py', 'scripts/publication_guard.py', 'docs/index.html', 'reports/cp3/pages_build.json',
          'reports/weather-ablation/weather-features.parquet', 'data/partitions.json', '.github/workflows/daily.yml')
+SEQUENCE = ('space-product/', 'scripts/build_product_space.py', 'reports/cp18b/evaluation/development.json',
+            'reports/cp17/host-parity.json', 'reports/weather-admission/scripts/requirements.freeze.txt',
+            # what the Space build's claims read (`delu_forecast.claims`, `cp18.live_claims`): v1's records and model
+            'docs/track-b/evidence/cp-17/4-7t-frozen-protocol.md', 'reports/cp17/report.md',
+            'reports/cp2/holdout_report.json', 'reports/cp2/catalog_selection.json', 'reports/cp2/a69_benchmark.json',
+            'reports/cp2/dm_development.json', 'reports/cp2/development_pooled_metrics.csv',
+            'reports/cp3b/network.json', 'reports/cp3b/equivalence.json', 'models/champion/champion_card.json',
+            'models/champion/python_model.pkl')
+NEVER = ('live/', 'reports/cp18c/history-v1/')
 DRY_RUN = 'reports/cp18a/dryrun/'
 README = """# delu-pipeline-dryrun
 
-Public scratch repository for CP-18a of the DE-LU day-ahead forecasting project
+Public scratch repository for CP-18a and CP-18c of the DE-LU day-ahead forecasting project
 ([hrsi56/delu-day-ahead-forecast](https://github.com/hrsi56/delu-day-ahead-forecast)): dry runs of the daily pipeline
-around the frozen A1 package on GitHub-hosted `macos-26` runners, on development days through 2026-09-06 only.
+around the frozen A1 package on GitHub-hosted `macos-26` runners, on development days through 2026-09-06 only. The
+workflow's live jobs run only in the product repository; here, only its dry run is dispatched.
 
 It holds only what the runs need: the candidate's code and the files its freeze manifest verifies, the guards, the
 workflow, A1's search state, the freeze-origin states, the canary's payload, a development state for the store and the
@@ -55,7 +76,8 @@ def tracked(root: Path) -> list[str]:
     from cp17c import inputs
     listed = set(_git(root, 'ls-files').splitlines())
     out = set(inputs.tracked(root)) | {p for p in EXTRA if p in listed} | {p for p in listed if p.startswith(DRY_RUN)}
-    return sorted(out)
+    out |= {p for p in listed if any(p == s or (s.endswith('/') and p.startswith(s)) for s in SEQUENCE)}
+    return sorted(p for p in out if not p.startswith(NEVER))
 
 
 def boundary(root: Path) -> dict:
@@ -91,16 +113,21 @@ def payloads(source: Path, days: list[str], out: Path, files: dict) -> None:
                                   'payload_sha256': value['payload_sha256']}
 
 
-def build(root: Path, out: Path, carried: dict[str, Path] | None = None, prebuilt: tuple | None = None) -> dict:
+def build(root: Path, out: Path, carried: dict[str, Path] | None = None, prebuilt: tuple | None = None,
+          uncommitted: bool = False) -> dict:
     from cp17 import runtime
     root, out = Path(root).resolve(), Path(out)
     if out.exists() and any(out.iterdir()):
         raise SystemExit(f'{out} is not empty; the scratch tree is built once, from nothing')
-    if _git(root, 'status', '--porcelain').strip():
+    status = [line for line in _git(root, 'status', '--porcelain', '--untracked-files=no').splitlines() if line.strip()]
+    if status and not uncommitted:
         raise SystemExit('the candidate has uncommitted changes; the scratch tree is built from a commit')
     head = _git(root, 'rev-parse', 'HEAD').strip()
     files = {}
-    for rel in tracked(root):
+    shipped = tracked(root)
+    if any(p.startswith(NEVER) for p in shipped):
+        raise SystemExit('the scratch tree never holds the live record or v1\'s files')
+    for rel in shipped:
         target = out / rel
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(root / rel, target)
@@ -122,7 +149,9 @@ def build(root: Path, out: Path, carried: dict[str, Path] | None = None, prebuil
     files['README.md'] = {'sha256': runtime.sha256_file(out / 'README.md'), 'bytes': (out / 'README.md').stat().st_size}
     (out / 'scratch-files.json').write_text(json.dumps({k: v['sha256'] for k, v in sorted(files.items())}, indent=1) + '\n')
     big = max(files.items(), key=lambda kv: kv[1]['bytes'])
-    return {'schema': 'cp18a-scratch-tree-v1', 'candidate': head, 'files': len(files),
+    dirty = {line[3:]: (runtime.sha256_file(root / line[3:]) if (root / line[3:]).is_file() else None)
+             for line in status}
+    return {'schema': 'cp18a-scratch-tree-v1', 'candidate': head, 'uncommitted': dirty, 'files': len(files),
             'bytes': sum(v['bytes'] for v in files.values()), 'largest': {'path': big[0], 'bytes': big[1]['bytes']},
             'boundary': boundary(out), 'scratch_files_sha256': runtime.sha256_file(out / 'scratch-files.json'),
             'carried': {k: str(v) for k, v in (carried or {}).items()}}
@@ -135,13 +164,15 @@ def main(argv=None) -> int:
     ap.add_argument('--record', required=True, type=Path)
     ap.add_argument('--carried', action='append', default=[], help='<name>=<store folder>')
     ap.add_argument('--payloads', help='<folder>:<day>,<day>,...: development payloads for a prebuilt dry run')
+    ap.add_argument('--uncommitted', action='store_true', help='build from the working tree of a candidate with '
+                                                               'uncommitted changes, each listed with its SHA-256')
     args = ap.parse_args(argv)
     carried = dict((spec.split('=', 1)[0], Path(spec.split('=', 1)[1])) for spec in args.carried)
     prebuilt = None
     if args.payloads:
         folder, _, days = args.payloads.rpartition(':')
         prebuilt = (folder, days.split(','))
-    record = build(args.root, args.out, carried, prebuilt)
+    record = build(args.root, args.out, carried, prebuilt, uncommitted=args.uncommitted)
     args.record.parent.mkdir(parents=True, exist_ok=True)
     args.record.write_text(json.dumps(record, indent=1, sort_keys=True) + '\n')
     print(record['files'], 'files', record['bytes'], 'bytes; largest', record['largest'])

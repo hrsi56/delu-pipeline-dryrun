@@ -1,0 +1,2093 @@
+{
+ "browser_host": {
+  "cpu_count": 8,
+  "machine": "arm64",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "playwright": "1.63.0"
+ },
+ "browser_runs": [
+  {
+   "bitwise_equal_to_issuing_host": true,
+   "blocked_non_local_requests": [],
+   "browser": "chromium",
+   "browser_version": "153.0.8010.12",
+   "errors": [],
+   "executed_files_match_package": true,
+   "max_abs_eur_by_level_vs_native": {
+    "p025": 9.379164112033322e-13,
+    "p10": 7.247535904753022e-13,
+    "p25": 6.465938895416912e-13,
+    "p50": 2.4158453015843406e-13,
+    "p75": 5.044853423896711e-13,
+    "p90": 3.979039320256561e-13,
+    "p975": 6.252776074688882e-13
+   },
+   "max_abs_eur_vs_native": 9.379164112033322e-13,
+   "memory_bytes": {
+    "browser_processes_rss_peak": 1739571200,
+    "wasm_linear_memory_peak": 225247232
+   },
+   "payload_bytes": {
+    "first_visit": 3448,
+    "gzip": {
+     "code": 84919,
+     "data": 533483,
+     "packages": 32156585,
+     "page": 1708,
+     "runtime": 5446388
+    },
+    "raw": {
+     "code": 86707,
+     "data": 538987,
+     "packages": 32687456,
+     "page": 3448,
+     "runtime": 12259068
+    },
+    "training_payload": 45572218,
+    "training_payload_gzip": 38221375
+   },
+   "policy": "A1",
+   "runtime": {
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections_match_issuing_host": true,
+   "selections_match_native": true,
+   "status_vs_issuing_host": "identical bit for bit",
+   "status_vs_native": "within \u00b10.01 EUR/MWh",
+   "stem": "A1-2026-09-06",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "time_seconds": {
+    "attribution": 0.3393999999999977,
+    "fit": 65.6214,
+    "native_fit": 14.756585958995856,
+    "packages_ready": 2.0778999999910592,
+    "payload_ready": 2.09420000000298,
+    "runtime_ready": 0.7215,
+    "total_in_worker": 71.282
+   }
+  },
+  {
+   "bitwise_equal_to_issuing_host": true,
+   "blocked_non_local_requests": [],
+   "browser": "chromium",
+   "browser_version": "153.0.8010.12",
+   "errors": [],
+   "executed_files_match_package": true,
+   "max_abs_eur_by_level_vs_native": {
+    "p025": 4.263256414560601e-13,
+    "p10": 4.263256414560601e-13,
+    "p25": 4.263256414560601e-13,
+    "p50": 4.263256414560601e-13,
+    "p75": 4.263256414560601e-13,
+    "p90": 4.263256414560601e-13,
+    "p975": 4.263256414560601e-13
+   },
+   "max_abs_eur_vs_native": 4.263256414560601e-13,
+   "memory_bytes": {
+    "browser_processes_rss_peak": 1830944768,
+    "wasm_linear_memory_peak": 287834112
+   },
+   "payload_bytes": {
+    "first_visit": 3448,
+    "gzip": {
+     "code": 84919,
+     "data": 3109364,
+     "packages": 32156585,
+     "page": 1708,
+     "runtime": 5446388
+    },
+    "raw": {
+     "code": 86707,
+     "data": 3536733,
+     "packages": 32687456,
+     "page": 3448,
+     "runtime": 12259068
+    },
+    "training_payload": 48569964,
+    "training_payload_gzip": 40797256
+   },
+   "policy": "v4",
+   "runtime": {
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections_match_issuing_host": true,
+   "selections_match_native": true,
+   "status_vs_issuing_host": "identical bit for bit",
+   "status_vs_native": "within \u00b10.01 EUR/MWh",
+   "stem": "v4-2026-09-06",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "time_seconds": {
+    "attribution": 14.939600000000006,
+    "fit": 54.2166,
+    "native_fit": 30.470945874985773,
+    "packages_ready": 2.0575,
+    "payload_ready": 2.072300000011921,
+    "runtime_ready": 0.701,
+    "total_in_worker": 72.75330000001192
+   }
+  },
+  {
+   "bitwise_equal_to_issuing_host": true,
+   "blocked_non_local_requests": [],
+   "browser": "webkit",
+   "browser_version": "26.6",
+   "errors": [],
+   "executed_files_match_package": true,
+   "max_abs_eur_by_level_vs_native": {
+    "p025": 9.379164112033322e-13,
+    "p10": 7.247535904753022e-13,
+    "p25": 6.465938895416912e-13,
+    "p50": 2.4158453015843406e-13,
+    "p75": 5.044853423896711e-13,
+    "p90": 3.979039320256561e-13,
+    "p975": 6.252776074688882e-13
+   },
+   "max_abs_eur_vs_native": 9.379164112033322e-13,
+   "memory_bytes": {
+    "browser_processes_rss_peak": 1441136640,
+    "wasm_linear_memory_peak": 225247232
+   },
+   "payload_bytes": {
+    "first_visit": 3448,
+    "gzip": {
+     "code": 84919,
+     "data": 533483,
+     "packages": 32156585,
+     "page": 1708,
+     "runtime": 5446388
+    },
+    "raw": {
+     "code": 86707,
+     "data": 538987,
+     "packages": 32687456,
+     "page": 3448,
+     "runtime": 12259068
+    },
+    "training_payload": 45572218,
+    "training_payload_gzip": 38221375
+   },
+   "policy": "A1",
+   "runtime": {
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections_match_issuing_host": true,
+   "selections_match_native": true,
+   "status_vs_issuing_host": "identical bit for bit",
+   "status_vs_native": "within \u00b10.01 EUR/MWh",
+   "stem": "A1-2026-09-06",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "time_seconds": {
+    "attribution": 0.3190000000000026,
+    "fit": 61.998,
+    "native_fit": 14.756585958995856,
+    "packages_ready": 1.821,
+    "payload_ready": 1.841,
+    "runtime_ready": 0.709,
+    "total_in_worker": 66.673
+   }
+  },
+  {
+   "bitwise_equal_to_issuing_host": true,
+   "blocked_non_local_requests": [],
+   "browser": "webkit",
+   "browser_version": "26.6",
+   "errors": [],
+   "executed_files_match_package": true,
+   "max_abs_eur_by_level_vs_native": {
+    "p025": 4.263256414560601e-13,
+    "p10": 4.263256414560601e-13,
+    "p25": 4.263256414560601e-13,
+    "p50": 4.263256414560601e-13,
+    "p75": 4.263256414560601e-13,
+    "p90": 4.263256414560601e-13,
+    "p975": 4.263256414560601e-13
+   },
+   "max_abs_eur_vs_native": 4.263256414560601e-13,
+   "memory_bytes": {
+    "browser_processes_rss_peak": 1552941056,
+    "wasm_linear_memory_peak": 324403200
+   },
+   "payload_bytes": {
+    "first_visit": 3448,
+    "gzip": {
+     "code": 84919,
+     "data": 3109364,
+     "packages": 32156585,
+     "page": 1708,
+     "runtime": 5446388
+    },
+    "raw": {
+     "code": 86707,
+     "data": 3536733,
+     "packages": 32687456,
+     "page": 3448,
+     "runtime": 12259068
+    },
+    "training_payload": 48569964,
+    "training_payload_gzip": 40797256
+   },
+   "policy": "v4",
+   "runtime": {
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections_match_issuing_host": true,
+   "selections_match_native": true,
+   "status_vs_issuing_host": "identical bit for bit",
+   "status_vs_native": "within \u00b10.01 EUR/MWh",
+   "stem": "v4-2026-09-06",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "time_seconds": {
+    "attribution": 16.060000000000002,
+    "fit": 57.914,
+    "native_fit": 30.470945874985773,
+    "packages_ready": 1.788,
+    "payload_ready": 1.807,
+    "runtime_ready": 0.684,
+    "total_in_worker": 77.263
+   }
+  }
+ ],
+ "issuing_host": {
+  "path": "/opt/homebrew/Cellar/node/26.7.0/bin/node",
+  "sha256": "1ef99ea25fe70c9b67e7efe768ef8ee22148d3cabc703db6131b57aeb617d040",
+  "version": "v26.7.0"
+ },
+ "issuing_host_parity": [
+  {
+   "attribution": null,
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2025-10-26",
+   "executed_files_match_package": true,
+   "fit_seconds": 148.572206417,
+   "host_total_seconds": 153.70688875000002,
+   "issued_quantiles_sha256": "93f75363ec6e70de36103537303b68e4d9b9127b1431e2ea918d15b10f059143",
+   "max_abs_eur": 0.027920439929715712,
+   "max_abs_eur_by_level": {
+    "p025": 3.862817322897172e-06,
+    "p10": 0.016762358472959704,
+    "p25": 0.025359634297267064,
+    "p50": 0.027920439929715712,
+    "p75": 0.014086343019133807,
+    "p90": 0.012391089355752172,
+    "p975": 2.984938497263556e-06
+   },
+   "members_max_abs_eur": {
+    "member 0 (cp26-k11-t012, seed 27190011, 75 epochs, patience)": 3.410605131648481e-13,
+    "member 1 (cp26-k11-t012, seed 27190012, 82 epochs, patience)": 6.821210263296962e-13,
+    "member 2 (cp26-k11-t020, seed 27190021, 374 epochs, patience)": 2.8421709430404007e-13,
+    "member 3 (cp26-k11-t020, seed 27190022, 478 epochs, patience)": 4.547473508864641e-13,
+    "member 4 (cp26-k11-t032, seed 27190031, 1000 epochs, max_epochs)": 3.605867283340558e-05,
+    "member 5 (cp26-k11-t032, seed 27190032, 1000 epochs, max_epochs)": 0.77186390015504,
+    "member 6 (cp26-k11-t031, seed 27190041, 575 epochs, patience)": 2.2737367544323206e-13,
+    "member 7 (cp26-k11-t031, seed 27190042, 432 epochs, patience)": 3.694822225952521e-13
+   },
+   "native_fit_seconds": 28.363527124995016,
+   "native_quantiles_sha256": "b322133f60afd54ad8e10912f956aeffb4038ed59ec9d668ca06b6cc301f4f63",
+   "payload_sha256_equal": true,
+   "policy": "A1",
+   "process_rss_peak_bytes": 640974848,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "crossed_rows_match": true,
+    "diagnostics": [
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur"
+      ],
+      "member": 0
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 1
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 2
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 3
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 4
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 5
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur"
+      ],
+      "member": 6
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 7
+     }
+    ],
+    "members": [
+     {
+      "differences": [],
+      "member": 0,
+      "seed": 27190011
+     },
+     {
+      "differences": [],
+      "member": 1,
+      "seed": 27190012
+     },
+     {
+      "differences": [],
+      "member": 2,
+      "seed": 27190021
+     },
+     {
+      "differences": [],
+      "member": 3,
+      "seed": 27190022
+     },
+     {
+      "differences": [],
+      "member": 4,
+      "seed": 27190031
+     },
+     {
+      "differences": [],
+      "member": 5,
+      "seed": 27190032
+     },
+     {
+      "differences": [],
+      "member": 6,
+      "seed": 27190041
+     },
+     {
+      "differences": [],
+      "member": 7,
+      "seed": 27190042
+     }
+    ]
+   },
+   "selections_match": true,
+   "status": "different",
+   "stem": "A1-2025-10-26",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 196214784
+  },
+  {
+   "attribution": {
+    "efficiency_max_abs": 2.842170943040401e-14,
+    "method": "exact baseline Shapley over input groups, issued p50, training-mean baseline",
+    "phi_max_abs_eur": 2.0646327758555572e-07,
+    "players_equal": true,
+    "seconds": 0.21754629199999442
+   },
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-03-29",
+   "executed_files_match_package": true,
+   "fit_seconds": 73.377357208,
+   "host_total_seconds": 78.75711558299999,
+   "issued_quantiles_sha256": "b5ca894f8f99128fc69ed1b6c6afdaea3fa5d7e05052ae90e70eedd01022cc05",
+   "max_abs_eur": 6.27698966582102e-07,
+   "max_abs_eur_by_level": {
+    "p025": 3.0111785775943645e-07,
+    "p10": 2.0162776337429023e-07,
+    "p25": 3.0177760379501706e-07,
+    "p50": 2.3198408882763033e-07,
+    "p75": 4.6974999179383303e-07,
+    "p90": 6.27698966582102e-07,
+    "p975": 8.38702902683508e-08
+   },
+   "members_max_abs_eur": {
+    "member 0 (cp26-k12-t041, seed 27290011, 94 epochs, patience)": 2.4158453015843406e-13,
+    "member 1 (cp26-k12-t041, seed 27290012, 92 epochs, patience)": 2.2737367544323206e-13,
+    "member 2 (cp26-k12-t083, seed 27290021, 73 epochs, patience)": 5.968558980384842e-13,
+    "member 3 (cp26-k12-t083, seed 27290022, 86 epochs, patience)": 2.1032064978498966e-12,
+    "member 4 (cp26-k12-t108, seed 27290031, 441 epochs, patience)": 2.5579538487363607e-13,
+    "member 5 (cp26-k12-t108, seed 27290032, 334 epochs, patience)": 5.400124791776761e-13,
+    "member 6 (cp26-k12-t096, seed 27290041, 338 epochs, patience)": 1.7781938765892846e-06,
+    "member 7 (cp26-k12-t096, seed 27290042, 300 epochs, patience)": 6.022358007840012e-07
+   },
+   "native_fit_seconds": 15.733847041003173,
+   "native_quantiles_sha256": "67ef0f36783947f4d79f1b67995fe4ee586e8d465184ab5ccbbc88be3c41145a",
+   "payload_sha256_equal": true,
+   "policy": "A1",
+   "process_rss_peak_bytes": 661946368,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "crossed_rows_match": true,
+    "diagnostics": [
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 0
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 1
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 2
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur"
+      ],
+      "member": 3
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 4
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 5
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur"
+      ],
+      "member": 6
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur"
+      ],
+      "member": 7
+     }
+    ],
+    "members": [
+     {
+      "differences": [],
+      "member": 0,
+      "seed": 27290011
+     },
+     {
+      "differences": [],
+      "member": 1,
+      "seed": 27290012
+     },
+     {
+      "differences": [],
+      "member": 2,
+      "seed": 27290021
+     },
+     {
+      "differences": [],
+      "member": 3,
+      "seed": 27290022
+     },
+     {
+      "differences": [],
+      "member": 4,
+      "seed": 27290031
+     },
+     {
+      "differences": [],
+      "member": 5,
+      "seed": 27290032
+     },
+     {
+      "differences": [],
+      "member": 6,
+      "seed": 27290041
+     },
+     {
+      "differences": [],
+      "member": 7,
+      "seed": 27290042
+     }
+    ]
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "A1-2026-03-29",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 198115328
+  },
+  {
+   "attribution": null,
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-08-31",
+   "executed_files_match_package": true,
+   "fit_seconds": 72.594341708,
+   "host_total_seconds": 77.54714975,
+   "issued_quantiles_sha256": "75d86a3b3cb9f670b091a0dada961170e52f3a5f2bda0536265e4fd5c2e9249c",
+   "max_abs_eur": 9.388401167598204e-09,
+   "max_abs_eur_by_level": {
+    "p025": 9.388401167598204e-09,
+    "p10": 6.993701617830084e-09,
+    "p25": 4.9055017825594405e-09,
+    "p50": 4.150081167608732e-09,
+    "p75": 3.3955416256503668e-09,
+    "p90": 2.456317815813236e-09,
+    "p975": 4.444970613803889e-09
+   },
+   "members_max_abs_eur": {
+    "member 0 (cp26-k13-t040, seed 27390011, 187 epochs, patience)": 4.831690603168681e-13,
+    "member 1 (cp26-k13-t040, seed 27390012, 209 epochs, patience)": 1.9895196601282805e-13,
+    "member 2 (cp26-k13-t094, seed 27390021, 155 epochs, patience)": 1.6200374375330284e-12,
+    "member 3 (cp26-k13-t094, seed 27390022, 262 epochs, patience)": 3.790935920733318e-08,
+    "member 4 (cp26-k13-t030, seed 27390031, 90 epochs, patience)": 1.1368683772161603e-12,
+    "member 5 (cp26-k13-t030, seed 27390032, 89 epochs, patience)": 3.410605131648481e-13,
+    "member 6 (cp26-k13-t005, seed 27390041, 1000 epochs, max_epochs)": 1.9895196601282805e-13,
+    "member 7 (cp26-k13-t005, seed 27390042, 856 epochs, patience)": 1.1368683772161603e-13
+   },
+   "native_fit_seconds": 16.330046500006574,
+   "native_quantiles_sha256": "5917148fdb1bf9cf75f12d9c4129d87938ef4fa5f1362ea36faff1b943ac3541",
+   "payload_sha256_equal": true,
+   "policy": "A1",
+   "process_rss_peak_bytes": 820051968,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "crossed_rows_match": true,
+    "diagnostics": [
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 0
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 1
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 2
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 3
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 4
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 5
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 6
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 7
+     }
+    ],
+    "members": [
+     {
+      "differences": [],
+      "member": 0,
+      "seed": 27390011
+     },
+     {
+      "differences": [],
+      "member": 1,
+      "seed": 27390012
+     },
+     {
+      "differences": [],
+      "member": 2,
+      "seed": 27390021
+     },
+     {
+      "differences": [],
+      "member": 3,
+      "seed": 27390022
+     },
+     {
+      "differences": [],
+      "member": 4,
+      "seed": 27390031
+     },
+     {
+      "differences": [],
+      "member": 5,
+      "seed": 27390032
+     },
+     {
+      "differences": [],
+      "member": 6,
+      "seed": 27390041
+     },
+     {
+      "differences": [],
+      "member": 7,
+      "seed": 27390042
+     }
+    ]
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "A1-2026-08-31",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 198115328
+  },
+  {
+   "attribution": null,
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-09-01",
+   "executed_files_match_package": true,
+   "fit_seconds": 67.93521137500001,
+   "host_total_seconds": 72.97409212500001,
+   "issued_quantiles_sha256": "a3a092caa60b264af60770a5966e6b6dab78feb05857d4c8f356afcd7f6cfe65",
+   "max_abs_eur": 8.163993925336399e-10,
+   "max_abs_eur_by_level": {
+    "p025": 8.163993925336399e-10,
+    "p10": 1.8464163531461963e-10,
+    "p25": 1.7556089915160555e-10,
+    "p50": 7.133849067031406e-12,
+    "p75": 2.8421709430404007e-13,
+    "p90": 2.5579538487363607e-13,
+    "p975": 1.8894752429332584e-10
+   },
+   "members_max_abs_eur": {
+    "member 0 (cp26-k13-t040, seed 27390011, 174 epochs, patience)": 2.8421709430404007e-13,
+    "member 1 (cp26-k13-t040, seed 27390012, 248 epochs, patience)": 1.4210854715202004e-13,
+    "member 2 (cp26-k13-t094, seed 27390021, 210 epochs, patience)": 1.8661410194908967e-09,
+    "member 3 (cp26-k13-t094, seed 27390022, 130 epochs, patience)": 2.2737367544323206e-12,
+    "member 4 (cp26-k13-t030, seed 27390031, 95 epochs, patience)": 1.4210854715202004e-13,
+    "member 5 (cp26-k13-t030, seed 27390032, 112 epochs, patience)": 1.1368683772161603e-13,
+    "member 6 (cp26-k13-t005, seed 27390041, 683 epochs, patience)": 8.526512829121202e-14,
+    "member 7 (cp26-k13-t005, seed 27390042, 710 epochs, patience)": 1.1368683772161603e-13
+   },
+   "native_fit_seconds": 15.001129208001657,
+   "native_quantiles_sha256": "ddfc177a54981aae8190b56e769ee4b49164624ce3767c0b68a2cadaab0c64bf",
+   "payload_sha256_equal": true,
+   "policy": "A1",
+   "process_rss_peak_bytes": 841678848,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "crossed_rows_match": true,
+    "diagnostics": [
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 0
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 1
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 2
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 3
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 4
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 5
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 6
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 7
+     }
+    ],
+    "members": [
+     {
+      "differences": [],
+      "member": 0,
+      "seed": 27390011
+     },
+     {
+      "differences": [],
+      "member": 1,
+      "seed": 27390012
+     },
+     {
+      "differences": [],
+      "member": 2,
+      "seed": 27390021
+     },
+     {
+      "differences": [],
+      "member": 3,
+      "seed": 27390022
+     },
+     {
+      "differences": [],
+      "member": 4,
+      "seed": 27390031
+     },
+     {
+      "differences": [],
+      "member": 5,
+      "seed": 27390032
+     },
+     {
+      "differences": [],
+      "member": 6,
+      "seed": 27390041
+     },
+     {
+      "differences": [],
+      "member": 7,
+      "seed": 27390042
+     }
+    ]
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "A1-2026-09-01",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 198115328
+  },
+  {
+   "attribution": null,
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-09-02",
+   "executed_files_match_package": true,
+   "fit_seconds": 61.008562791,
+   "host_total_seconds": 66.024830917,
+   "issued_quantiles_sha256": "4fe630ec8d403f99b17b2ddc314486837e614972dccc8495feb55879e8bfd216",
+   "max_abs_eur": 1.2732925824820995e-11,
+   "max_abs_eur_by_level": {
+    "p025": 7.105427357601002e-13,
+    "p10": 5.684341886080802e-14,
+    "p25": 8.810729923425242e-13,
+    "p50": 2.4016344468691386e-12,
+    "p75": 2.2453150450019166e-12,
+    "p90": 2.0605739337042905e-12,
+    "p975": 1.2732925824820995e-11
+   },
+   "members_max_abs_eur": {
+    "member 0 (cp26-k13-t040, seed 27390011, 185 epochs, patience)": 2.8421709430404007e-13,
+    "member 1 (cp26-k13-t040, seed 27390012, 178 epochs, patience)": 1.7053025658242404e-13,
+    "member 2 (cp26-k13-t094, seed 27390021, 177 epochs, patience)": 2.5409008230781183e-11,
+    "member 3 (cp26-k13-t094, seed 27390022, 96 epochs, patience)": 2.2737367544323206e-13,
+    "member 4 (cp26-k13-t030, seed 27390031, 117 epochs, patience)": 1.7053025658242404e-13,
+    "member 5 (cp26-k13-t030, seed 27390032, 126 epochs, patience)": 8.526512829121202e-14,
+    "member 6 (cp26-k13-t005, seed 27390041, 697 epochs, patience)": 5.684341886080802e-14,
+    "member 7 (cp26-k13-t005, seed 27390042, 710 epochs, patience)": 5.684341886080802e-14
+   },
+   "native_fit_seconds": 13.660135792000801,
+   "native_quantiles_sha256": "14a827a39afa9fc42876272967815c24722364626ab504e8ad1a521f6df5f9bc",
+   "payload_sha256_equal": true,
+   "policy": "A1",
+   "process_rss_peak_bytes": 807862272,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "crossed_rows_match": true,
+    "diagnostics": [
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 0
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 1
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 2
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 3
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 4
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 5
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 6
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 7
+     }
+    ],
+    "members": [
+     {
+      "differences": [],
+      "member": 0,
+      "seed": 27390011
+     },
+     {
+      "differences": [],
+      "member": 1,
+      "seed": 27390012
+     },
+     {
+      "differences": [],
+      "member": 2,
+      "seed": 27390021
+     },
+     {
+      "differences": [],
+      "member": 3,
+      "seed": 27390022
+     },
+     {
+      "differences": [],
+      "member": 4,
+      "seed": 27390031
+     },
+     {
+      "differences": [],
+      "member": 5,
+      "seed": 27390032
+     },
+     {
+      "differences": [],
+      "member": 6,
+      "seed": 27390041
+     },
+     {
+      "differences": [],
+      "member": 7,
+      "seed": 27390042
+     }
+    ]
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "A1-2026-09-02",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 198115328
+  },
+  {
+   "attribution": null,
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-09-03",
+   "executed_files_match_package": true,
+   "fit_seconds": 65.626113667,
+   "host_total_seconds": 70.599715417,
+   "issued_quantiles_sha256": "d04d0ba5a68a39ee3b197d254f055cc457d71ad9f9b5f91fd9c629dab9ee5062",
+   "max_abs_eur": 1.5610908121743705e-09,
+   "max_abs_eur_by_level": {
+    "p025": 1.1368683772161603e-13,
+    "p10": 2.5579538487363607e-13,
+    "p25": 7.425455805787351e-10,
+    "p50": 4.292246558179613e-10,
+    "p75": 3.836362338915933e-10,
+    "p90": 7.714220373600256e-10,
+    "p975": 1.5610908121743705e-09
+   },
+   "members_max_abs_eur": {
+    "member 0 (cp26-k13-t040, seed 27390011, 188 epochs, patience)": 1.4210854715202004e-13,
+    "member 1 (cp26-k13-t040, seed 27390012, 166 epochs, patience)": 2.2737367544323206e-13,
+    "member 2 (cp26-k13-t094, seed 27390021, 226 epochs, patience)": 3.738534815056482e-09,
+    "member 3 (cp26-k13-t094, seed 27390022, 104 epochs, patience)": 1.7337242752546445e-12,
+    "member 4 (cp26-k13-t030, seed 27390031, 99 epochs, patience)": 1.9895196601282805e-13,
+    "member 5 (cp26-k13-t030, seed 27390032, 113 epochs, patience)": 1.9895196601282805e-13,
+    "member 6 (cp26-k13-t005, seed 27390041, 802 epochs, patience)": 8.526512829121202e-14,
+    "member 7 (cp26-k13-t005, seed 27390042, 1000 epochs, max_epochs)": 7.105427357601002e-14
+   },
+   "native_fit_seconds": 14.928760958995554,
+   "native_quantiles_sha256": "b65845b13c555c79f8ca1fb0abe59310e6e3b2721abec075b0c4b68eb012733f",
+   "payload_sha256_equal": true,
+   "policy": "A1",
+   "process_rss_peak_bytes": 808452096,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "crossed_rows_match": true,
+    "diagnostics": [
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 0
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 1
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 2
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 3
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 4
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 5
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 6
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 7
+     }
+    ],
+    "members": [
+     {
+      "differences": [],
+      "member": 0,
+      "seed": 27390011
+     },
+     {
+      "differences": [],
+      "member": 1,
+      "seed": 27390012
+     },
+     {
+      "differences": [],
+      "member": 2,
+      "seed": 27390021
+     },
+     {
+      "differences": [],
+      "member": 3,
+      "seed": 27390022
+     },
+     {
+      "differences": [],
+      "member": 4,
+      "seed": 27390031
+     },
+     {
+      "differences": [],
+      "member": 5,
+      "seed": 27390032
+     },
+     {
+      "differences": [],
+      "member": 6,
+      "seed": 27390041
+     },
+     {
+      "differences": [],
+      "member": 7,
+      "seed": 27390042
+     }
+    ]
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "A1-2026-09-03",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 198115328
+  },
+  {
+   "attribution": null,
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-09-04",
+   "executed_files_match_package": true,
+   "fit_seconds": 63.49990979100001,
+   "host_total_seconds": 68.477912667,
+   "issued_quantiles_sha256": "8b8d025217f8c4bd36ed30d8dc42944914f47416e1e5687cfb44d903f546439c",
+   "max_abs_eur": 3.0041746867937036e-11,
+   "max_abs_eur_by_level": {
+    "p025": 3.0041746867937036e-11,
+    "p10": 1.800515292416094e-11,
+    "p25": 1.5646151041437406e-11,
+    "p50": 1.3443468560581096e-11,
+    "p75": 6.252776074688882e-12,
+    "p90": 3.524291969370097e-12,
+    "p975": 1.2505552149377763e-12
+   },
+   "members_max_abs_eur": {
+    "member 0 (cp26-k13-t040, seed 27390011, 139 epochs, patience)": 4.547473508864641e-13,
+    "member 1 (cp26-k13-t040, seed 27390012, 265 epochs, patience)": 3.979039320256561e-13,
+    "member 2 (cp26-k13-t094, seed 27390021, 164 epochs, patience)": 1.5234036254696548e-11,
+    "member 3 (cp26-k13-t094, seed 27390022, 127 epochs, patience)": 2.355022843403276e-10,
+    "member 4 (cp26-k13-t030, seed 27390031, 96 epochs, patience)": 2.5579538487363607e-13,
+    "member 5 (cp26-k13-t030, seed 27390032, 126 epochs, patience)": 2.8421709430404007e-13,
+    "member 6 (cp26-k13-t005, seed 27390041, 619 epochs, patience)": 2.5579538487363607e-13,
+    "member 7 (cp26-k13-t005, seed 27390042, 641 epochs, patience)": 1.7053025658242404e-13
+   },
+   "native_fit_seconds": 13.989032625002437,
+   "native_quantiles_sha256": "8847b86f5080a790bb2a6e617640548b20f51749e3b3e5018765430ec408cb90",
+   "payload_sha256_equal": true,
+   "policy": "A1",
+   "process_rss_peak_bytes": 840892416,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "crossed_rows_match": true,
+    "diagnostics": [
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 0
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 1
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 2
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 3
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 4
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 5
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 6
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur"
+      ],
+      "member": 7
+     }
+    ],
+    "members": [
+     {
+      "differences": [],
+      "member": 0,
+      "seed": 27390011
+     },
+     {
+      "differences": [],
+      "member": 1,
+      "seed": 27390012
+     },
+     {
+      "differences": [],
+      "member": 2,
+      "seed": 27390021
+     },
+     {
+      "differences": [],
+      "member": 3,
+      "seed": 27390022
+     },
+     {
+      "differences": [],
+      "member": 4,
+      "seed": 27390031
+     },
+     {
+      "differences": [],
+      "member": 5,
+      "seed": 27390032
+     },
+     {
+      "differences": [],
+      "member": 6,
+      "seed": 27390041
+     },
+     {
+      "differences": [],
+      "member": 7,
+      "seed": 27390042
+     }
+    ]
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "A1-2026-09-04",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 198115328
+  },
+  {
+   "attribution": null,
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-09-05",
+   "executed_files_match_package": true,
+   "fit_seconds": 78.23569725,
+   "host_total_seconds": 83.29271720799998,
+   "issued_quantiles_sha256": "8d5cb5ea35cca594ab6ada988e162c92ca8fa7c9ca0cc410419726a54df1ce58",
+   "max_abs_eur": 7.464251439159852e-10,
+   "max_abs_eur_by_level": {
+    "p025": 5.46265255252365e-11,
+    "p10": 3.2173375075217336e-11,
+    "p25": 2.0969537217752077e-10,
+    "p50": 2.496420847819536e-10,
+    "p75": 4.2521719478827436e-10,
+    "p90": 3.7607605918310583e-10,
+    "p975": 7.464251439159852e-10
+   },
+   "members_max_abs_eur": {
+    "member 0 (cp26-k13-t040, seed 27390011, 203 epochs, patience)": 7.958078640513122e-13,
+    "member 1 (cp26-k13-t040, seed 27390012, 298 epochs, patience)": 6.821210263296962e-13,
+    "member 2 (cp26-k13-t094, seed 27390021, 164 epochs, patience)": 4.729372449219227e-10,
+    "member 3 (cp26-k13-t094, seed 27390022, 230 epochs, patience)": 1.629928192414809e-08,
+    "member 4 (cp26-k13-t030, seed 27390031, 89 epochs, patience)": 9.094947017729282e-13,
+    "member 5 (cp26-k13-t030, seed 27390032, 104 epochs, patience)": 7.958078640513122e-13,
+    "member 6 (cp26-k13-t005, seed 27390041, 658 epochs, patience)": 2.2737367544323206e-13,
+    "member 7 (cp26-k13-t005, seed 27390042, 887 epochs, patience)": 2.8421709430404007e-13
+   },
+   "native_fit_seconds": 17.13057066699548,
+   "native_quantiles_sha256": "ae8e86393b3792a134b4efaaae5b5d8f08469c8b5e89485cb4149767bfc744ee",
+   "payload_sha256_equal": true,
+   "policy": "A1",
+   "process_rss_peak_bytes": 802062336,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "crossed_rows_match": true,
+    "diagnostics": [
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 0
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 1
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 2
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 3
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 4
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "preprocessor"
+      ],
+      "member": 5
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 6
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 7
+     }
+    ],
+    "members": [
+     {
+      "differences": [],
+      "member": 0,
+      "seed": 27390011
+     },
+     {
+      "differences": [],
+      "member": 1,
+      "seed": 27390012
+     },
+     {
+      "differences": [],
+      "member": 2,
+      "seed": 27390021
+     },
+     {
+      "differences": [],
+      "member": 3,
+      "seed": 27390022
+     },
+     {
+      "differences": [],
+      "member": 4,
+      "seed": 27390031
+     },
+     {
+      "differences": [],
+      "member": 5,
+      "seed": 27390032
+     },
+     {
+      "differences": [],
+      "member": 6,
+      "seed": 27390041
+     },
+     {
+      "differences": [],
+      "member": 7,
+      "seed": 27390042
+     }
+    ]
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "A1-2026-09-05",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 196214784
+  },
+  {
+   "attribution": {
+    "efficiency_max_abs": 1.4210854715202004e-13,
+    "method": "exact baseline Shapley over input groups, issued p50, training-mean baseline",
+    "phi_max_abs_eur": 1.0680345496894006e-13,
+    "players_equal": true,
+    "seconds": 0.3380577500000044
+   },
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-09-06",
+   "executed_files_match_package": true,
+   "fit_seconds": 65.55842391600001,
+   "host_total_seconds": 70.86451275,
+   "issued_quantiles_sha256": "4e6abb02fbb02aa8ef202207f21b76bc33b34c37d025a0a93a491135ea43cea5",
+   "max_abs_eur": 9.379164112033322e-13,
+   "max_abs_eur_by_level": {
+    "p025": 9.379164112033322e-13,
+    "p10": 7.247535904753022e-13,
+    "p25": 6.465938895416912e-13,
+    "p50": 2.4158453015843406e-13,
+    "p75": 5.044853423896711e-13,
+    "p90": 3.979039320256561e-13,
+    "p975": 6.252776074688882e-13
+   },
+   "members_max_abs_eur": {
+    "member 0 (cp26-k13-t040, seed 27390011, 145 epochs, patience)": 8.526512829121202e-13,
+    "member 1 (cp26-k13-t040, seed 27390012, 259 epochs, patience)": 4.547473508864641e-13,
+    "member 2 (cp26-k13-t094, seed 27390021, 147 epochs, patience)": 1.5404566511278972e-11,
+    "member 3 (cp26-k13-t094, seed 27390022, 86 epochs, patience)": 2.8421709430404007e-13,
+    "member 4 (cp26-k13-t030, seed 27390031, 92 epochs, patience)": 4.547473508864641e-13,
+    "member 5 (cp26-k13-t030, seed 27390032, 119 epochs, patience)": 4.547473508864641e-13,
+    "member 6 (cp26-k13-t005, seed 27390041, 939 epochs, patience)": 2.2737367544323206e-13,
+    "member 7 (cp26-k13-t005, seed 27390042, 768 epochs, patience)": 1.9895196601282805e-13
+   },
+   "native_fit_seconds": 14.756585958995856,
+   "native_quantiles_sha256": "b1fc7350321a2b57c591dc5b117587f86694ac4681710bc28817b5eca6e65d44",
+   "payload_sha256_equal": true,
+   "policy": "A1",
+   "process_rss_peak_bytes": 853786624,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "crossed_rows_match": true,
+    "diagnostics": [
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 0
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 1
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 2
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 3
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 4
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur",
+       "preprocessor"
+      ],
+      "member": 5
+     },
+     {
+      "differences": [
+       "params_sha256",
+       "best_stopping_metric_eur"
+      ],
+      "member": 6
+     },
+     {
+      "differences": [
+       "params_sha256"
+      ],
+      "member": 7
+     }
+    ],
+    "members": [
+     {
+      "differences": [],
+      "member": 0,
+      "seed": 27390011
+     },
+     {
+      "differences": [],
+      "member": 1,
+      "seed": 27390012
+     },
+     {
+      "differences": [],
+      "member": 2,
+      "seed": 27390021
+     },
+     {
+      "differences": [],
+      "member": 3,
+      "seed": 27390022
+     },
+     {
+      "differences": [],
+      "member": 4,
+      "seed": 27390031
+     },
+     {
+      "differences": [],
+      "member": 5,
+      "seed": 27390032
+     },
+     {
+      "differences": [],
+      "member": 6,
+      "seed": 27390041
+     },
+     {
+      "differences": [],
+      "member": 7,
+      "seed": 27390042
+     }
+    ]
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "A1-2026-09-06",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 235470848
+  },
+  {
+   "attribution": null,
+   "bitwise_equal": true,
+   "blocked_non_local_requests": [],
+   "day": "2026-03-29",
+   "executed_files_match_package": true,
+   "fit_seconds": 0.03791358299999992,
+   "host_total_seconds": 4.889123417,
+   "issued_quantiles_sha256": "c2cf5d9d50d987e69336ceaf3a5681f120ae97ef479028c737d067ee46adf76d",
+   "max_abs_eur": 0.0,
+   "max_abs_eur_by_level": {
+    "p025": 0.0,
+    "p10": 0.0,
+    "p25": 0.0,
+    "p50": 0.0,
+    "p75": 0.0,
+    "p90": 0.0,
+    "p975": 0.0
+   },
+   "members_max_abs_eur": null,
+   "native_fit_seconds": 0.0023930000024847686,
+   "native_quantiles_sha256": "c2cf5d9d50d987e69336ceaf3a5681f120ae97ef479028c737d067ee46adf76d",
+   "payload_sha256_equal": true,
+   "policy": "B0",
+   "process_rss_peak_bytes": 770555904,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "b0_layer_match": true,
+    "source_day_match": true
+   },
+   "selections_match": true,
+   "status": "identical bit for bit",
+   "stem": "B0-2026-03-29",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 196214784
+  },
+  {
+   "attribution": null,
+   "bitwise_equal": true,
+   "blocked_non_local_requests": [],
+   "day": "2026-09-06",
+   "executed_files_match_package": true,
+   "fit_seconds": 0.03785287500000045,
+   "host_total_seconds": 4.954557791999999,
+   "issued_quantiles_sha256": "b12a9972211be165760b440bde5b175ef150ebe04057997e741bcd89c7a0846f",
+   "max_abs_eur": 0.0,
+   "max_abs_eur_by_level": {
+    "p025": 0.0,
+    "p10": 0.0,
+    "p25": 0.0,
+    "p50": 0.0,
+    "p75": 0.0,
+    "p90": 0.0,
+    "p975": 0.0
+   },
+   "members_max_abs_eur": null,
+   "native_fit_seconds": 0.002303165994817391,
+   "native_quantiles_sha256": "b12a9972211be165760b440bde5b175ef150ebe04057997e741bcd89c7a0846f",
+   "payload_sha256_equal": true,
+   "policy": "B0",
+   "process_rss_peak_bytes": 834879488,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "b0_layer_match": true,
+    "source_day_match": true
+   },
+   "selections_match": true,
+   "status": "identical bit for bit",
+   "stem": "B0-2026-09-06",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 198115328
+  },
+  {
+   "attribution": {
+    "blend_gap_max_abs": 0,
+    "component_efficiency_max_abs": {
+     "A1": 2.842170943040401e-14,
+     "B2": 2.842170943040401e-14
+    },
+    "method": "blend: weight x forecast; LEAR: coefficient x centered, standardized input",
+    "seconds": 4.436687584000005
+   },
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-03-29",
+   "executed_files_match_package": true,
+   "fit_seconds": 35.878971083,
+   "host_total_seconds": 45.414632167,
+   "issued_quantiles_sha256": "709f8528b1b77dacf4e969ea9749f9bb8b89bc80d1dddd4911e4cdf67a3f9780",
+   "max_abs_eur": 5.400124791776761e-13,
+   "max_abs_eur_by_level": {
+    "p025": 5.329070518200751e-13,
+    "p10": 5.329070518200751e-13,
+    "p25": 5.329070518200751e-13,
+    "p50": 5.329070518200751e-13,
+    "p75": 5.400124791776761e-13,
+    "p90": 5.400124791776761e-13,
+    "p975": 5.258016244624741e-13
+   },
+   "members_max_abs_eur": {
+    "A1": 1.0871303857129533e-12,
+    "B2": 1.0516032489249483e-12
+   },
+   "native_fit_seconds": 20.134129583995673,
+   "native_quantiles_sha256": "ea6c18880e96041202f3e1b564e971c423efb35d84318f99b8368b632c5b90f0",
+   "payload_sha256_equal": true,
+   "policy": "v2",
+   "process_rss_peak_bytes": 901332992,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "diagnostics": {
+     "A1": [
+      "final_n_iter",
+      "model_sha256",
+      "n_iter_by_alpha",
+      "validation_mae_by_alpha"
+     ],
+     "B2": [
+      "model_sha256",
+      "n_iter_by_alpha",
+      "validation_mae_by_alpha"
+     ]
+    },
+    "h_layer_match": true,
+    "members": {
+     "A1": [],
+     "B2": []
+    },
+    "train_rows_match": true
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "v2-2026-03-29",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 286851072
+  },
+  {
+   "attribution": {
+    "blend_gap_max_abs": 0,
+    "component_efficiency_max_abs": {
+     "A1": 5.684341886080802e-14,
+     "B2": 4.263256414560601e-14
+    },
+    "method": "blend: weight x forecast; LEAR: coefficient x centered, standardized input",
+    "seconds": 12.220234208
+   },
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-09-06",
+   "executed_files_match_package": true,
+   "fit_seconds": 44.682422166,
+   "host_total_seconds": 62.081130208000005,
+   "issued_quantiles_sha256": "82a5afcf1ff8778f8a0d1670645ec60ff6f19b88d7e618cc91d6917fd18a9f83",
+   "max_abs_eur": 5.115907697472721e-13,
+   "max_abs_eur_by_level": {
+    "p025": 5.115907697472721e-13,
+    "p10": 5.115907697472721e-13,
+    "p25": 5.115907697472721e-13,
+    "p50": 5.115907697472721e-13,
+    "p75": 5.115907697472721e-13,
+    "p90": 5.115907697472721e-13,
+    "p975": 5.115907697472721e-13
+   },
+   "members_max_abs_eur": {
+    "A1": 2.984279490192421e-13,
+    "B2": 1.0516032489249483e-12
+   },
+   "native_fit_seconds": 24.864253375009866,
+   "native_quantiles_sha256": "363ca856a612b2b1a6ffbdf9b95e13675bc775e4fe069645b51718c79887a2a3",
+   "payload_sha256_equal": true,
+   "policy": "v2",
+   "process_rss_peak_bytes": 897908736,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "diagnostics": {
+     "A1": [
+      "model_sha256",
+      "n_iter_by_alpha",
+      "validation_mae_by_alpha"
+     ],
+     "B2": [
+      "model_sha256",
+      "n_iter_by_alpha",
+      "validation_mae_by_alpha"
+     ]
+    },
+    "h_layer_match": true,
+    "members": {
+     "A1": [],
+     "B2": []
+    },
+    "train_rows_match": true
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "v2-2026-09-06",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 286851072
+  },
+  {
+   "attribution": {
+    "blend_gap_max_abs": 1.4210854715202004e-14,
+    "component_efficiency_max_abs": {
+     "A1_w": 2.842170943040401e-14,
+     "B2_w": 2.842170943040401e-14,
+     "L-N": 3.339550858072471e-13,
+     "L-R": 3.694822225952521e-13
+    },
+    "method": "blend: weight x forecast; LEAR: coefficient x centered, standardized input; LightGBM: TreeSHAP per prediction, and split gain from the fitted boosters",
+    "seconds": 9.646103916999998
+   },
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-03-29",
+   "executed_files_match_package": true,
+   "fit_seconds": 52.495479667,
+   "host_total_seconds": 65.780850166,
+   "issued_quantiles_sha256": "850dab74ec2d85cd7c05748dea1f56609b91cca159a42aaf8a7dfcb2c75576a8",
+   "max_abs_eur": 3.268496584496461e-13,
+   "max_abs_eur_by_level": {
+    "p025": 3.268496584496461e-13,
+    "p10": 3.268496584496461e-13,
+    "p25": 3.268496584496461e-13,
+    "p50": 3.268496584496461e-13,
+    "p75": 3.268496584496461e-13,
+    "p90": 3.268496584496461e-13,
+    "p975": 3.126388037344441e-13
+   },
+   "members_max_abs_eur": {
+    "A1_w": 5.400124791776761e-13,
+    "B2_w": 1.0231815394945443e-12,
+    "L-N": 0.0,
+    "L-R": 0.0
+   },
+   "native_fit_seconds": 29.80044999999518,
+   "native_quantiles_sha256": "9f08bc2799dc35f5f35b1aac88d8d6841257990e74a5d2a3c4eb1442eb824d32",
+   "payload_sha256_equal": true,
+   "policy": "v4",
+   "process_rss_peak_bytes": 926384128,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "diagnostics": {
+     "A1_w": [
+      "model_sha256",
+      "n_iter_by_alpha",
+      "validation_mae_by_alpha"
+     ],
+     "B2_w": [
+      "model_sha256",
+      "n_iter_by_alpha",
+      "validation_mae_by_alpha"
+     ],
+     "L-N": [],
+     "L-R": []
+    },
+    "h_layer_match": true,
+    "members": {
+     "A1_w": [],
+     "B2_w": [],
+     "L-N": {
+      "night": [],
+      "shoulder": [],
+      "solar": []
+     },
+     "L-R": {
+      "night": [],
+      "shoulder": [],
+      "solar": []
+     }
+    },
+    "train_rows_match": true
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "v4-2026-03-29",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 339148800
+  },
+  {
+   "attribution": {
+    "blend_gap_max_abs": 2.842170943040401e-14,
+    "component_efficiency_max_abs": {
+     "A1_w": 7.105427357601002e-14,
+     "B2_w": 5.684341886080802e-14,
+     "L-N": 3.836930773104541e-13,
+     "L-R": 2.220446049250313e-13
+    },
+    "method": "blend: weight x forecast; LEAR: coefficient x centered, standardized input; LightGBM: TreeSHAP per prediction, and split gain from the fitted boosters",
+    "seconds": 15.051467790999993
+   },
+   "bitwise_equal": false,
+   "blocked_non_local_requests": [],
+   "day": "2026-09-06",
+   "executed_files_match_package": true,
+   "fit_seconds": 53.85764974999999,
+   "host_total_seconds": 72.538021667,
+   "issued_quantiles_sha256": "76599de78c2114cb3d2d13e5a84fda81d76d1a56813e916268f106f77474d3c9",
+   "max_abs_eur": 4.263256414560601e-13,
+   "max_abs_eur_by_level": {
+    "p025": 4.263256414560601e-13,
+    "p10": 4.263256414560601e-13,
+    "p25": 4.263256414560601e-13,
+    "p50": 4.263256414560601e-13,
+    "p75": 4.263256414560601e-13,
+    "p90": 4.263256414560601e-13,
+    "p975": 4.263256414560601e-13
+   },
+   "members_max_abs_eur": {
+    "A1_w": 8.952838470577262e-13,
+    "B2_w": 5.115907697472721e-13,
+    "L-N": 0.0,
+    "L-R": 0.0
+   },
+   "native_fit_seconds": 30.470945874985773,
+   "native_quantiles_sha256": "3314266987afd46dab470f50595b3064a888cded8a54dc27db1bc3893b2627d7",
+   "payload_sha256_equal": true,
+   "policy": "v4",
+   "process_rss_peak_bytes": 919732224,
+   "runtime": {
+    "node": "v26.7.0",
+    "numpy": "2.2.5",
+    "pyodide": "0.28.0",
+    "python": "3.13.2"
+   },
+   "selections": {
+    "all_match": true,
+    "diagnostics": {
+     "A1_w": [
+      "model_sha256",
+      "n_iter_by_alpha",
+      "validation_mae_by_alpha"
+     ],
+     "B2_w": [
+      "model_sha256",
+      "n_iter_by_alpha",
+      "validation_mae_by_alpha"
+     ],
+     "L-N": [],
+     "L-R": []
+    },
+    "h_layer_match": true,
+    "members": {
+     "A1_w": [],
+     "B2_w": [],
+     "L-N": {
+      "night": [],
+      "shoulder": [],
+      "solar": []
+     },
+     "L-R": {
+      "night": [],
+      "shoulder": [],
+      "solar": []
+     }
+    },
+    "train_rows_match": true
+   },
+   "selections_match": true,
+   "status": "within \u00b10.01 EUR/MWh",
+   "stem": "v4-2026-09-06",
+   "stubs": [
+    "resource",
+    "holidays"
+   ],
+   "wasm_memory_bytes": 287834112
+  }
+ ],
+ "package_sha256": "ac45f033f5e20fc0e8faa54e1abe273aaffffb95858dc28c47fbf6e62d3fbfdc",
+ "schema": "cp17-host-parity-v1",
+ "tau_eq_eur": 0.01
+}

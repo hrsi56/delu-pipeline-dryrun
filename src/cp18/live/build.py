@@ -22,6 +22,8 @@ import traceback
 
 from cp25 import guard
 
+from .. import boundary
+
 from . import history as Hs
 from . import payloads as P
 from .archive import Archive
@@ -66,12 +68,23 @@ def _availability(history: Hs.History, day: date, integrity: list) -> dict:
                      'ruling_4': [d.isoformat() for d in Hs.late_gfs_delivery() if d <= history.base_end]}}
 
 
+BRIDGE_DAY_EDGE = ("the 31-December Monday bridge-day edge: the landed holiday code gives is_bridge_day = 0 for D, "
+                   "because the frame stops at D (src/delu_forecast/features.py, CP-18a's report §8), so the day's "
+                   "payload cannot be built as the frozen recipe defines it; it fails closed until a later brief "
+                   "decides it (Monday 31 December in 2029 and 2035)")
+
+
+def bridge_day_edge(day: date) -> bool:
+    """A Monday 31 December (2029, 2035): the frame cannot show it as the bridge day it is."""
+    return day.month == 12 and day.day == 31 and day.weekday() == 0
+
+
 def build_day(day: date, *, archive, base_end: date, buffers: dict, search_dir, out, root) -> dict:
     """Build D's four payloads from the archive. Never raises for a day's own failure: `status` says what
     happened (`built`, `search_state_missing`, `not_shown`, `failed`), with the cause."""
     t0 = time.perf_counter()
-    guard.admit_delivery_day(day)
-    guard.admit_delivery_day(base_end)
+    boundary.admit_delivery_day(day)
+    boundary.admit_delivery_day(base_end)
     archive = archive if isinstance(archive, Archive) else Archive(Path(archive))
     root, out = Path(root), Path(out)
     result = {'schema': SCHEMA, 'day': day.isoformat(), 'status': None, 'cause': None, 'payloads': {},
@@ -80,6 +93,9 @@ def build_day(day: date, *, archive, base_end: date, buffers: dict, search_dir, 
     try:
         if not base_end < day:
             raise ValueError('base_end must precede the day being built')
+        if bridge_day_edge(day):
+            result.update(status='failed', cause=BRIDGE_DAY_EDGE)
+            return result
         integrity = []
         for x in archive.days():
             if base_end < x <= day:

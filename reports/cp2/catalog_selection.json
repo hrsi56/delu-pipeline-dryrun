@@ -1,0 +1,22 @@
+{
+  "code_sha": "525fc2d4c5bc8763b0da30197030740c49c73b34",
+  "equality": false,
+  "eval_rows_with_null_residual_load_proxy": 456,
+  "evidence_class": "development_post_selection",
+  "matched_rows": 10747,
+  "metric": "pooled observation-weighted raw-head mean pinball loss over nine quantiles and five folds",
+  "percentage_difference_augmented_vs_base": 0.3715158359241209,
+  "pooled_mean_pinball": {
+    "base": "13.015841509664993",
+    "base_plus_residual_load_proxy": "13.064197422052183"
+  },
+  "pooled_mean_pinball_float": {
+    "base": 13.015841509664993,
+    "base_plus_residual_load_proxy": 13.064197422052183
+  },
+  "rule": "the augmented catalog ships only if its unrounded stored pooled mean pinball loss is lower; equality defaults to base",
+  "seed": 42,
+  "selected_catalog": "base",
+  "snapshot_sha256": "7dd2dc73407706ca6bd3c1ad51d201ac0de35eec5ca129ce320cca639f697f00",
+  "uncommitted_source_when_run_started": false
+}

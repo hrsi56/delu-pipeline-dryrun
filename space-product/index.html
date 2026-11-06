@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>DE-LU day-ahead price forecast</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/app/style.css">
+<script src="/app/charts.js" defer></script>
+<script src="/app/main.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+<main id="main">
+  <div id="boot" class="state state-loading" role="status">
+    <p class="state-title">Loading the product's records</p>
+    <p>This page loads its manifest and the day's records from this Space, checks every file's SHA-256, and then
+      shows the forecast. If this message stays, the page's script did not run or a file could not be loaded.</p>
+    <p><a class="ext" data-report href="https://hrsi56.github.io/delu-day-ahead-forecast/" rel="external noopener">Open the static report instead <span class="ext-mark">(external site)</span></a></p>
+    <noscript><p class="state-title">This page needs JavaScript to read and check its records. The static report above needs none.</p></noscript>
+  </div>
+  <div id="banner" hidden></div>
+
+  <section id="product" class="product" aria-labelledby="product-title" hidden>
+    <header class="product-head">
+      <h1 id="product-title"></h1>
+      <p class="status-line" id="product-status"></p>
+      <p class="secondary" id="product-rule"></p>
+    </header>
+    <div id="identity" class="identity"></div>
+    <div id="times" class="times"></div>
+    <div id="today" class="panel"></div>
+    <div id="tomorrow" class="panel"></div>
+    <div id="howsure" class="panel"></div>
+  </section>
+
+  <nav id="views" class="views" aria-label="Product views" hidden>
+    <div role="tablist" id="tablist" aria-label="Product views"></div>
+  </nav>
+  <div id="panels"></div>
+
+  <footer class="foot" id="foot" hidden>
+    <p><a class="ext" data-report-foot href="https://hrsi56.github.io/delu-day-ahead-forecast/" rel="external noopener">The static report <span class="ext-mark">(external site)</span></a></p>
+  </footer>
+</main>
+</body>
+</html>

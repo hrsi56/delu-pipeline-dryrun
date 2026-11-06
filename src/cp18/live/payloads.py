@@ -38,6 +38,8 @@ import numpy as np
 from cp17.dailyfit import SCHEMAS, array_hash, payload_digest, save_npz
 from cp25 import guard
 
+from .. import boundary
+
 PROTOCOL = 'reports/cp15/protocol.json'
 
 
@@ -75,7 +77,7 @@ def context(root: Path, frame, features, day: date) -> LiveContext:
     from cp24.member import Keys
     from cp26.harness import HarnessError, check_blas, weather_matrix
     check_blas()
-    guard.admit_delivery_day(day)
+    boundary.admit_delivery_day(day)
     t0 = time.perf_counter()
     # CP-26's `install_issue_label` is not called: it rebinds the issue-time label in the landed members' fit records
     # (cp15.models, cp21.lgbm, cp24.member), and importing them loads the native LightGBM, which a GitHub runner
@@ -123,7 +125,7 @@ def _finish(arrays: dict, meta: dict) -> tuple[dict, dict]:
 def a1_payload(ctx: LiveContext, day: date, ens: dict) -> tuple[dict, dict]:
     from cp24 import design as G
     from cp26.search import serving_search, validate_ensemble
-    guard.admit_delivery_day(day)
+    boundary.admit_delivery_day(day)
     k = serving_search(day)
     validate_ensemble(ens, k, 'nominal')
     dd, keys, data = ctx.dd, ctx.keys, ctx.data
@@ -179,7 +181,7 @@ def _released(buffer: list[dict], day: date, what: str) -> None:
 
 
 def v2_payload(ctx: LiveContext, day: date, buffer: list[dict]) -> tuple[dict, dict]:
-    guard.admit_delivery_day(day)
+    boundary.admit_delivery_day(day)
     _released(buffer, day, 'v2')
     data = ctx.data
     sel = _rows(data, day, ('A1', 'B2'))
@@ -190,7 +192,7 @@ def v2_payload(ctx: LiveContext, day: date, buffer: list[dict]) -> tuple[dict, d
 
 
 def v4_payload(ctx: LiveContext, day: date, buffer: list[dict]) -> tuple[dict, dict]:
-    guard.admit_delivery_day(day)
+    boundary.admit_delivery_day(day)
     _released(buffer, day, 'v4')
     data = ctx.data_aug
     if data.lgbm_raw is not ctx.data.lgbm_raw or data.y is not ctx.data.y or data.scale is not ctx.data.scale:
@@ -209,7 +211,7 @@ def v4_payload(ctx: LiveContext, day: date, buffer: list[dict]) -> tuple[dict, d
 
 def b0_payload(ctx: LiveContext, day: date, buffer: list[dict]) -> tuple[dict, dict]:
     from delu_forecast.baselines import SIMILAR_DAY_LAG_BY_WEEKDAY
-    guard.admit_delivery_day(day)
+    boundary.admit_delivery_day(day)
     _released(buffer, day, 'B0')
     data = ctx.data
     first = day - timedelta(days=7)

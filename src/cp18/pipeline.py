@@ -36,7 +36,7 @@ import uuid
 
 from cp25 import guard
 
-from . import causes, plan
+from . import boundary, causes, plan
 from .claim import Claim, ClaimError
 from .host import MANIFEST, PACKAGE_ZIP
 from .store import INPUTS_PATH, STORE_PATH, LiveStore, StoreRefused
@@ -140,7 +140,8 @@ def run(settings: Settings, now: datetime, *, claim: Claim, inputs, checks: dict
               'started_utc': utc_now(), 'wall_clock': now.isoformat(), 'target_day': None, 'lookback': None,
               'closed': [], 'planned': [], 'gate': None, 'days': {}, 'outcome': None,
               'machine': {'system': platform.system(), 'machine': platform.machine(),
-                          'runner_image': os.environ.get('ImageVersion'), 'github_run_id': os.environ.get('GITHUB_RUN_ID')}}
+                          'runner_image': os.environ.get('ImageVersion'), 'github_run_id': os.environ.get('GITHUB_RUN_ID')},
+              'boundary': boundary.describe()}
     try:
         plan.admit(plan.lookback(target) + [target])
     except guard.BoundaryRefused:
@@ -186,15 +187,27 @@ def run(settings: Settings, now: datetime, *, claim: Claim, inputs, checks: dict
             continue
         state, _ = store.state()
         parent_state = state.digest()
-        state.release(day, inputs.truth(day))
+        try:
+            state.release(day, inputs.truth(day))
+        except Exception as exc:  # noqa: BLE001 - N5: an acquisition failure is the day's recorded cause
+            item.update(status='open', cause=causes.INPUTS, cause_text=causes.text(causes.INPUTS),
+                        error=guard.redact(f'{type(exc).__name__}: {exc}'),
+                        note='the published prices for the release could not be acquired or read; nothing issued')
+            continue
         k = serving(day)
         search = store.search_file(k) if k is not None and k >= 14 else inputs.search_file(k)
         if search is None or not Path(search).is_file():
             item.update(status='open', cause=causes.S14, cause_text=causes.text(causes.S14), search=k,
                         note='the search state that serves this day is not in place; the day waits for it')
             continue
-        built = inputs.build(day, buffers={p: state.buffer(p) for p in ('v4', 'v2', 'B0')}, search_file=Path(search),
-                             out=settings.out / 'payloads' / str(day))
+        try:
+            built = inputs.build(day, buffers={p: state.buffer(p) for p in ('v4', 'v2', 'B0')},
+                                 search_file=Path(search), out=settings.out / 'payloads' / str(day))
+        except Exception as exc:  # noqa: BLE001 - N5: an acquisition or build failure is the day's recorded cause
+            item.update(status='open', cause=causes.INPUTS, cause_text=causes.text(causes.INPUTS),
+                        error=guard.redact(f'{type(exc).__name__}: {exc}'),
+                        note="the day's inputs could not be acquired or built; nothing issued")
+            continue
         item['inputs'] = {k2: v for k2, v in built.items() if k2 not in ('payloads',)}
         if built.get('search_missing'):
             item.update(status='open', cause=causes.S14, cause_text=causes.text(causes.S14), search=k)
@@ -255,7 +268,9 @@ def run(settings: Settings, now: datetime, *, claim: Claim, inputs, checks: dict
         record['exit'] = 1 if unissued else 0
         store.record_run(run_id, record)
         try:
-            publish([STORE_PATH], f'live: run {run_id} ({record["outcome"]})')
+            # the run's acquisitions are part of its record, issued or not (N5: never left uncommitted in the clone)
+            publish([STORE_PATH] + ([INPUTS_PATH] if (settings.root / INPUTS_PATH).exists() else []),
+                    f'live: run {run_id} ({record["outcome"]})')
         except ClaimError as exc:
             record['outcome'] += f'; the run record was not published: {exc}'
             record['exit'] = 2

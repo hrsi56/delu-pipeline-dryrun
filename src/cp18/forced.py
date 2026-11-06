@@ -144,7 +144,7 @@ def run(candidate: Path, project: Path, work: Path) -> dict:
               'inputs_2026_09_03': (run_b['days']['2026-09-03'].get('inputs') or {}).get('availability'),
               'chain_2026_09_04': json.loads((checkout / STORE_PATH / 'issued/2026-09-04/record.json').read_text())['path'],
               'store_head': store.verify()['entry_sha256'],
-              'origin_log': _git('-C', str(work / 'origin.git'), 'log', '--format=%s', 'main').splitlines()}
+              'origin_log': _git('-C', str(work / 'origin.git'), 'log', '--format=%s', 'main').splitlines()[:5]}
     return record
 
 

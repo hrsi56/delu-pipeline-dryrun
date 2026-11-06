@@ -23,6 +23,8 @@ from pathlib import Path
 
 from cp25 import guard
 
+from . import boundary
+
 from .inputs import pinned_search
 from .store import INPUTS_PATH
 
@@ -30,16 +32,37 @@ GFS_SOURCE = 'gfs'
 REPLAY = 'replay'
 
 
+LIVE_BASE_END = date(2026, 9, 6)        # the committed history's end: the freeze origin (live operation)
+LIVE_SOURCE = 'cp18.live (live retrieval through cp18.live.transport.HttpTransport)'
+
+
+def _utc_offset(stamp: str) -> str:
+    """An archive's `...Z` instant in the frozen manifest's notation, `...+00:00` (CP-17's `UTC_OR_EMPTY`)."""
+    return stamp[:-1] + '+00:00' if stamp.endswith('Z') else stamp
+
+
 class LiveInputs:
-    def __init__(self, root, project, recorded, base_end: date | None = None, source: str = 'smard'):
-        self.root, self.project, self.recorded = Path(root), Path(project), Path(recorded)
-        manifest = json.loads((self.recorded / 'manifest.json').read_text())
-        days = sorted(date.fromisoformat(d) for d in manifest['days'])
-        self.recorded_days = set(days)
-        self.base_end = base_end or (days[0] - timedelta(days=1))
-        guard.admit_delivery_day(self.base_end)
+    """`recorded` is a folder of recorded responses (a dry run, replayed) or None with a `transport` (live: CP-18c,
+    inside `cp18.boundary.live()`), which acquires each archive day's missing inputs (`cp18.live.acquire`)."""
+
+    def __init__(self, root, project, recorded, base_end: date | None = None, source: str = 'smard', transport=None):
+        self.root, self.project = Path(root), Path(project)
+        self.transport = transport
+        self.recorded = Path(recorded) if recorded is not None else None
+        if self.recorded is None:
+            if transport is None:
+                raise ValueError('live inputs need recorded responses or a live transport')
+            self.recorded_days = set()
+            self.base_end = base_end or LIVE_BASE_END
+        else:
+            manifest = json.loads((self.recorded / 'manifest.json').read_text())
+            days = sorted(date.fromisoformat(d) for d in manifest['days'])
+            self.recorded_days = set(days)
+            self.base_end = base_end or (days[0] - timedelta(days=1))
+        boundary.admit_delivery_day(self.base_end)
         self.source = source
         self.acquired: list[str] = []
+        self.acquisitions: list[dict] = []
 
     @property
     def archive_root(self) -> Path:
@@ -48,8 +71,20 @@ class LiveInputs:
     def acquire(self, day: date) -> None:
         """Every archive day in (base_end, day], replayed from the recorded responses where it is missing."""
         from .live import archive as AR, recorded as R
-        guard.admit_delivery_day(day)
+        boundary.admit_delivery_day(day)
         archive = AR.Archive(self.archive_root)
+        if self.transport is not None:
+            from .live import acquire as AQ
+            x = self.base_end + timedelta(days=1)
+            while x <= day:
+                if AQ.missing(archive, x):
+                    result = AQ.acquire_day(archive, x, self.transport)
+                    self.acquisitions.append({k: v for k, v in result.items() if k != 'items'} |
+                                             {'items': [{k: v for k, v in i.items() if k != 'traceback'}
+                                                        for i in result['items']]})
+                    self.acquired.append(str(x))
+                x += timedelta(days=1)
+            return
         x = self.base_end + timedelta(days=1)
         while x <= day:
             if not archive.has(x):
@@ -80,13 +115,15 @@ class LiveInputs:
         status = result['status']
         archive = Archive(self.archive_root)
         retrieved = [r.get('retrieved_utc') or '' for r in archive.records(day)]
-        out_value = {'payloads': str(out), 'source': 'cp18.live (replayed recorded responses)', 'build_status': status,
+        source = LIVE_SOURCE if self.transport is not None else 'cp18.live (replayed recorded responses)'
+        out_value = {'payloads': str(out), 'source': source, 'build_status': status,
                      'build_cause': result.get('cause'), 'gfs_available': bool(result.get('gfs_available')),
                      'gfs': result.get('gfs'), 'availability': result.get('availability'), 'search': result.get('search'),
                      'history': result.get('history'), 'problems': result.get('problems'), 'timings': result.get('timings'),
                      'payload_sha256': {p: v['payload_sha256'] for p, v in (result.get('payloads') or {}).items()},
-                     'data_refresh_utc': max((r for r in retrieved if r), default=''),
-                     'archive_days': sorted(str(d) for d in archive.days() if self.base_end < d <= day)}
+                     'data_refresh_utc': _utc_offset(max((r for r in retrieved if r), default='')),
+                     'archive_days': sorted(str(d) for d in archive.days() if self.base_end < d <= day),
+                     'acquired': [a for a in self.acquisitions if a['day'] <= str(day)]}
         out_value['shown'] = status == 'built'
         out_value['reasons'] = [] if status == 'built' else [result.get('cause') or status]
         if status == 'search_state_missing':

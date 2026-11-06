@@ -31,6 +31,8 @@ import urllib.parse
 
 from cp25 import guard
 
+from .. import boundary
+
 UTC = timezone.utc
 SCOPES = ('market', 'gfs', 'metadata')
 
@@ -86,12 +88,9 @@ class Request:
             if name.lower() in ('authorization', 'x-amz-security-token', 'cookie'):
                 raise guard.CredentialRefused(f'credential-bearing header {name!r} refused')
         if self.scope[0] == 'market':
-            if not self.scope[1:]:
-                raise guard.BoundaryRefused('a market-data request must name its delivery days')
-            for d in self.days():
-                guard.admit_delivery_day(d)
+            boundary.admit_scope(self.days())
         elif self.scope[0] == 'gfs':
-            guard.admit_url(url)
+            boundary.admit_url(url)
 
     def key(self) -> str:
         """The replay key: method, URL, query, range. Headers and the credential name are not part of it."""
@@ -182,6 +181,18 @@ class ReplayTransport(Transport):
 
 
 # ------------------------------------------------------------------------------------------------ live
+def tls_context():
+    """Certificate verification against certifi's bundle, which `uv.lock` pins (CP-18c). The interpreter's own
+    default store (`/etc/ssl/cert.pem` on macOS) lacks the root that ENTSO-E's chain ends in (Sectigo Public Server
+    Authentication Root R46), so verification failed there; it never falls back to an unverified context."""
+    import ssl
+    try:
+        import certifi
+    except ImportError:                       # pragma: no cover - certifi is in the locked environment
+        return ssl.create_default_context()
+    return ssl.create_default_context(cafile=certifi.where())
+
+
 class HttpTransport(Transport):
     """The live transport (stdlib `urllib`). NOT used in CP-18a: only the refusal test instantiates it.
 
@@ -193,7 +204,11 @@ class HttpTransport(Transport):
     USER_AGENT = 'delu-day-ahead-forecast-cp18/1 (research; CC-BY data)'
 
     def __init__(self, timeout: float = 60.0):
+        import urllib.request
         self.timeout = timeout
+        # Verification against certifi's pinned bundle (`tls_context`), through urllib's default opener, so
+        # `urllib.request.urlopen(req, timeout=...)` below stays CP-18a's call; verification is never turned off.
+        urllib.request.install_opener(urllib.request.build_opener(urllib.request.HTTPSHandler(context=tls_context())))
 
     def send(self, request: Request) -> Response:
         import urllib.error

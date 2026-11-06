@@ -71,6 +71,8 @@ class LiveStore(Store):
                 last, nxt = date.fromisoformat(entry['last_window_day']), date.fromisoformat(entry['first_live_day'])
                 if previous_day is not None and last != previous_day or nxt <= last:
                     raise StoreRefused(f'ledger entry {i}: the carry does not start at the last recorded day')
+                if previous_day is None and last != first - timedelta(days=1):
+                    raise StoreRefused(f'ledger entry {i}: a carry before any decided day starts at the genesis origin')
                 previous_day = nxt - timedelta(days=1)            # the days between are outside both, never issued
             if kind == 'search':
                 path = self.folder / entry['search_file']
@@ -181,8 +183,13 @@ class LiveStore(Store):
                              **self._carry_state()}, self._head_now())
 
     def record_carry(self, last_window_day: date, first_live_day: date, reason: str) -> dict:
+        """The days strictly between `last_window_day` and `first_live_day` become outside the record, never issued.
+        It starts at the store's last decided day; on a store that has decided none (the live product's genesis at
+        the freeze origin, r20 §24.14 item 4), at the genesis origin, the day before the store's first day."""
         last = self.last_closed()
-        if last is None or last != last_window_day or first_live_day <= last_window_day:
+        if last is None:
+            last = self.first_day() - timedelta(days=1)
+        if last != last_window_day or first_live_day <= last_window_day:
             raise StoreRefused(f'the carry must start at the store\'s last decided day ({last})')
         return self._append({'kind': 'carry', 'last_window_day': str(last_window_day),
                              'first_live_day': str(first_live_day), 'reason': reason, **self._carry_state()},

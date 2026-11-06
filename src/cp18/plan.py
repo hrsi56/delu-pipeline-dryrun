@@ -18,6 +18,8 @@ from datetime import date, datetime, timedelta, timezone
 
 from cp25 import guard
 
+from . import boundary
+
 LOOKBACK_DAYS = 3
 MAX_ISSUANCES = LOOKBACK_DAYS + 1
 
@@ -58,7 +60,7 @@ def to_close(target: date, *, first_day: date, done: set[str], last_closed: date
 def admit(days: list[date]) -> None:
     """The red line: refuse the whole plan if any day is after the development boundary (`cp25.guard`)."""
     for day in days:
-        guard.admit_delivery_day(day)
+        boundary.admit_delivery_day(day)
 
 
 def parse_now(value: str | None) -> datetime:

@@ -27,6 +27,8 @@ from pathlib import Path
 
 from cp25 import guard
 
+from .. import boundary
+
 from . import availability as A
 
 SCHEMA = 'cp18-live-archive-day-v1'
@@ -49,7 +51,7 @@ class Archive:
 
     # ------------------------------------------------------------------ storage
     def day_dir(self, day: date) -> Path:
-        guard.admit_delivery_day(day)
+        boundary.admit_delivery_day(day)
         return self.root / 'days' / day.isoformat()
 
     def has(self, day: date) -> bool:
@@ -63,7 +65,7 @@ class Archive:
         for p in sorted(base.iterdir()):
             if (p / 'manifest.json').exists():
                 d = date.fromisoformat(p.name)
-                guard.admit_delivery_day(d)
+                boundary.admit_delivery_day(d)
                 out.append(d)
         return out
 
@@ -92,7 +94,7 @@ class Archive:
         manifest = self.manifest(day)
         record = dict(record)
         for d in record.get('covers', []):
-            guard.admit_delivery_day(date.fromisoformat(d))
+            boundary.admit_delivery_day(date.fromisoformat(d))
         d = self.day_dir(day)
         if body is not None:
             record['sha256'], record['bytes'] = sha(body), len(body)
@@ -149,7 +151,7 @@ class Archive:
         for r in manifest['records']:
             try:
                 for c in r.get('covers', []):
-                    guard.admit_delivery_day(date.fromisoformat(c))
+                    boundary.admit_delivery_day(date.fromisoformat(c))
                 if r.get('body'):
                     self.body(day, r)
                 for rel in r.get('files', {}):
@@ -176,12 +178,14 @@ def _base(record_id, input_name, source, request, response, *, origin, provenanc
     return out
 
 
-def store_market(archive: Archive, day: date, fetched, *, development_snapshot: bool = False) -> list[dict]:
-    """Archive a SMARD or ENTSO-E fetch (`smard.Fetched` / `entsoe.Fetched`) under delivery day `day`."""
+def store_market(archive: Archive, day: date, fetched, *, development_snapshot: bool = False,
+                 tag: str | None = None) -> list[dict]:
+    """Archive a SMARD or ENTSO-E fetch (`smard.Fetched` / `entsoe.Fetched`) under delivery day `day`. A live
+    acquisition passes a `tag` (its retrieval time), so a day acquired in parts or retried keeps unique ids."""
     out = []
     origin = SNAPSHOT_ORIGIN if development_snapshot else f'{fetched.source} retrieval'
     for i, ex in enumerate(fetched.exchanges):
-        rid = f'{fetched.input}-{fetched.source}-{ex.role}-{i:02d}'
+        rid = f'{fetched.input}-{fetched.source}-{ex.role}-{i:02d}' + (f'@{tag}' if tag else '')
         resp = ex.response
         record = _base(rid, fetched.input if ex.role != 'index' else f'{fetched.input}_index', fetched.source,
                        ex.request, resp, origin=origin, covers=ex.covers,
@@ -231,7 +235,7 @@ def store_gfs(archive: Archive, day: date, *, run: date, run_json: bytes, run_np
               listing_bodies: dict | None = None, problems: list | None = None) -> dict:
     """Archive the D-1 00 UTC run serving `day`: listing evidence, index and message records, the decoded run."""
     from .gfs import idx_request, message_request
-    guard.admit_gfs(guard.run_init(run), 21)
+    boundary.admit_gfs(guard.run_init(run), 21)
     if day != run + timedelta(days=1):
         raise ArchiveError('the archived run must be the D-1 00 UTC run of the day')
     record = json.loads(run_json)
